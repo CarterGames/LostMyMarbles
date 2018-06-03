@@ -16,37 +16,25 @@ public class PlayerController : MonoBehaviour
 	}
 	
 	// Update is called once per frame
-	void Update ()
+	void FixedUpdate ()
     {
-
-        if (Input.GetKey("w"))
-        {
-            Move(MoveSpeed, 0, 0);
-        }
-        if (Input.GetKey("s"))
-        {
-            Move(-MoveSpeed, 0, 0);
-        }
-
-
-        if (Input.GetKey("a"))
-        {
-            Move(0, 0, MoveSpeed);
-        }
-        if (Input.GetKey("d"))
-        {
-            Move(0, 0, -MoveSpeed);
-        }
+		Move();
     }
 
-    // Moving the marble around the scene
-    void Move(float DirectionX, float DirectionY, float DirectionZ)
-    {
-        RB.AddTorque(DirectionX, DirectionY, DirectionZ);
-    }
+	void Move()
+	{
+
+		float moveHoz = Input.GetAxis("Horizontal");
+		float moveVer = Input.GetAxis("Vertical");
+
+		Vector3 Movement = new Vector3(moveHoz, 0.0f, moveVer);
+
+		RB.AddForce(Movement * MoveSpeed);
+
+	}
 
     void Slow()
     {
-        RB.AddTorque(0, 0, 0);
+
     }
 }
