@@ -10,50 +10,44 @@ public class CameraController : MonoBehaviour
 	[Header("Speed For Camera Rotation")]
 	public float RotateSpeed;                   // Float for the speed the camera rorates
 
-	[Header("Debugging")]
-	public Vector3 MousePos;					// Vector3 for the mouse / cursur position in the world
-	public Vector3 PrevMousePos;				// Vector3 for the previous mouse position so it can tell is the mouse has been moved
-
-	private Vector3 Offset;						// Vector3 for the offset between the target and the camera
+	private Vector3 OffsetX;                    // Vector3 for the offset between the target and the camera on the X axis
+	private Vector3 OffsetY;                    // Vector3 for the offset between the target and the camera on the Y axis
 
 
 	// At the start of the game
 	void Start()
 	{
-		Offset = transform.position - Target.transform.position;		// Sets up the offset to be the distance between the target and the camera
+
+		// Sets up the offset to be the distance between the target and the camera
+		OffsetX = transform.position - Target.transform.position;
+		OffsetY = transform.position - Target.transform.position;
+
 	}
 
 	// Every frame
 	void FixedUpdate ()
 	{
 
-		MousePos = Input.mousePosition;									// Gets the mouse position in the worldand puts it into the Vector3 setup earlier
+		// Sets up the angle of rotation on the X axis
+		// This sets up and axisangle whih takes the mouse X input multiplies it by RotateSpeed to get the angle of rotation
+		// Then using uses a Vector3 to determine the direction of the rotation
+		// Finally it is multiplied by the offset to make it releative to the target
 
+		OffsetX = Quaternion.AngleAxis(Input.GetAxis("Mouse X") * RotateSpeed, Vector3.up) * OffsetX;
 
+		OffsetY = Quaternion.AngleAxis(Input.GetAxis("Mouse Y") * RotateSpeed, Vector3.right) * OffsetY;
 
-		if (MousePos.x > (PrevMousePos.x + 100))						// If the mouse has moved right +100 to where it was before 
-		{
-			Offset += Vector3.right * Time.deltaTime * RotateSpeed;		// Adds the movement to the offset Vector3
-			Debug.Log("Right");											// [DEBUG] - Sends a message to the debugging log
-			PrevMousePos.x = MousePos.x;								// Updates the Previous Mouse Position Vector3 to the new Mouse Position 
-		}
-		else if (MousePos.x < (PrevMousePos.x - 100)) 
-		{
-			Offset += Vector3.left * Time.deltaTime * RotateSpeed;      // Adds the movement to the offset Vector3
-			Debug.Log("Left");                                          // [DEBUG] - Sends a message to the debugging log
-			PrevMousePos.x = MousePos.x;                                // Updates the Previous Mouse Position Vector3 to the new Mouse Position 
-		}
-
-
-
-		Debug.Log("No If Statements Active");                           // [DEBUG] - Sends a message to the debugging log
 	}
 
 
 	// At the end of each frame
+	
 	void LateUpdate()
 	{
-		transform.position = Target.transform.position + Offset;		// Moves the Camera to the position of the Target + the offset 
-		transform.LookAt(Target);										// Makes the camera look at the Target
+
+		transform.position = Target.transform.position + OffsetX + OffsetY;		// Moves the Camera to the position of the Target + the offset
+		transform.LookAt(Target);												// Makes the camera look at the Target
+
 	}
+	
 }
