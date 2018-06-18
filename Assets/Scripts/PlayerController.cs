@@ -5,12 +5,16 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
 	[Header("Movement Speed")]	
-    public float MoveSpeed;					// Float for the speed of the Marble
-    private Rigidbody RB;					// Getting the Rigidbody component from the Marble for later use
+    public float MoveSpeed;                 // Float for the speed of the Marble
+	public float JumpHeight;				// Float for the height the jump moves by
+	private Rigidbody RB;                   // Getting the Rigidbody component from the Marble for later use
 
+	[Header("Timer")]
+	public float Timer;						// Float for the timer itself
+	public float TimeLimit = 0.75f;			// Float for the timelimit
 
-    // Start of Game
-    void Start ()
+	// Start of Game
+	void Start ()
     {
 
 		// Setting up a variable "RB" for the rigidbody component
@@ -22,10 +26,28 @@ public class PlayerController : MonoBehaviour
 	// Every Frame
 	void FixedUpdate ()
     {
+		// Adds time to the timer
+		Timer += Time.deltaTime;
+
+		// Point in direction of camera
+
 
 		// Running the Movement function
 		Move();
 
+		// Jump - If pressed
+		if (Input.GetKeyDown("space"))
+		{
+			// If the timer is over the time limit
+			if (Timer >= TimeLimit)
+			{
+				// Runs the jump function
+				Jump();
+				// Resets the timer to 0
+				Timer = 0;
+
+			}
+		}
     }
 
 
@@ -37,7 +59,8 @@ public class PlayerController : MonoBehaviour
 		float moveVer = Input.GetAxis("Vertical");
 
 		// Sets up the Vector3 for Movement using the inputted keyboard controls
-		Vector3 Movement = new Vector3(moveHoz, 0.0f, moveVer);
+		Vector3 Movement = new Vector3(moveHoz, 0.0f, -moveVer);
+
 
 		// Adds force to the Marble to make it move based on the Movement inputted Multiplied by the Movement Speed
 		RB.AddForce(Movement * MoveSpeed);
@@ -50,4 +73,13 @@ public class PlayerController : MonoBehaviour
     {
 
     }
+
+	// Jump function - To add force to go up a little 
+	void Jump()
+	{
+
+		// Adds force to make the ball go up
+		RB.AddForce(new Vector3(0, JumpHeight, 0));
+
+	}
 }

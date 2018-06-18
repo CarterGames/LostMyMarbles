@@ -11,7 +11,6 @@ public class CameraController : MonoBehaviour
 	public float RotateSpeed;                   // Float for the speed the camera rorates
 
 	private Vector3 OffsetX;                    // Vector3 for the offset between the target and the camera on the X axis
-	private Vector3 OffsetY;                    // Vector3 for the offset between the target and the camera on the Y axis
 
 
 	// At the start of the game
@@ -20,7 +19,6 @@ public class CameraController : MonoBehaviour
 
 		// Sets up the offset to be the distance between the target and the camera
 		OffsetX = transform.position - Target.transform.position;
-		OffsetY = transform.position - Target.transform.position;
 
 	}
 
@@ -33,19 +31,18 @@ public class CameraController : MonoBehaviour
 		// Then using uses a Vector3 to determine the direction of the rotation
 		// Finally it is multiplied by the offset to make it releative to the target
 
-		OffsetX = Quaternion.AngleAxis(Input.GetAxis("Mouse X") * RotateSpeed, Vector3.up) * OffsetX;
-
-		OffsetY = Quaternion.AngleAxis(Input.GetAxis("Mouse Y") * RotateSpeed, Vector3.right) * OffsetY;
+		OffsetX = Quaternion.AngleAxis(Input.GetAxis("Mouse X") * RotateSpeed, Vector3.down) * OffsetX;
 
 	}
 
 
 	// At the end of each frame
-	
+
 	void LateUpdate()
 	{
 
-		transform.position = Target.transform.position + OffsetX + OffsetY;		// Moves the Camera to the position of the Target + the offset
+		transform.position = Target.transform.position + OffsetX;               // Moves the Camera to the position of the Target + the offset
+
 		transform.LookAt(Target);												// Makes the camera look at the Target
 
 	}
