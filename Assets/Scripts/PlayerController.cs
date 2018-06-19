@@ -71,6 +71,8 @@ public class PlayerController : MonoBehaviour
 	// Slow Function - Yet to be written, will all the Marble to slow down once no inputs are recieved, e.g Drag
     void Slow()
     {
+		
+		RB.drag = 5;
 
     }
 
