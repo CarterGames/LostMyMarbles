@@ -13,8 +13,6 @@ public class PlayerController : MonoBehaviour
 	public float Timer;						// Float for the timer itself
 	public float TimeLimit = 0.75f;         // Float for the timelimit
 
-	private float TestMovement;
-
 	// Start of Game
 	void Start ()
     {
@@ -26,14 +24,11 @@ public class PlayerController : MonoBehaviour
 	}
 	
 
-	// Every Frame
+	// Every Frame (keeping a contant framerate)
 	void FixedUpdate ()
     {
 		// Adds time to the timer
 		Timer += Time.deltaTime;
-
-		// Point in direction of camera
-
 
 		// Running the Movement function
 		Move();
@@ -43,7 +38,6 @@ public class PlayerController : MonoBehaviour
 		{
 			Slow();
 		}
-		
 
 		// Jump - If pressed
 		if (Input.GetKeyDown("space"))
@@ -72,8 +66,10 @@ public class PlayerController : MonoBehaviour
 		float moveVer = Input.GetAxis("Vertical");
 
 		// Sets up the Vector3 for Movement using the inputted keyboard controls
-		Vector3 Movement = new Vector3(moveHoz, 0.0f, -moveVer);
+		Vector3 Movement = new Vector3(moveHoz, 0.0f, moveVer);
 
+		// Point in direction of camera
+		Movement = Camera.main.transform.TransformDirection(Movement);
 
 		// Adds force to the Marble to make it move based on the Movement inputted Multiplied by the Movement Speed
 		RB.AddForce(Movement * MoveSpeed);
