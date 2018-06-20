@@ -11,13 +11,16 @@ public class PlayerController : MonoBehaviour
 
 	[Header("Timer")]
 	public float Timer;						// Float for the timer itself
-	public float TimeLimit = 0.75f;			// Float for the timelimit
+	public float TimeLimit = 0.75f;         // Float for the timelimit
+
+	private float TestMovement;
 
 	// Start of Game
 	void Start ()
     {
 
-		// Setting up a variable "RB" for the rigidbody component
+		// Setting up a variable "RB" for the rigidbody component 
+		// just to make life easier as this will be used a fair bit
         RB = GetComponent<Rigidbody>();
 
 	}
@@ -34,6 +37,13 @@ public class PlayerController : MonoBehaviour
 
 		// Running the Movement function
 		Move();
+
+		// Slowing down wen no movement input
+		if (!Input.anyKey)
+		{
+			Slow();
+		}
+		
 
 		// Jump - If pressed
 		if (Input.GetKeyDown("space"))
@@ -54,6 +64,9 @@ public class PlayerController : MonoBehaviour
 	// Movement Function - to move the Marble using the riggidbody and adding force
 	void Move()
 	{
+		// Resetting drag is an input o movement is made
+		RB.drag = 0;
+
 		// Gets the A,S,W,D inputs from the keyboard
 		float moveHoz = Input.GetAxis("Horizontal");
 		float moveVer = Input.GetAxis("Vertical");
@@ -68,13 +81,13 @@ public class PlayerController : MonoBehaviour
 	}
 
 
-	// Slow Function - Yet to be written, will all the Marble to slow down once no inputs are recieved, e.g Drag
+	// Slow Function - Slows the ball down to a complete stop when there is no input from the player
     void Slow()
     {
-		
-		RB.drag = 5;
 
-    }
+		// Adding drag to the ball to stop the ball
+		RB.drag = 1;
+	}
 
 	// Jump function - To add force to go up a little 
 	void Jump()
@@ -82,6 +95,5 @@ public class PlayerController : MonoBehaviour
 
 		// Adds force to make the ball go up
 		RB.AddForce(new Vector3(0, JumpHeight, 0));
-
 	}
 }

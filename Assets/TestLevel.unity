@@ -798,7 +798,7 @@ MonoBehaviour:
   MoveSpeed: 10
   JumpHeight: 300
   Timer: 0
-  TimeLimit: 0.75
+  TimeLimit: 0.55
 --- !u!1001 &1197021583
 Prefab:
   m_ObjectHideFlags: 0
