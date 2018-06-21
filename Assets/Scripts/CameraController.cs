@@ -28,7 +28,7 @@ public class CameraController : MonoBehaviour
 	}
 
 	// Every frame
-	void FixedUpdate ()
+	void Update ()
 	{
 
 		// Sets up the angle of rotation on the X axis
@@ -46,10 +46,11 @@ public class CameraController : MonoBehaviour
 	void LateUpdate()
 	{
 
-		transform.position = Target.transform.position + OffsetX;               // Moves the Camera to the position of the Target + the offset
+		// Moves the Camera to the position of the Target + the offset
+		transform.position = Target.transform.position + OffsetX;
 
-		transform.LookAt(Target);												// Makes the camera look at the Target
-
+		// Makes the camera look at the Target
+		transform.LookAt(Target);												
 	}
 	
 }

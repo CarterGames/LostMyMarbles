@@ -1584,6 +1584,17 @@ Prefab:
       propertyPath: m_RootOrder
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 135549388752370644, guid: fefca2e38cd4ac243a16201a2f243752,
+        type: 2}
+      propertyPath: m_Material
+      value: 
+      objectReference: {fileID: 13400000, guid: d607655fd3d591c4fb63d842c457f07b,
+        type: 2}
+    - target: {fileID: 54785671216987262, guid: fefca2e38cd4ac243a16201a2f243752,
+        type: 2}
+      propertyPath: m_CollisionDetection
+      value: 2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: fefca2e38cd4ac243a16201a2f243752, type: 2}
   m_IsPrefabParent: 0
@@ -2241,6 +2252,11 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4813326424117026, guid: 61e97367d4f7fd746b9e77fd08ef9f6a, type: 2}
       propertyPath: m_LocalScale.z
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 64918902931717434, guid: 61e97367d4f7fd746b9e77fd08ef9f6a,
+        type: 2}
+      propertyPath: m_Convex
       value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
