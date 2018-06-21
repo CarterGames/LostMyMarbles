@@ -11,11 +11,16 @@ public class CameraController : MonoBehaviour
 	public float RotateSpeed;                   // Float for the speed the camera rorates
 
 	private Vector3 OffsetX;                    // Vector3 for the offset between the target and the camera on the X axis
-
+	private Vector3 StartPos;					// Vector3 for the position the camera starts in
 
 	// At the start of the game
 	void Start()
 	{
+		// getting the camera up in the starting position
+		StartPos = new Vector3(Target.transform.position.x, Target.transform.position.y + 2, Target.transform.position.z - 5);
+
+		// setting the camera up in the starting position
+		transform.position = StartPos;
 
 		// Sets up the offset to be the distance between the target and the camera
 		OffsetX = transform.position - Target.transform.position;
