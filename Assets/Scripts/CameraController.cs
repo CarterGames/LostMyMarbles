@@ -11,11 +11,16 @@ public class CameraController : MonoBehaviour
 	public float RotateSpeed;                   // Float for the speed the camera rorates
 
 	private Vector3 OffsetX;                    // Vector3 for the offset between the target and the camera on the X axis
-
+	private Vector3 StartPos;					// Vector3 for the position the camera starts in
 
 	// At the start of the game
 	void Start()
 	{
+		// getting the camera up in the starting position
+		StartPos = new Vector3(Target.transform.position.x, Target.transform.position.y + 2, Target.transform.position.z - 5);
+
+		// setting the camera up in the starting position
+		transform.position = StartPos;
 
 		// Sets up the offset to be the distance between the target and the camera
 		OffsetX = transform.position - Target.transform.position;
@@ -23,7 +28,7 @@ public class CameraController : MonoBehaviour
 	}
 
 	// Every frame
-	void FixedUpdate ()
+	void Update ()
 	{
 
 		// Sets up the angle of rotation on the X axis
@@ -41,10 +46,11 @@ public class CameraController : MonoBehaviour
 	void LateUpdate()
 	{
 
-		transform.position = Target.transform.position + OffsetX;               // Moves the Camera to the position of the Target + the offset
+		// Moves the Camera to the position of the Target + the offset
+		transform.position = Target.transform.position + OffsetX;
 
-		transform.LookAt(Target);												// Makes the camera look at the Target
-
+		// Makes the camera look at the Target
+		transform.LookAt(Target);												
 	}
 	
 }

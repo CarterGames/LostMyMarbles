@@ -25,7 +25,7 @@ public class PlayerController : MonoBehaviour
 	
 
 	// Every Frame (keeping a contant framerate)
-	void FixedUpdate ()
+	void Update ()
     {
 		// Adds time to the timer
 		Timer += Time.deltaTime;
