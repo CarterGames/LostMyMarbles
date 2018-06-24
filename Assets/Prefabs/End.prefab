@@ -22,7 +22,10 @@ GameObject:
   - component: {fileID: 33099171739955296}
   - component: {fileID: 23593341946640852}
   - component: {fileID: 64469256612524046}
+  - component: {fileID: 136826702436021708}
   - component: {fileID: 114186488444201956}
+  - component: {fileID: 114296710169831082}
+  - component: {fileID: 114898516811478326}
   m_Layer: 0
   m_Name: End
   m_TagString: Untagged
@@ -37,7 +40,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1489155675363194}
   m_LocalRotation: {x: -0.7071068, y: 0, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: -14.88, y: -1.7866052, z: 16.92}
+  m_LocalPosition: {x: -33.02, y: -0.33, z: 2.54}
   m_LocalScale: {x: 3.0009766, y: 3.0009766, z: 3.0009766}
   m_Children: []
   m_Father: {fileID: 0}
@@ -115,3 +118,42 @@ MonoBehaviour:
   - {fileID: 2800000, guid: 68423637ac8f469488066e8763166114, type: 3}
   Offset: 0.5
   Rend: {fileID: 23593341946640852}
+--- !u!114 &114296710169831082
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1489155675363194}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ce3a54783681f844e8f8159c7c405e2d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Marble: {fileID: 0}
+  TimeScript: {fileID: 114898516811478326}
+--- !u!114 &114898516811478326
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1489155675363194}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 143687624c73b2a43b6a277560fe0c6c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Timer: 0
+  StartTimer: 0
+--- !u!136 &136826702436021708
+CapsuleCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1489155675363194}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  m_Radius: 0.65
+  m_Height: 3
+  m_Direction: 2
+  m_Center: {x: 0, y: 0, z: 0}
