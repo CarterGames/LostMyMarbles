@@ -13,6 +13,8 @@ public class PlayerController : MonoBehaviour
 	public float Timer;						// Float for the timer itself
 	public float TimeLimit = 0.75f;         // Float for the timelimit
 
+	public bool CanJump;
+
 	// Start of Game
 	void Start ()
     {
@@ -25,13 +27,14 @@ public class PlayerController : MonoBehaviour
 	
 
 	// Every Frame (keeping a contant framerate)
-	void Update ()
+	void FixedUpdate ()
     {
 		// Adds time to the timer
 		Timer += Time.deltaTime;
 
 		// Running the Movement function
 		Move();
+		Jump();
 
 		// Slowing down wen no movement input
 		if (!Input.anyKey)
@@ -39,18 +42,9 @@ public class PlayerController : MonoBehaviour
 			Slow();
 		}
 
-		// Jump - If pressed
-		if (Input.GetKeyDown("space"))
+		if (Timer > 0.55)
 		{
-			// If the timer is over the time limit
-			if (Timer >= TimeLimit)
-			{
-				// Runs the jump function
-				Jump();
-				// Resets the timer to 0
-				Timer = 0;
-
-			}
+			CanJump = true;
 		}
     }
 
@@ -89,7 +83,24 @@ public class PlayerController : MonoBehaviour
 	void Jump()
 	{
 
-		// Adds force to make the ball go up
-		RB.AddForce(new Vector3(0, JumpHeight, 0));
+
+		if ((CanJump == true) && (Input.GetKeyDown(KeyCode.Space)))
+		{
+			Vector3 Jump = new Vector3(0, JumpHeight, 0);
+
+			RB.AddForce(0f, 0f, 0f);
+
+			RB.AddForce(Jump, ForceMode.Impulse);
+
+			CanJump = false;
+			Timer = 0;
+		}
+	}
+
+
+
+	private void OnCollisionExit(Collision collision)
+	{
+		CanJump = false;
 	}
 }
