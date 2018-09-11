@@ -1,0 +1,2 @@
+C:\Users\J\Documents\Marble Blast Clone\obj\Debug\Assembly-CSharp.csprojAssemblyReference.cache
+C:\Users\J\Documents\Marble Blast Clone\obj\Debug\Assembly-CSharp.csproj.CoreCompileInputs.cache

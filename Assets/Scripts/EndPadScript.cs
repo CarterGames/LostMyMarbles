@@ -7,17 +7,23 @@ public class EndPadScript : MonoBehaviour
 	// Marble object so it can be freezed
 	[Header("Player Object")]
 	public GameObject Marble;
+	public GameObject Manager;
 
 	public TimerScript TimeScript;
 
+	public float FinishTime;
+
 	// Rigidbody for the player, just to save a bit of space in the code
 	private Rigidbody PlayerRB;
+	private Manager ManagerScript;
 
 	// Use this for initialization
 	void Start ()
 	{
 		// Sets PlayerRB to the players rigid body component
 		PlayerRB = Marble.GetComponent<Rigidbody>();
+
+		ManagerScript = Manager.GetComponent<Manager>();
 	}
 
 	void Update()
@@ -32,9 +38,20 @@ public class EndPadScript : MonoBehaviour
 	// When the marble collides with the end pad trigger volume
 	private void OnTriggerEnter(Collider other)
 	{
+		FinishTime = TimeScript.GetTimer();
+
 		TimeScript.SetTimer(0);
 		TimeScript.SetStartTimer(true);
 
+		ManagerScript.SetLastTime(FinishTime);
+
+		if (FinishTime > ManagerScript.GetBestTime())
+		{
+			ManagerScript.SetBestTime(FinishTime);
+		}
+
 		PlayerRB.constraints = RigidbodyConstraints.FreezePositionX | RigidbodyConstraints.FreezePositionY | RigidbodyConstraints.FreezePositionZ;     // Freezes the player
+
+
 	}
 }

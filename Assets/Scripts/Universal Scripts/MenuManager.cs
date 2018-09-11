@@ -19,15 +19,22 @@ public enum GameStates
 public class MenuManager : MonoBehaviour
 {
 	[Header("Game States")]
-	public GameStates E_GameStates;								// a enum variable of the enum defined in global scope
+	public GameStates E_GameStates;                             // a enum variable of the enum defined in global scope
 
+	public GameObject Manager;
 
+	private Manager ManagerScript;
 	// When the script starts
 	public void Awake()
 	{
 		DontDestroyOnLoad(gameObject);                          // Don't destroy the object the script is attached to
 
 		Initial();												// Runs the initial function for initial game setup
+	}
+
+	private void Start()
+	{
+		ManagerScript = Manager.GetComponent<Manager>();
 	}
 
 	// Initial function, to run anything that need setting on game start
@@ -51,6 +58,7 @@ public class MenuManager : MonoBehaviour
 
 			case GameStates.Level1:								// Case - Level1 (2)
 				SceneManager.LoadScene("Level1");
+				ManagerScript.SetLevelNumber(1);
 				break;
 
 			case GameStates.Credits:							// Case - Credits (3)
