@@ -1803,6 +1803,21 @@ GameObject:
   m_PrefabParentObject: {fileID: 1677093527279502, guid: ec88fc42f227a4741830514f2b480cb1,
     type: 2}
   m_PrefabInternal: {fileID: 1660234731}
+--- !u!114 &1183974684
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1183974683}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 44ccdf97eae833f46a5903b1127ffa23, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  LevelNumber: 0
+  LevelTimer: 0
+  Manager: {fileID: 1183974683}
+  DisplayText: {fileID: 1651147232}
 --- !u!1001 &1244164873
 Prefab:
   m_ObjectHideFlags: 0
@@ -2426,7 +2441,7 @@ GameObject:
   - component: {fileID: 1651147234}
   m_Layer: 5
   m_Name: ReadyText
-  m_TagString: Untagged
+  m_TagString: ReadyText
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

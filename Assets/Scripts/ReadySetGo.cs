@@ -78,4 +78,9 @@ public class ReadySetGo : MonoBehaviour
 			}
 		}
 	}
+
+	public float GetTimer()
+	{
+		return Timer;
+	}
 }

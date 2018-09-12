@@ -16,6 +16,7 @@ public class EndPadScript : MonoBehaviour
 	// Rigidbody for the player, just to save a bit of space in the code
 	private Rigidbody PlayerRB;
 	private Manager ManagerScript;
+	private LevelManager LevelScript;
 
 	// Use this for initialization
 	void Start ()
@@ -24,6 +25,7 @@ public class EndPadScript : MonoBehaviour
 		PlayerRB = Marble.GetComponent<Rigidbody>();
 
 		ManagerScript = Manager.GetComponent<Manager>();
+		LevelScript = Manager.GetComponent<LevelManager>();
 	}
 
 	void Update()
@@ -43,12 +45,7 @@ public class EndPadScript : MonoBehaviour
 		TimeScript.SetTimer(0);
 		TimeScript.SetStartTimer(true);
 
-		ManagerScript.SetLastTime(FinishTime);
-
-		if (FinishTime > ManagerScript.GetBestTime())
-		{
-			ManagerScript.SetBestTime(FinishTime);
-		}
+		LevelScript.ChangeLevelState(LevelManager.LevelStates.Finished);
 
 		PlayerRB.constraints = RigidbodyConstraints.FreezePositionX | RigidbodyConstraints.FreezePositionY | RigidbodyConstraints.FreezePositionZ;     // Freezes the player
 
