@@ -588,7 +588,8 @@ Prefab:
         type: 2}
       propertyPath: Manager
       value: 
-      objectReference: {fileID: 1183974683}
+      objectReference: {fileID: 1677093527279502, guid: ec88fc42f227a4741830514f2b480cb1,
+        type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: d5f30e2673c1edf449caf4ea11cdffc5, type: 2}
   m_IsPrefabParent: 0
@@ -1798,26 +1799,6 @@ MeshCollider:
   m_CookingOptions: 14
   m_SkinWidth: 0.01
   m_Mesh: {fileID: 4300000, guid: 7186fc820bd638d4986f66d86733a502, type: 3}
---- !u!1 &1183974683 stripped
-GameObject:
-  m_PrefabParentObject: {fileID: 1677093527279502, guid: ec88fc42f227a4741830514f2b480cb1,
-    type: 2}
-  m_PrefabInternal: {fileID: 1660234731}
---- !u!114 &1183974684
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1183974683}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 44ccdf97eae833f46a5903b1127ffa23, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  LevelNumber: 0
-  LevelTimer: 0
-  Manager: {fileID: 1183974683}
-  DisplayText: {fileID: 1651147232}
 --- !u!1001 &1244164873
 Prefab:
   m_ObjectHideFlags: 0
@@ -2519,48 +2500,6 @@ MonoBehaviour:
   Text3Colour: {r: 0.12495552, g: 0.6792453, b: 0.4258828, a: 1}
   DisplayText: {fileID: 1651147232}
   Player: {fileID: 1393949437}
---- !u!1001 &1660234731
-Prefab:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 4017624479439894, guid: ec88fc42f227a4741830514f2b480cb1, type: 2}
-      propertyPath: m_LocalPosition.x
-      value: -19.892885
-      objectReference: {fileID: 0}
-    - target: {fileID: 4017624479439894, guid: ec88fc42f227a4741830514f2b480cb1, type: 2}
-      propertyPath: m_LocalPosition.y
-      value: 6.4866557
-      objectReference: {fileID: 0}
-    - target: {fileID: 4017624479439894, guid: ec88fc42f227a4741830514f2b480cb1, type: 2}
-      propertyPath: m_LocalPosition.z
-      value: -15.3129225
-      objectReference: {fileID: 0}
-    - target: {fileID: 4017624479439894, guid: ec88fc42f227a4741830514f2b480cb1, type: 2}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4017624479439894, guid: ec88fc42f227a4741830514f2b480cb1, type: 2}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4017624479439894, guid: ec88fc42f227a4741830514f2b480cb1, type: 2}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4017624479439894, guid: ec88fc42f227a4741830514f2b480cb1, type: 2}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4017624479439894, guid: ec88fc42f227a4741830514f2b480cb1, type: 2}
-      propertyPath: m_RootOrder
-      value: 8
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_ParentPrefab: {fileID: 100100000, guid: ec88fc42f227a4741830514f2b480cb1, type: 2}
-  m_IsPrefabParent: 0
 --- !u!1 &1688125739 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 100000, guid: 7186fc820bd638d4986f66d86733a502, type: 3}

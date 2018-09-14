@@ -51,6 +51,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ccbf9298f038f244eb9e2e2d61aa418a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  BestTime: 0
-  LastTime: 0
-  UpdateTimes: 0
+  LevelNumber: 1
+  LevelTimer: 0
+  E_GameStates: 0

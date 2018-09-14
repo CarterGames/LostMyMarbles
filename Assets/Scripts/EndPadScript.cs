@@ -9,14 +9,15 @@ public class EndPadScript : MonoBehaviour
 	public GameObject Marble;
 	public GameObject Manager;
 
-	public TimerScript TimeScript;
+	public TimerScript TimerScript;
 
 	public float FinishTime;
 
+	private bool LevelEnded = false;
+
 	// Rigidbody for the player, just to save a bit of space in the code
 	private Rigidbody PlayerRB;
-	private Manager ManagerScript;
-	private LevelManager LevelScript;
+	private GameController ControllerScript;
 
 	// Use this for initialization
 	void Start ()
@@ -24,31 +25,44 @@ public class EndPadScript : MonoBehaviour
 		// Sets PlayerRB to the players rigid body component
 		PlayerRB = Marble.GetComponent<Rigidbody>();
 
-		ManagerScript = Manager.GetComponent<Manager>();
-		LevelScript = Manager.GetComponent<LevelManager>();
+		ControllerScript = Manager.GetComponent<GameController>();
+
+		TimerScript = GetComponent<TimerScript>();
+
+		TimerScript.SetStartTimer(true);
 	}
+	
+
 
 	void Update()
 	{
-		if (TimeScript.GetTimer() > 1.5f)
+		if ((TimerScript.GetTimer() > 5f) && (LevelEnded == false))
 		{
-			// Do End Stuff
-			Debug.Log("End");
+			ControllerScript.ChangeLevelState(LevelStates.Started);
+			TimerScript.SetStartTimer(false);
+		}
+		else if (LevelEnded == true)
+		{
+			ControllerScript.ChangeLevelState(LevelStates.Finished);
+		}
+		else
+		{
+			ControllerScript.ChangeLevelState(LevelStates.Loading);
+		}
+
+		if (Input.GetButton("Cancel"))                          // If the button mapped cancel is pressed
+		{
+			ControllerScript.LoadCurrentScene(GameStates.Quit);                  // Quit the appilcation (only works on a built version of the game)
 		}
 	}
+
+
 
 	// When the marble collides with the end pad trigger volume
 	private void OnTriggerEnter(Collider other)
 	{
-		FinishTime = TimeScript.GetTimer();
-
-		TimeScript.SetTimer(0);
-		TimeScript.SetStartTimer(true);
-
-		LevelScript.ChangeLevelState(LevelManager.LevelStates.Finished);
+		LevelEnded = true;
 
 		PlayerRB.constraints = RigidbodyConstraints.FreezePositionX | RigidbodyConstraints.FreezePositionY | RigidbodyConstraints.FreezePositionZ;     // Freezes the player
-
-
 	}
 }

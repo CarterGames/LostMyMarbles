@@ -492,7 +492,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 99a52a4990b55bb48b45e887e7424fe1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MenuManager: {fileID: 1809257126986400, guid: 2dd86c95bbcd8834386111bc096ce47a,
+  GameManager: {fileID: 1677093527279502, guid: ec88fc42f227a4741830514f2b480cb1,
     type: 2}
   state: 2
 --- !u!1 &1365757208
