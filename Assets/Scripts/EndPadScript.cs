@@ -40,6 +40,7 @@ public class EndPadScript : MonoBehaviour
 		{
 			ControllerScript.ChangeLevelState(LevelStates.Started);
 			TimerScript.SetStartTimer(false);
+			TimerScript.SetTimer(0);
 		}
 		else if (LevelEnded == true)
 		{
@@ -54,6 +55,19 @@ public class EndPadScript : MonoBehaviour
 		{
 			ControllerScript.LoadCurrentScene(GameStates.Quit);                  // Quit the appilcation (only works on a built version of the game)
 		}
+
+
+
+
+
+
+		if ((TimerScript.GetTimer() > 5f) && (LevelEnded == true))
+		{
+			TimerScript.SetStartTimer(false);
+			TimerScript.SetTimer(0);
+			LevelEnded = false;
+			ControllerScript.LoadCurrentScene(GameStates.Menu);
+		}
 	}
 
 
@@ -64,5 +78,7 @@ public class EndPadScript : MonoBehaviour
 		LevelEnded = true;
 
 		PlayerRB.constraints = RigidbodyConstraints.FreezePositionX | RigidbodyConstraints.FreezePositionY | RigidbodyConstraints.FreezePositionZ;     // Freezes the player
+
+		TimerScript.SetStartTimer(true);
 	}
 }

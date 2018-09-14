@@ -22,15 +22,13 @@ public enum LevelStates
 	Loading,
 	Started,
 	Finished,
+	Null,
 };
 
 
 public class GameController : MonoBehaviour
 {
-
-	// Int for the level number of the level the player is on
-	public int LevelNumber = 0;
-
+	
 	// Values can't change outside the script
 	// used to set the size of the 2d array which holds the best and last times for each level
 	private static int NumberOfLevels = 2;
@@ -39,12 +37,19 @@ public class GameController : MonoBehaviour
 	// Initilises a 2 Dimentional array to store the times for each level (could be done by external file if wanted I guess)
 	public float[,] Times = new float[NumberOfLevels, TimesStored];
 
+	[Header("Level Variables")]
+	// Int for the level number of the level the player is on
+	public int LevelNumber = 0;
+
 	// float used as a level timer when the level starts
 	public float LevelTimer;
 
 
 	[Header("Game States")]
 	public GameStates E_GameStates;                             // a enum variable of the enum defined in global scope
+
+	// bool for updating the scores on the menu
+	public bool UpdateScores = false;
 
 
 
@@ -96,7 +101,14 @@ public class GameController : MonoBehaviour
 				{
 					SetLevelBestTime(LevelNumber, LevelTimer);
 				}
+				else
+				{
+					ChangeLevelState(LevelStates.Null);
+				}
 
+				break;
+
+			case LevelStates.Null:
 				break;
 		}
 	}
@@ -138,6 +150,8 @@ public class GameController : MonoBehaviour
 
 
 
+
+
 	// ------------------------------------------------------ Getters
 
 
@@ -165,6 +179,17 @@ public class GameController : MonoBehaviour
 		return LevelTimer;
 	}
 
+	// Gets & Returns the Update Scores boolean
+	public bool GetUpdateScores()
+	{
+		return UpdateScores;
+	}
+
+	// Gets & Returns the Times Array
+	public float[,] GetTimesArray()
+	{
+		return Times;
+	}
 
 
 	// ------------------------------------------------------ Setters
@@ -186,5 +211,11 @@ public class GameController : MonoBehaviour
 	public void SetLevelLastTime(int LevelNumber, float time)
 	{
 		Times[LevelNumber, 1] = time;
+	}
+
+	// Sets the UpdateScores boolean to the inputted value
+	public void SetUpdateScores(bool input)
+	{
+		UpdateScores = input;
 	}
 }

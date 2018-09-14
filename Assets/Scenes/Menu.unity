@@ -341,6 +341,7 @@ GameObject:
   - component: {fileID: 866948290}
   - component: {fileID: 866948292}
   - component: {fileID: 866948291}
+  - component: {fileID: 866948293}
   m_Layer: 5
   m_Name: Level1LastTime
   m_TagString: Untagged
@@ -363,8 +364,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -77.2, y: -114.6}
-  m_SizeDelta: {x: 200, y: 30}
+  m_AnchoredPosition: {x: 79.7, y: -114.6}
+  m_SizeDelta: {x: 500, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &866948291
 MonoBehaviour:
@@ -405,6 +406,20 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 866948289}
+--- !u!114 &866948293
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 866948289}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: df8054bd024d81a4eb360182016b2521, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ScoreText: {fileID: 866948291}
+  GameManager: {fileID: 1677093527279502, guid: ec88fc42f227a4741830514f2b480cb1,
+    type: 2}
 --- !u!1 &904137107
 GameObject:
   m_ObjectHideFlags: 0
@@ -580,6 +595,7 @@ GameObject:
   - component: {fileID: 1027516990}
   - component: {fileID: 1027516992}
   - component: {fileID: 1027516991}
+  - component: {fileID: 1027516993}
   m_Layer: 5
   m_Name: Level1BestTime
   m_TagString: Untagged
@@ -602,8 +618,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -77.2, y: -92.6}
-  m_SizeDelta: {x: 200, y: 30}
+  m_AnchoredPosition: {x: 32.2, y: -92.6}
+  m_SizeDelta: {x: 400, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1027516991
 MonoBehaviour:
@@ -644,6 +660,20 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1027516989}
+--- !u!114 &1027516993
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1027516989}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1f9089b10d1931546a794e11a0e3d91d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ScoreText: {fileID: 1027516991}
+  GameManager: {fileID: 1677093527279502, guid: ec88fc42f227a4741830514f2b480cb1,
+    type: 2}
 --- !u!1 &1069045764
 GameObject:
   m_ObjectHideFlags: 0
@@ -694,7 +724,6 @@ GameObject:
   - component: {fileID: 1071849489}
   - component: {fileID: 1071849492}
   - component: {fileID: 1071849493}
-  - component: {fileID: 1071849494}
   m_Layer: 5
   m_Name: LevelButton
   m_TagString: Untagged
@@ -852,25 +881,6 @@ MonoBehaviour:
   - {fileID: 866948291}
   ButtonEnable:
   - {fileID: 70335203}
---- !u!114 &1071849494
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1071849487}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 862c0396f5e88ec41b312995dad6223e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  canvas: {fileID: 904137110}
-  TextElements:
-  - {fileID: 1241402399}
-  - {fileID: 1027516991}
-  - {fileID: 866948291}
-  ButtonElements:
-  - {fileID: 70335203}
-  TriggerButton: {fileID: 1071849489}
 --- !u!1 &1241402397
 GameObject:
   m_ObjectHideFlags: 0

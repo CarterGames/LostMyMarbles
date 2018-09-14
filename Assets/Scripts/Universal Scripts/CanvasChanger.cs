@@ -12,10 +12,12 @@ using UnityEngine.UI;
 public class CanvasChanger : MonoBehaviour
 {
 
+	// Array's of Text & Buttons to be disabled
 	[Header("Elements in the Canvas to be Disabled")]
-	public Text[] TextDisable;
+	public Text[] TextDisable;								// the [] makes the array size undefined, which is then defined in the Inspector. meaing it can be a big as needed for its use case
 	public Button[] ButtonDisable;
 
+	// Array's of Text & Buttons to be enabled
 	[Header("Elements in the Canvas to be Enabled")]
 	public Text[] TextEnable;
 	public Button[] ButtonEnable;
@@ -26,7 +28,7 @@ public class CanvasChanger : MonoBehaviour
 	public void CanvasElementsDisable()
 	{
 
-		foreach(Text text in TextDisable)
+		foreach(Text text in TextDisable)				// foreach does what it says on the tin, for each Text object in the TextDisable array, do the following...
 		{
 			text.enabled = false;
 		}
