@@ -66,6 +66,7 @@
     <Compile Include="Assets\Scripts\ReadySetGo.cs" />
     <Compile Include="Assets\Scripts\StartPadScript.cs" />
     <Compile Include="Assets\Scripts\Universal Scripts\ButtonChangeState.cs" />
+    <Compile Include="Assets\Scripts\Universal Scripts\CanvasChanger.cs" />
     <Compile Include="Assets\Scripts\Universal Scripts\ReloadLevelScript.cs" />
     <Compile Include="Assets\Scripts\Universal Scripts\RotateScript.cs" />
     <Compile Include="Assets\Scripts\Universal Scripts\TextureChange.cs" />
