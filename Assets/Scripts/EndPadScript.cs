@@ -8,22 +8,26 @@ public class EndPadScript : MonoBehaviour
 	[Header("Player Object")]
 	public GameObject Marble;
 	public GameObject Manager;
+	public GameObject MainCamera;
 
 	public TimerScript TimerScript;
 
 	public float FinishTime;
 
-	private bool LevelEnded = false;
+	public bool LevelEnded = false;
 
 	// Rigidbody for the player, just to save a bit of space in the code
 	private Rigidbody PlayerRB;
 	private GameController ControllerScript;
+	private Transform CameraCtrl;
 
 	// Use this for initialization
 	void Start ()
 	{
 		// Sets PlayerRB to the players rigid body component
 		PlayerRB = Marble.GetComponent<Rigidbody>();
+
+		CameraCtrl = MainCamera.GetComponent<Transform>();
 
 		ControllerScript = Manager.GetComponent<GameController>();
 
@@ -36,22 +40,12 @@ public class EndPadScript : MonoBehaviour
 
 	void Update()
 	{
-		if ((TimerScript.GetTimer() > 5f) && (LevelEnded == false))
-		{
-			ControllerScript.ChangeLevelState(LevelStates.Started);
-			TimerScript.SetStartTimer(false);
-			TimerScript.SetTimer(0);
-		}
-		else if (LevelEnded == true)
+
+		if (LevelEnded == true)
 		{
 			ControllerScript.ChangeLevelState(LevelStates.Finished);
 		}
-		else
-		{
-			ControllerScript.ChangeLevelState(LevelStates.Loading);
-		}
-
-		if (Input.GetButton("Cancel"))                          // If the button mapped cancel is pressed
+		else if (Input.GetButton("Cancel"))                          // If the button mapped cancel is pressed
 		{
 			ControllerScript.LoadCurrentScene(GameStates.Quit);                  // Quit the appilcation (only works on a built version of the game)
 		}
@@ -63,6 +57,8 @@ public class EndPadScript : MonoBehaviour
 
 		if ((TimerScript.GetTimer() > 5f) && (LevelEnded == true))
 		{
+			CameraCtrl.RotateAround(Marble.transform.position, new Vector3(0, 1, 0), 100 * Time.deltaTime);
+
 			TimerScript.SetStartTimer(false);
 			TimerScript.SetTimer(0);
 			LevelEnded = false;
@@ -75,10 +71,22 @@ public class EndPadScript : MonoBehaviour
 	// When the marble collides with the end pad trigger volume
 	private void OnTriggerEnter(Collider other)
 	{
-		LevelEnded = true;
+		LevelEnded = true;											// Used to identify that the level has ended
 
 		PlayerRB.constraints = RigidbodyConstraints.FreezePositionX | RigidbodyConstraints.FreezePositionY | RigidbodyConstraints.FreezePositionZ;     // Freezes the player
 
-		TimerScript.SetStartTimer(true);
+		FinishTime = TimerScript.GetTimer() - 5f;					// Sets the Finish time to the time the level took taking off the loading time
+		FinishTime = Mathf.Round(FinishTime * 100.0f) * 0.01f;		// Rounds the Finish time to 2 decimal places
+		ControllerScript.SetTmer(FinishTime);						// Sets the time on the controller script to the finish time
+		TimerScript.SetTimer(0);									// Resets the Timer in the timescript
+		TimerScript.SetStartTimer(true);							// Sets the Timer to run again for the endl level freeze.
+	}
+
+
+
+
+	public bool GetLevelEnded()
+	{
+		return LevelEnded;
 	}
 }

@@ -19,8 +19,6 @@ public enum GameStates
 // Enum for the level states used for the timing of levels and transtitions between levels
 public enum LevelStates
 {
-	Loading,
-	Started,
 	Finished,
 	Null,
 };
@@ -40,9 +38,7 @@ public class GameController : MonoBehaviour
 	[Header("Level Variables")]
 	// Int for the level number of the level the player is on
 	public int LevelNumber = 0;
-
-	// float used as a level timer when the level starts
-	public float LevelTimer;
+	public float LevelTimer = 0;
 
 
 	[Header("Game States")]
@@ -72,8 +68,6 @@ public class GameController : MonoBehaviour
 		LoadCurrentScene(E_GameStates);                         // Runs the load scene function
 	}
 
-
-
 	private void Start()
 	{
 		LevelTimer = 0;
@@ -84,29 +78,30 @@ public class GameController : MonoBehaviour
 	{
 		switch (state)
 		{
-			case LevelStates.Loading:
-				Debug.Log("Loading");
-				break;
-
-			case LevelStates.Started:
-				Debug.Log("Started");
-				LevelTimer = LevelTimer + 1 * Time.deltaTime;
-				break;
 
 			case LevelStates.Finished:
-				Debug.Log("Finished");
 				SetLevelLastTime(LevelNumber, LevelTimer);
 
-				if (GetLevelLastTime(LevelNumber) > GetLevelBestTime(LevelNumber))
+				if (GetLevelBestTime(LevelNumber) == 0)
 				{
+					Debug.Log("Best Time IS Set as it was 0");
 					SetLevelBestTime(LevelNumber, LevelTimer);
+					state = LevelStates.Null;
+					break;
+				}
+				else if ((GetLevelLastTime(LevelNumber)) < (GetLevelBestTime(LevelNumber)))
+				{
+					Debug.Log("Best Time IS Set as beat the last best time");
+					SetLevelBestTime(LevelNumber, LevelTimer);
+					state = LevelStates.Null;
+					break;
 				}
 				else
 				{
+					Debug.Log("Best Time NOT SET!!!");
 					ChangeLevelState(LevelStates.Null);
+					break;
 				}
-
-				break;
 
 			case LevelStates.Null:
 				break;
@@ -217,5 +212,10 @@ public class GameController : MonoBehaviour
 	public void SetUpdateScores(bool input)
 	{
 		UpdateScores = input;
+	}
+
+	public void SetTmer(float input)
+	{
+		LevelTimer = input;
 	}
 }

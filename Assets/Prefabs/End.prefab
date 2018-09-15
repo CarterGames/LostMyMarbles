@@ -130,7 +130,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Marble: {fileID: 0}
-  TimeScript: {fileID: 114898516811478326}
+  Manager: {fileID: 1677093527279502, guid: ec88fc42f227a4741830514f2b480cb1, type: 2}
+  MainCamera: {fileID: 0}
+  TimerScript: {fileID: 114898516811478326}
+  FinishTime: 0
+  LevelEnded: 0
 --- !u!114 &114898516811478326
 MonoBehaviour:
   m_ObjectHideFlags: 1
