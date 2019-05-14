@@ -4,103 +4,44 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-	[Header("Movement Speed")]	
-    public float MoveSpeed;                 // Float for the speed of the Marble
-	public float JumpHeight;				// Float for the height the jump moves by
-	private Rigidbody RB;                   // Getting the Rigidbody component from the Marble for later use
+	[SerializeField]
+	public float MoveSpeed;
 
-	[Header("Timer")]
-	public float Timer;						// Float for the timer itself
-	public float TimeLimit = 0.75f;         // Float for the timelimit
-
-	public bool CanJump;
-
-	// Start of Game
-	void Start ()
-    {
-
-		// Setting up a variable "RB" for the rigidbody component 
-		// just to make life easier as this will be used a fair bit
-        RB = GetComponent<Rigidbody>();
-
-	}
-	
-
-	// Every Frame (keeping a contant framerate)
-	void FixedUpdate ()
-    {
-		// Adds time to the timer
-		Timer += Time.deltaTime;
-
-		// Running the Movement function
-		Move();
-		Jump();
-
-		// Slowing down wen no movement input
-		if (!Input.anyKey)
-		{
-			Slow();
-		}
-
-		if (Timer > 0.55)
-		{
-			CanJump = true;
-		}
-    }
+	[Range(0,50)]
+	public float JumpHeight;
+	public float FallSpeed;
 
 
-	// Movement Function - to move the Marble using the riggidbody and adding force
-	void Move()
+
+	private void Start()
 	{
-		// Resetting drag is an input o movement is made
-		RB.drag = 0;
-
-		// Gets the A,S,W,D inputs from the keyboard
-		float moveHoz = Input.GetAxis("Horizontal");
-		float moveVer = Input.GetAxis("Vertical");
-
-		// Sets up the Vector3 for Movement using the inputted keyboard controls
-		Vector3 Movement = new Vector3(moveHoz, 0.0f, moveVer);
-
-		// Point in direction of camera
-		Movement = Camera.main.transform.TransformDirection(Movement);
-
-		// Adds force to the Marble to make it move based on the Movement inputted Multiplied by the Movement Speed
-		RB.AddForce(Movement * MoveSpeed);
-
+			
 	}
 
 
-	// Slow Function - Slows the ball down to a complete stop when there is no input from the player
-    void Slow()
-    {
-
-		// Adding drag to the ball to stop the ball
-		RB.drag = 1;
-	}
-
-	// Jump function - To add force to go up a little 
-	void Jump()
+	private void Update()
 	{
+		GetComponent<Rigidbody>().velocity += new Vector3(Input.GetAxis("Horizontal") * MoveSpeed, 0, Input.GetAxis("Vertical") * MoveSpeed);
 
+		JumpSmoothing();
 
-		if ((CanJump == true) && (Input.GetKeyDown(KeyCode.Space)))
+		if (Input.GetButtonDown("Jump"))
 		{
-			Vector3 Jump = new Vector3(0, JumpHeight, 0);
-
-			RB.AddForce(0f, 0f, 0f);
-
-			RB.AddForce(Jump, ForceMode.Impulse);
-
-			CanJump = false;
-			Timer = 0;
+			Debug.Log("Jump Pressed");
+			GetComponent<Rigidbody>().velocity = Vector3.up * JumpHeight;
 		}
 	}
 
 
-
-	private void OnCollisionExit(Collision collision)
+	private void JumpSmoothing()
 	{
-		CanJump = false;
+		if (GetComponent<Rigidbody>().velocity.y < 0)
+		{
+			GetComponent<Rigidbody>().velocity += Vector3.up * Physics.gravity.y * (FallSpeed - 1) * Time.deltaTime;
+		}
+		else if (GetComponent<Rigidbody>().velocity.y > 0 && !Input.GetButton("Jump"))
+		{
+			GetComponent<Rigidbody>().velocity += Vector3.up * Physics.gravity.y * (JumpHeight - 1) * Time.deltaTime;
+		}
 	}
 }

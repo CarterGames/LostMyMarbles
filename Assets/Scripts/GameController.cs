@@ -26,27 +26,24 @@ public enum LevelStates
 
 public class GameController : MonoBehaviour
 {
-	
-	// Values can't change outside the script
-	// used to set the size of the 2d array which holds the best and last times for each level
-	private static int NumberOfLevels = 2;
-	private static int TimesStored = 2;
+
 
 	// Initilises a 2 Dimentional array to store the times for each level (could be done by external file if wanted I guess)
-	public float[,] Times = new float[NumberOfLevels, TimesStored];
+	public float[,] Times = new float[2, 2];
 
-	[Header("Level Variables")]
-	// Int for the level number of the level the player is on
-	public int LevelNumber = 0;
-	public float LevelTimer = 0;
+	
+
 
 
 	[Header("Game States")]
 	public GameStates E_GameStates;                             // a enum variable of the enum defined in global scope
 
 	// bool for updating the scores on the menu
-	public bool UpdateScores = false;
+	
 
+	public int LevelNumber { get; set; }
+	public float LevelTimer { get; set; }
+	public bool UpdateScores { get; set; }
 
 
 
@@ -125,7 +122,7 @@ public class GameController : MonoBehaviour
 
 			case GameStates.Level1:                             // Case - Level1 (2)
 				SceneManager.LoadScene("Level1");
-				SetLevelNumber(1);
+				LevelNumber = 1;
 				break;
 
 			case GameStates.Credits:                            // Case - Credits (3)
@@ -142,19 +139,8 @@ public class GameController : MonoBehaviour
 	}
 
 
-
-
-
-
-
 	// ------------------------------------------------------ Getters
 
-
-	// Gets & Returns the LevelNumber variable
-	public int GetLevelNumber()
-	{
-		return LevelNumber;
-	}
 
 	// Gets & Returns requested BestTime in the Times Array
 	public float GetLevelBestTime(int LevelNumber)
@@ -174,12 +160,6 @@ public class GameController : MonoBehaviour
 		return LevelTimer;
 	}
 
-	// Gets & Returns the Update Scores boolean
-	public bool GetUpdateScores()
-	{
-		return UpdateScores;
-	}
-
 	// Gets & Returns the Times Array
 	public float[,] GetTimesArray()
 	{
@@ -188,13 +168,6 @@ public class GameController : MonoBehaviour
 
 
 	// ------------------------------------------------------ Setters
-
-
-	// Sets the LevelNumber to the number inputted
-	public void SetLevelNumber(int number)
-	{
-		LevelNumber = number;
-	}
 
 	// Sets the BestTime for a level into the Times Array
 	public void SetLevelBestTime(int LevelNumber, float time)
@@ -208,11 +181,6 @@ public class GameController : MonoBehaviour
 		Times[LevelNumber, 1] = time;
 	}
 
-	// Sets the UpdateScores boolean to the inputted value
-	public void SetUpdateScores(bool input)
-	{
-		UpdateScores = input;
-	}
 
 	public void SetTmer(float input)
 	{

@@ -19,7 +19,7 @@ public class BestScoreUpdate : MonoBehaviour
 	{
 		ControllerScript = GameManager.GetComponent<GameController>();
 
-		LevelNo = ControllerScript.GetLevelNumber();
+		LevelNo = ControllerScript.LevelNumber;
 
 		ScoreText.text = "Best Score :  " + ControllerScript.GetLevelBestTime(LevelNo);
 	}
@@ -27,9 +27,9 @@ public class BestScoreUpdate : MonoBehaviour
 	private void Update()
 	{
 
-		if (ControllerScript.GetUpdateScores() == true)
+		if (ControllerScript.UpdateScores == true)
 		{
-			ControllerScript.SetUpdateScores(false);
+			ControllerScript.UpdateScores = false;
 			ScoreText.text = "Best Score :  " + ControllerScript.GetLevelBestTime(LevelNo);
 		}
 

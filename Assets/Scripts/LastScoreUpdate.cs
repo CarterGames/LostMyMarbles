@@ -19,7 +19,7 @@ public class LastScoreUpdate : MonoBehaviour
     {
 		ControllerScript = GameManager.GetComponent<GameController>();
 
-		LevelNo = ControllerScript.GetLevelNumber();
+		LevelNo = ControllerScript.LevelNumber;
 
 		ScoreText.text = "Last Score :  " + ControllerScript.GetLevelLastTime(LevelNo);
     }
@@ -27,9 +27,9 @@ public class LastScoreUpdate : MonoBehaviour
 	private void Update()
 	{
 
-		if (ControllerScript.GetUpdateScores() == true)
+		if (ControllerScript.UpdateScores == true)
 		{
-			ControllerScript.SetUpdateScores(false);
+			ControllerScript.UpdateScores = false;
 			ScoreText.text = "Last Score :  " + ControllerScript.GetLevelLastTime(LevelNo);
 		}
 
