@@ -4,14 +4,19 @@ using UnityEngine;
 
 public class CameraController : MonoBehaviour
 {
+	public GameObject Marble;
+	public Vector3 Offset;
+	public Vector3 OffsetRot;
 
-	public GameObject Target;
+	private void Update()
+	{
+		// New Vector3 for the new position when it gets updated
+		Vector3 NewPos = Marble.transform.position;
 
-	private Vector3 Offset;
+		// Sets the new position
+		transform.position = NewPos;
 
-
-    void LateUpdate()
-    {
-		transform.LookAt(Target.transform);
-    }
+		// Allows the player to rotate the camera via mouse input
+		transform.localRotation = Quaternion.Euler(Input.mousePosition.y / 100, Input.mousePosition.x / 20, 0);
+	}
 }

@@ -13,12 +13,6 @@ public class PlayerController : MonoBehaviour
 
 	private Vector3 StartPos;
 
-
-	private void Start()
-	{
-		StartPos = transform.parent.position;
-	}
-
 	private void Update()
 	{
 
@@ -35,12 +29,6 @@ public class PlayerController : MonoBehaviour
 		JumpSmoothing();
 	}
 
-
-	private void LateUpdate()
-	{
-		// Currently breaks the marble
-		//transform.parent.position = transform.position - StartPos;
-	}
 
 	private void JumpSmoothing()
 	{
