@@ -11,30 +11,36 @@ public class PlayerController : MonoBehaviour
 	public float JumpHeight;
 	public float FallSpeed;
 
+	private Vector3 StartPos;
 
 
 	private void Start()
 	{
-			
+		StartPos = transform.parent.position;
 	}
-
 
 	private void Update()
 	{
-		Vector3 Movement = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
-		GetComponent<Rigidbody>().velocity = Movement * MoveSpeed;
-
-		JumpSmoothing();
 
 		if (Input.GetButtonDown("Jump"))
 		{
 			Debug.Log("Jump Pressed");
-			GetComponent<Rigidbody>().velocity = Vector3.up * JumpHeight;
+			GetComponent<Rigidbody>().velocity += Vector3.up * JumpHeight;
 		}
 
-		RotateMarble();
+
+		Vector3 Movement = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
+		GetComponent<Rigidbody>().velocity += Movement / MoveSpeed;
+
+		JumpSmoothing();
 	}
 
+
+	private void LateUpdate()
+	{
+		// Currently breaks the marble
+		//transform.parent.position = transform.position - StartPos;
+	}
 
 	private void JumpSmoothing()
 	{
@@ -46,11 +52,5 @@ public class PlayerController : MonoBehaviour
 		{
 			GetComponent<Rigidbody>().velocity += Vector3.up * Physics.gravity.y * (JumpHeight - 1) * Time.deltaTime;
 		}
-	}
-
-
-	private void RotateMarble()
-	{
-		GetComponent<Renderer>().material.SetTextureOffset("_MainTex", Vector3.forward);
 	}
 }
