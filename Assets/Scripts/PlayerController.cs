@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-	[SerializeField]
+	[Range(0,10)]
 	public float MoveSpeed;
 
 	[Range(0,50)]
@@ -21,7 +21,8 @@ public class PlayerController : MonoBehaviour
 
 	private void Update()
 	{
-		GetComponent<Rigidbody>().velocity += new Vector3(Input.GetAxis("Horizontal") * MoveSpeed, 0, Input.GetAxis("Vertical") * MoveSpeed);
+		Vector3 Movement = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
+		GetComponent<Rigidbody>().velocity = Movement * MoveSpeed;
 
 		JumpSmoothing();
 
@@ -30,6 +31,8 @@ public class PlayerController : MonoBehaviour
 			Debug.Log("Jump Pressed");
 			GetComponent<Rigidbody>().velocity = Vector3.up * JumpHeight;
 		}
+
+		RotateMarble();
 	}
 
 
@@ -43,5 +46,11 @@ public class PlayerController : MonoBehaviour
 		{
 			GetComponent<Rigidbody>().velocity += Vector3.up * Physics.gravity.y * (JumpHeight - 1) * Time.deltaTime;
 		}
+	}
+
+
+	private void RotateMarble()
+	{
+		GetComponent<Renderer>().material.SetTextureOffset("_MainTex", Vector3.forward);
 	}
 }
