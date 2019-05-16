@@ -13,9 +13,9 @@ public class PlayerController : MonoBehaviour
 
 	private Vector3 StartPos;
 
+
 	private void Update()
 	{
-
 		if (Input.GetButtonDown("Jump"))
 		{
 			Debug.Log("Jump Pressed");
@@ -24,6 +24,9 @@ public class PlayerController : MonoBehaviour
 
 
 		Vector3 Movement = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
+
+		Movement = Camera.main.transform.TransformDirection(Movement);
+
 		GetComponent<Rigidbody>().velocity += Movement / MoveSpeed;
 
 		JumpSmoothing();
