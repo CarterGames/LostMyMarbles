@@ -11,8 +11,14 @@ public class PlayerController : MonoBehaviour
 	public float JumpHeight;
 	public float FallSpeed;
 
+	[Range(0, 15)]
+	public float SpeedFalloff = 15;
+	public float SpeedReductionRate;
+	public float FallOffDelay;
+
 	private Vector3 StartPos;
 
+	private bool IsFalloffRunning;
 
 	private void Update()
 	{
@@ -27,9 +33,14 @@ public class PlayerController : MonoBehaviour
 
 		Movement = Camera.main.transform.TransformDirection(Movement);
 
-		GetComponent<Rigidbody>().velocity += Movement / MoveSpeed;
+		GetComponent<Rigidbody>().AddForce(Movement * SpeedFalloff);
 
 		JumpSmoothing();
+
+		if ((Input.anyKey) && (!IsFalloffRunning))
+		{
+			StartCoroutine(Falloff());
+		}
 	}
 
 
@@ -42,6 +53,23 @@ public class PlayerController : MonoBehaviour
 		else if (GetComponent<Rigidbody>().velocity.y > 0 && !Input.GetButton("Jump"))
 		{
 			GetComponent<Rigidbody>().velocity += Vector3.up * Physics.gravity.y * (JumpHeight - 1) * Time.deltaTime;
+		}
+	}
+
+
+	private IEnumerator Falloff()
+	{
+		if (!IsFalloffRunning)
+		{
+			IsFalloffRunning = true;
+
+			if (SpeedFalloff > 0)
+			{
+				SpeedFalloff += SpeedReductionRate;
+			}
+
+			yield return new WaitForSeconds(FallOffDelay);
+			IsFalloffRunning = false;
 		}
 	}
 }
