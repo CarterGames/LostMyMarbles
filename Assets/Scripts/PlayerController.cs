@@ -4,8 +4,7 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-	[Range(0,10)]
-	public float MoveSpeed;
+	public float MoveSpeed = 20;
 
 	[Range(0,50)]
 	public float JumpHeight;
@@ -33,14 +32,9 @@ public class PlayerController : MonoBehaviour
 
 		Movement = Camera.main.transform.TransformDirection(Movement);
 
-		GetComponent<Rigidbody>().AddForce(Movement * SpeedFalloff);
+		GetComponent<Rigidbody>().AddForce(Movement * MoveSpeed);
 
 		JumpSmoothing();
-
-		if ((Input.anyKey) && (!IsFalloffRunning))
-		{
-			StartCoroutine(Falloff());
-		}
 	}
 
 
@@ -53,23 +47,6 @@ public class PlayerController : MonoBehaviour
 		else if (GetComponent<Rigidbody>().velocity.y > 0 && !Input.GetButton("Jump"))
 		{
 			GetComponent<Rigidbody>().velocity += Vector3.up * Physics.gravity.y * (JumpHeight - 1) * Time.deltaTime;
-		}
-	}
-
-
-	private IEnumerator Falloff()
-	{
-		if (!IsFalloffRunning)
-		{
-			IsFalloffRunning = true;
-
-			if (SpeedFalloff > 0)
-			{
-				SpeedFalloff += SpeedReductionRate;
-			}
-
-			yield return new WaitForSeconds(FallOffDelay);
-			IsFalloffRunning = false;
 		}
 	}
 }
