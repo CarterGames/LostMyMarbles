@@ -15,9 +15,17 @@ public class PlayerController : MonoBehaviour
 	public float SpeedReductionRate;
 	public float FallOffDelay;
 
+	private GameObject MoveDirGO;
+
 	private Vector3 StartPos;
 
 	private bool IsFalloffRunning;
+
+	private void Start()
+	{
+		MoveDirGO = GameObject.FindGameObjectWithTag("CameraPoint");
+	}
+
 
 	private void Update()
 	{
@@ -27,10 +35,9 @@ public class PlayerController : MonoBehaviour
 			GetComponent<Rigidbody>().velocity += Vector3.up * JumpHeight;
 		}
 
-
 		Vector3 Movement = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
 
-		Movement = Camera.main.transform.TransformDirection(Movement);
+		Movement = MoveDirGO.transform.TransformDirection(Movement);
 
 		GetComponent<Rigidbody>().AddForce(Movement * MoveSpeed);
 
