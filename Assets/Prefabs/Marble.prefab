@@ -47,9 +47,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eccd49537c2197047844fc2b6dbff79e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MoveSpeed: 5
-  JumpHeight: 5
-  FallSpeed: 2
+  MoveSpeed: 25
+  JumpHeight: 10
+  FallSpeed: 4
+  SpeedFalloff: 1
+  SpeedReductionRate: 0.5
+  FallOffDelay: 0.1
 --- !u!33 &5547985453113771638
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -102,7 +105,7 @@ SphereCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5547985453113771643}
-  m_Material: {fileID: 13400000, guid: 476d5a2d5319750408a0d87cf3240bfb, type: 2}
+  m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2

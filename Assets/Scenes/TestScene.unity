@@ -2536,6 +2536,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5547985453113771633, guid: bcd3bc85113dd5d42ae74e7bb077b023,
+        type: 3}
+      propertyPath: Test
+      value: 
+      objectReference: {fileID: 491170760}
     - target: {fileID: 5547985453113771632, guid: bcd3bc85113dd5d42ae74e7bb077b023,
         type: 3}
       propertyPath: m_Drag
@@ -2546,40 +2551,5 @@ PrefabInstance:
       propertyPath: m_Mass
       value: 1.5
       objectReference: {fileID: 0}
-    - target: {fileID: 5547985453113771633, guid: bcd3bc85113dd5d42ae74e7bb077b023,
-        type: 3}
-      propertyPath: SpeedFalloff
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5547985453113771633, guid: bcd3bc85113dd5d42ae74e7bb077b023,
-        type: 3}
-      propertyPath: FallOffDelay
-      value: 0.1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5547985453113771633, guid: bcd3bc85113dd5d42ae74e7bb077b023,
-        type: 3}
-      propertyPath: SpeedReductionRate
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 5547985453113771633, guid: bcd3bc85113dd5d42ae74e7bb077b023,
-        type: 3}
-      propertyPath: MoveSpeed
-      value: 50
-      objectReference: {fileID: 0}
-    - target: {fileID: 5547985453113771633, guid: bcd3bc85113dd5d42ae74e7bb077b023,
-        type: 3}
-      propertyPath: JumpHeight
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 5547985453113771633, guid: bcd3bc85113dd5d42ae74e7bb077b023,
-        type: 3}
-      propertyPath: FallSpeed
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 5547985453113771633, guid: bcd3bc85113dd5d42ae74e7bb077b023,
-        type: 3}
-      propertyPath: Test
-      value: 
-      objectReference: {fileID: 491170760}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bcd3bc85113dd5d42ae74e7bb077b023, type: 3}

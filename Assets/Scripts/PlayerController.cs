@@ -42,18 +42,26 @@ public class PlayerController : MonoBehaviour
 		GetComponent<Rigidbody>().AddForce(Movement * MoveSpeed);
 
 		JumpSmoothing();
+		HideMouse();
 	}
 
 
 	private void JumpSmoothing()
 	{
-		if (GetComponent<Rigidbody>().velocity.y < 0)
-		{
+		//if (GetComponent<Rigidbody>().velocity.y < 0)
+		//{
 			GetComponent<Rigidbody>().velocity += Vector3.up * Physics.gravity.y * (FallSpeed - 1) * Time.deltaTime;
-		}
-		else if (GetComponent<Rigidbody>().velocity.y > 0 && !Input.GetButton("Jump"))
-		{
-			GetComponent<Rigidbody>().velocity += Vector3.up * Physics.gravity.y * (JumpHeight - 1) * Time.deltaTime;
-		}
+		//}
+		//else if (GetComponent<Rigidbody>().velocity.y > 0 && !Input.GetButton("Jump"))
+		//{
+		//	GetComponent<Rigidbody>().velocity += Vector3.up * Physics.gravity.y * (JumpHeight - 1) * Time.deltaTime;
+		//}
+	}
+
+
+	// Just hides the mouse cursor when playing the game
+	private void HideMouse()
+	{
+		Cursor.visible = false;
 	}
 }
