@@ -6,8 +6,6 @@ public class CameraController : MonoBehaviour
 {
 	public GameObject Marble;
 	public GameObject MarbleForward;
-	public Vector3 Offset;
-	public Vector3 OffsetRot;
 
 	private void Update()
 	{
@@ -19,7 +17,15 @@ public class CameraController : MonoBehaviour
 		MarbleForward.transform.position = NewPos;
 
 		// Allows the player to rotate the camera via mouse input
-		transform.localRotation = Quaternion.Euler(Input.mousePosition.y / 100, Input.mousePosition.x / 20, 0);
+		if (Input.mousePosition.x >= Screen.width * 0.95)
+		{
+			Debug.Log("running");
+			transform.localRotation *= Quaternion.Euler(0, 10 , 0);
+		}
+		else
+		{
+			transform.localRotation = Quaternion.Euler(Input.mousePosition.y / 100, Input.mousePosition.x / 20, 0);
+		}
 
 		MarbleForward.transform.localRotation = Quaternion.Euler(0, Input.mousePosition.x / 20, 0);
 	}

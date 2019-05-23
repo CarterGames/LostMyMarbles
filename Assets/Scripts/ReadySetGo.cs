@@ -31,7 +31,7 @@ public class ReadySetGo : MonoBehaviour
 	}
 
 	// Update is called once per frame
-	void Update ()
+	void Update()
 	{
 
 		// If statement to stop the timer and switch statement from running overtime
@@ -49,7 +49,7 @@ public class ReadySetGo : MonoBehaviour
 				// Case 0 - No Text
 				case (0):
 					DisplayText.text = " ";
-					PlayerRB.constraints = RigidbodyConstraints.FreezePositionX | RigidbodyConstraints.FreezePositionZ;		// Freezes the player, but they can still jump
+					PlayerRB.constraints = RigidbodyConstraints.FreezePositionX | RigidbodyConstraints.FreezePositionZ;     // Freezes the player, but they can still jump
 					break;
 
 				// Case 1 - READY Text, Colour 1
@@ -68,7 +68,7 @@ public class ReadySetGo : MonoBehaviour
 				case (5):
 					DisplayText.color = Text3Colour;
 					DisplayText.text = "GO";
-					PlayerRB.constraints = RigidbodyConstraints.None;	// Allows the player to move again
+					PlayerRB.constraints = RigidbodyConstraints.None;   // Allows the player to move again
 					break;
 
 				// Case 6 - No Text
@@ -77,10 +77,5 @@ public class ReadySetGo : MonoBehaviour
 					break;
 			}
 		}
-	}
-
-	public float GetTimer()
-	{
-		return Timer;
 	}
 }
