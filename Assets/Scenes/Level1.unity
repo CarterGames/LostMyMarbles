@@ -5350,7 +5350,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1554580047}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b72dab27afe5cf4458c728fb13b42d14, type: 3}
+  m_Script: {fileID: 11500000, guid: 244251db0660bee438799891505c45fc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   Marble: {fileID: 413835921}
@@ -5365,7 +5365,7 @@ MeshCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Convex: 1
+  m_Convex: 0
   m_CookingOptions: 14
   m_Mesh: {fileID: -8750730611461826579, guid: 9b271974e79c4654ebaa1c5963248f3a, type: 3}
 --- !u!1 &1581474917 stripped
@@ -6579,7 +6579,7 @@ PrefabInstance:
     - target: {fileID: 3852193572663084027, guid: f44598389ba21b243aac50d100c28571,
         type: 3}
       propertyPath: m_Enabled
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3882496947724228672, guid: f44598389ba21b243aac50d100c28571,
         type: 3}
@@ -6658,7 +6658,7 @@ PrefabInstance:
     - target: {fileID: 3561206032246162513, guid: cc8378fb6f151fe4ba593dc9012cd0bb,
         type: 3}
       propertyPath: m_Enabled
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: cc8378fb6f151fe4ba593dc9012cd0bb, type: 3}

@@ -1,17 +1,24 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class CameraController : MonoBehaviour
 {
+	// References to the Marble and Marble forward which determins the foward direction for movement
 	public GameObject Marble;
 	public GameObject MarbleForward;
 
+	// Rotation speeds, controls how fast the mouse movement is
 	public float RotSpdUpDown;
 	public float RotSpdLeftRight;
 
+	// Bool used to disable this script partially when the player hits the end pad
+	internal bool CamEnabled;
 
-	private Vector3 MouseOrgion;
+
+	private void Start()
+	{
+		// Sets the camera to be enabled by default
+		CamEnabled = true;
+	}
 
 	private void Update()
 	{
@@ -22,12 +29,13 @@ public class CameraController : MonoBehaviour
 		transform.position = NewPos;
 		MarbleForward.transform.position = NewPos;
 
-		// Allows the player to rotate the camera via mouse input   Input.GetAxis("Mouse X") * RotSpdLeftRight    Input.GetAxis("Mouse Y") * RotSpdUpDown
+		// Allows the player to rotate the camera via mouse input
+		if (CamEnabled)
+		{
+			transform.eulerAngles += new Vector3(Input.GetAxis("Mouse Y") * RotSpdUpDown, Input.GetAxis("Mouse X") * RotSpdLeftRight, 0);
+		}
 
-		transform.eulerAngles += new Vector3(Input.GetAxis("Mouse Y") * RotSpdUpDown, Input.GetAxis("Mouse X") * RotSpdLeftRight, 0);
-
-		//transform.rotation = Quaternion.Euler(transform.rotation.x, transform.rotation.y, 0);
-
-		MarbleForward.transform.eulerAngles += new Vector3(Input.GetAxis("Mouse Y") * RotSpdUpDown, Input.GetAxis("Mouse X") * RotSpdLeftRight, 0);
+		// Updates the forward position for the players movement
+		MarbleForward.transform.eulerAngles += new Vector3(0, Input.GetAxis("Mouse X") * RotSpdLeftRight, 0);
 	}
 }
