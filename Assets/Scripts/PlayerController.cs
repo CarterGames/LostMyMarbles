@@ -62,6 +62,6 @@ public class PlayerController : MonoBehaviour
 	// Just hides the mouse cursor when playing the game
 	private void HideMouse()
 	{
-		Cursor.visible = false;
+		//Cursor.visible = false;
 	}
 }

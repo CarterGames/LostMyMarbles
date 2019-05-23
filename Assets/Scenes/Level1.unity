@@ -255,7 +255,7 @@ GameObject:
   - component: {fileID: 52035622}
   - component: {fileID: 52035621}
   m_Layer: 0
-  m_Name: Directional Light (1)
+  m_Name: The Sun
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6483,17 +6483,17 @@ PrefabInstance:
     - target: {fileID: 3229926689448876264, guid: f44598389ba21b243aac50d100c28571,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: 5.5
       objectReference: {fileID: 0}
     - target: {fileID: 3229926689448876264, guid: f44598389ba21b243aac50d100c28571,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 6.23
       objectReference: {fileID: 0}
     - target: {fileID: 3229926689448876264, guid: f44598389ba21b243aac50d100c28571,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: -23.65
       objectReference: {fileID: 0}
     - target: {fileID: 3229926689448876264, guid: f44598389ba21b243aac50d100c28571,
         type: 3}
@@ -6545,10 +6545,25 @@ PrefabInstance:
       propertyPath: MarbleForward
       value: 
       objectReference: {fileID: 6330831665648587828}
+    - target: {fileID: 216308833819809297, guid: f44598389ba21b243aac50d100c28571,
+        type: 3}
+      propertyPath: RotSpd
+      value: 150
+      objectReference: {fileID: 0}
+    - target: {fileID: 216308833819809297, guid: f44598389ba21b243aac50d100c28571,
+        type: 3}
+      propertyPath: RotSpdUpDown
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 216308833819809297, guid: f44598389ba21b243aac50d100c28571,
+        type: 3}
+      propertyPath: RotSpdLeftRight
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 3852193572663084027, guid: f44598389ba21b243aac50d100c28571,
         type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3882496947724228672, guid: f44598389ba21b243aac50d100c28571,
         type: 3}
@@ -6627,7 +6642,7 @@ PrefabInstance:
     - target: {fileID: 3561206032246162513, guid: cc8378fb6f151fe4ba593dc9012cd0bb,
         type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: cc8378fb6f151fe4ba593dc9012cd0bb, type: 3}
