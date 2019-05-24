@@ -9,11 +9,13 @@ public class EndPadScript : MonoBehaviour
 	public float RotSpd;
 
 	private CameraController CamCtrl;
+	private LevelTimerScript TimeCtrl;
 	private bool IsRot;
 
     void Start()
     {
 		CamCtrl = Camera.main.GetComponentInParent<CameraController>();
+		TimeCtrl = GameObject.FindGameObjectWithTag("TimeCtrl").GetComponent<LevelTimerScript>();
     }
 
     // Update is called once per frame
@@ -31,6 +33,9 @@ public class EndPadScript : MonoBehaviour
 	{
 		if (collision.gameObject.tag == "Player")
 		{
+			// Pauses the timer
+			TimeCtrl.StopTimer();
+
 			// Freezes the Camera
 			CamCtrl.CamEnabled = false;
 

@@ -24,10 +24,16 @@ public class ReadySetGo : MonoBehaviour
 	// Rigidbody for the player, just to save a bit of space in the code
 	private Rigidbody PlayerRB;
 
+	// Timer Reference
+	private LevelTimerScript TimeCtrl;
+
 	private void Start()
 	{
 		// Sets PlayerRB to the players rigid body component
 		PlayerRB = Player.GetComponent<Rigidbody>();
+
+		// Timer Reference
+		TimeCtrl = GameObject.FindGameObjectWithTag("TimeCtrl").GetComponent<LevelTimerScript>();
 	}
 
 	// Update is called once per frame
@@ -67,7 +73,8 @@ public class ReadySetGo : MonoBehaviour
 				// Case 5 - GO Text, Colour 3
 				case (5):
 					DisplayText.color = Text3Colour;
-					DisplayText.text = "GO";
+					DisplayText.text = "GO!";
+					TimeCtrl.RunTimer = true;
 					PlayerRB.constraints = RigidbodyConstraints.None;   // Allows the player to move again
 					break;
 
