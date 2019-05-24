@@ -6,9 +6,10 @@ public class EndPadScript : MonoBehaviour
 {
 
 	public GameObject Marble;
+	public float RotSpd;
 
 	private CameraController CamCtrl;
-
+	private bool IsRot;
 
     void Start()
     {
@@ -18,11 +19,15 @@ public class EndPadScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if (IsRot)
+		{
+			// Rotates the camera around the Marble
+			Camera.main.transform.parent.eulerAngles += new Vector3(0, RotSpd, 0);
+		}
     }
 
 
-	private void OnCollisionEnter(Collision collision)
+	private void OnTriggerEnter(Collider collision)
 	{
 		if (collision.gameObject.tag == "Player")
 		{
@@ -32,8 +37,11 @@ public class EndPadScript : MonoBehaviour
 			// Freezes the Marbles Position
 			Marble.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezePosition;
 
-			// Rotates the camera around the Marble
-			
+			// Enable rotation of the camera
+			IsRot = true;
+
+			// Enable Particles
+			GetComponentInChildren<ParticleSystem>().Play();
 		}
 	}
 }
