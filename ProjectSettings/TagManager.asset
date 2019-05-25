@@ -6,6 +6,7 @@ TagManager:
   tags:
   - CameraPoint
   - TimeCtrl
+  - OutOfBounds
   layers:
   - Default
   - TransparentFX

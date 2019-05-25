@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class EndPadScript : MonoBehaviour
 {
@@ -8,14 +9,18 @@ public class EndPadScript : MonoBehaviour
 	public GameObject Marble;
 	public float RotSpd;
 
+	private Canvas EndUIElements;
 	private CameraController CamCtrl;
 	private LevelTimerScript TimeCtrl;
 	private bool IsRot;
+	private bool IsCoRunning;
 
     void Start()
     {
 		CamCtrl = Camera.main.GetComponentInParent<CameraController>();
 		TimeCtrl = GameObject.FindGameObjectWithTag("TimeCtrl").GetComponent<LevelTimerScript>();
+		EndUIElements = GetComponentInChildren<Canvas>();
+		EndUIElements.enabled = false;
     }
 
     // Update is called once per frame
@@ -47,6 +52,21 @@ public class EndPadScript : MonoBehaviour
 
 			// Enable Particles
 			GetComponentInChildren<ParticleSystem>().Play();
+
+			// Calls the EndUI
+			if (!IsCoRunning)
+			{
+				StartCoroutine(EndUI());
+			}
 		}
+	}
+
+
+	private IEnumerator EndUI()
+	{
+		IsCoRunning = true;
+		yield return new WaitForSeconds(2);
+		EndUIElements.GetComponentInChildren<EndUIScript>().GetData();
+		EndUIElements.GetComponent<Canvas>().enabled = true;
 	}
 }

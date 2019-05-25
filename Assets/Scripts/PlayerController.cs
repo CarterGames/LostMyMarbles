@@ -62,6 +62,15 @@ public class PlayerController : MonoBehaviour
 	// Just hides the mouse cursor when playing the game
 	private void HideMouse()
 	{
-		//Cursor.visible = false;
+		Cursor.visible = false;
+	}
+
+
+	private void OnTriggerEnter(Collider other)
+	{
+		if (other.gameObject.tag == "OutOfBounds")
+		{
+			Debug.Log("Out Of Bounds");
+		}
 	}
 }

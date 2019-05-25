@@ -11,12 +11,15 @@ public class LevelTimerScript : MonoBehaviour
 	private float Timer;
 	private Text TimerText;
 	private SaveScript Scores;
+	private LevelScores Changes;
+	private EndUIScript EndUI;
 
 	// Start is called before the first frame update
 	void Start()
     {
 		Scores = FindObjectOfType<SaveScript>();
 		TimerText = GetComponentInChildren<Text>();
+		EndUI = FindObjectOfType<EndUIScript>();
     }
 
     // Update is called once per frame
@@ -55,24 +58,27 @@ public class LevelTimerScript : MonoBehaviour
 
 	private void UpdateLevelScores()
 	{
-		LevelScores Changes = new LevelScores();
 		int Position = 0;
 
-		for (int i = 0; i < Scores.PerLevelData.Count; i++)
+		for (int i = 0; i < Scores.LevelData.Count; i++)
 		{
-			if (Scores.PerLevelData[i].LevelName == SceneManager.GetActiveScene().name)
+			if (Scores.LevelData[i].LevelName == SceneManager.GetActiveScene().name)
 			{
-				Changes = Scores.PerLevelData[i];
+				Changes = Scores.LevelData[i];
+				Debug.Log("Prev Best Time v1" + " : " + Changes.BestTime);
 				Position = i;
-				Debug.Log(Scores.PerLevelData[i].BestTime);
-				Debug.Log(i);
+			}
+			else
+			{
+				Debug.Log(Scores.LevelData[i].LevelName);
+				Debug.Log("Unable to find level data...");
 			}
 		}
 
 		Changes.LastTime = Timer;
 
-		Debug.Log(Changes.LastTime);
-		Debug.Log(Changes.BestTime + " --- Best Time");
+		Debug.Log("Prev Best Time" + " : " + Changes.BestTime);
+
 		// Sorting out if the time is a new best or not.........
 
 		if (Timer < Changes.BestTime)
@@ -83,6 +89,7 @@ public class LevelTimerScript : MonoBehaviour
 			Changes.SecondBestName = Changes.BestTimeName;
 			Changes.BestTime = Timer;
 			Changes.BestTimeName = PlayerName;
+			EndUI.NewScorePosition = 1;
 			Debug.Log("Best Time");
 		}
 		else if (Timer < Changes.SecondBestTime)
@@ -91,18 +98,20 @@ public class LevelTimerScript : MonoBehaviour
 			Changes.ThirdBestName = Changes.SecondBestName;
 			Changes.SecondBestTime = Timer;
 			Changes.SecondBestName = PlayerName;
+			EndUI.NewScorePosition = 2;
 			Debug.Log("Second Best Time");
 		}
 		else if (Timer < Changes.ThirdBestTime)
 		{
 			Changes.ThirdBestTime = Timer;
 			Changes.ThirdBestName = PlayerName;
+			EndUI.NewScorePosition = 3;
 			Debug.Log("Third Best Time");
 		}
 
 
 		// Sets the new changes, in theory
-		Scores.PerLevelData[Position] = Changes;
+		Scores.LevelData[Position] = Changes;
 
 		Scores.SaveData();
 	}
