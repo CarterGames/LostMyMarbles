@@ -28,10 +28,12 @@ public struct LevelScores
 public class SaveScript : MonoBehaviour
 {
 	public List<LevelScores> LevelData;
+	public List<string> StarTimes;
 
 	private void Start()
 	{
 		LevelData = new List<LevelScores>();
+		StarTimes = new List<string>(20);
 
 		for (int i = 0; i < 20; i++)
 		{
@@ -83,6 +85,15 @@ public class SaveScript : MonoBehaviour
 		{
 			// Loads the data if the file already exsists
 			LoadData();
+		}
+	}
+
+
+	private void SetupStarTimes()
+	{
+		if (!File.Exists(Application.persistentDataPath + "/gamedata.ini"))
+		{
+			
 		}
 	}
 

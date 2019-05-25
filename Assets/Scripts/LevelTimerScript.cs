@@ -108,6 +108,10 @@ public class LevelTimerScript : MonoBehaviour
 			EndUI.NewScorePosition = 3;
 			Debug.Log("Third Best Time");
 		}
+		else
+		{
+			EndUI.CloseNameUI();
+		}
 
 
 		// Sets the new changes, in theory
