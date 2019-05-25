@@ -6,7 +6,7 @@ using System;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.IO;
 
-
+[Serializable]
 public struct LevelScores
 {
 	public float BestTime;
@@ -27,7 +27,7 @@ public struct LevelScores
 
 public class SaveScript : MonoBehaviour
 {
-	public List<LevelScores> PerLevelData = new List<LevelScores>(20);
+	public List<LevelScores> PerLevelData;
 
 	private void Start()
 	{
@@ -39,6 +39,43 @@ public class SaveScript : MonoBehaviour
 		//{
 		//	CreateFile();
 		//}
+		PerLevelData = new List<LevelScores>();
+
+		for (int i = 0; i < 20; i++)
+		{
+			PerLevelData.Add(new LevelScores());
+		}
+
+		for (int i = 0; i < PerLevelData.Count; i++)
+		{
+			LevelScores Test = new LevelScores();
+			Test.LevelName = "Level" + (i + 1);
+			PerLevelData[i] = Test;
+		}
+
+		Debug.Log(PerLevelData.Count);
+		Debug.Log(PerLevelData[0].LevelName);
+
+		if (!File.Exists(Application.persistentDataPath + "/gamedata.ini"))
+		{
+			for (int i = 0; i < PerLevelData.Count; i++)
+			{
+				LevelScores Update = new LevelScores();
+				Update.BestTime = 9999999;
+				Update.SecondBestTime = 9999999;
+				Update.ThirdBestTime = 9999999;
+				PerLevelData[i] = Update;
+				Debug.Log("Reset Scores");
+
+				Debug.Log(PerLevelData[0].BestTime);
+
+				SaveData();
+			}
+		}
+		else
+		{
+			LoadData();
+		}
 	}
 
 
@@ -57,14 +94,14 @@ public class SaveScript : MonoBehaviour
 		FileStream DataFile;
 
 		// creates a file in the data path /C/users/appdata/......
-		if (!File.Exists(Application.persistentDataPath + "/gamedata.ini"))
-		{
+		//if (!File.Exists(Application.persistentDataPath + "/gamedata.ini"))
+		//{
 			DataFile = File.Create(Application.persistentDataPath + "/gamedata.ini");
-		}
-		else
-		{
-			DataFile = File.OpenWrite(Application.persistentDataPath + "/gamedata.ini");
-		}
+		//}
+		//else
+		//{
+		//	DataFile = File.Open(Application.persistentDataPath + "/gamedata.ini", FileMode.Open);
+		//}
 
 		// creates an instance of the game data class...
 		GameData Data = new GameData();
@@ -90,6 +127,10 @@ public class SaveScript : MonoBehaviour
 		Data.Level18 = PerLevelData[17];
 		Data.Level19 = PerLevelData[18];
 		Data.Level20 = PerLevelData[19];
+
+		Debug.Log(PerLevelData[0].LastTime);
+		Debug.Log(PerLevelData[0].BestTime);
+		Debug.Log(PerLevelData[0].SecondBestTime);
 
 		// Converts to binrary, using the data from the data thingy in a data file
 		BinFormat.Serialize(DataFile, Data);
