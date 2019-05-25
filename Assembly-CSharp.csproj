@@ -65,9 +65,6 @@
     <Compile Include="Assets\Scripts\CameraController.cs" />
     <Compile Include="Assets\Scripts\EndPadScript.cs" />
     <Compile Include="Assets\Scripts\GameController.cs" />
-    <Compile Include="Assets\Scripts\LeaderboardScript.cs" />
-    <Compile Include="Assets\Scripts\LevelController.cs" />
-    <Compile Include="Assets\Scripts\LevelSelectScript.cs" />
     <Compile Include="Assets\Scripts\LevelTimerScript.cs" />
     <Compile Include="Assets\Scripts\MenuItems.cs" />
     <Compile Include="Assets\Scripts\PlayerController.cs" />
