@@ -411,7 +411,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: a74da047f6f888949a7f6e5cea87d6ed, type: 2}
+      objectReference: {fileID: 2100000, guid: 431bfb1b8475fbe4fbcafda4a32e072f, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2794fe8b7b24f554dbf38804905b575f, type: 3}
 --- !u!4 &14911801 stripped
@@ -826,7 +826,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: a74da047f6f888949a7f6e5cea87d6ed, type: 2}
+      objectReference: {fileID: 2100000, guid: 431bfb1b8475fbe4fbcafda4a32e072f, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2794fe8b7b24f554dbf38804905b575f, type: 3}
 --- !u!4 &80720410 stripped
@@ -1122,6 +1122,11 @@ PrefabInstance:
       propertyPath: field of view
       value: 75
       objectReference: {fileID: 0}
+    - target: {fileID: 5118743675957170881, guid: f44598389ba21b243aac50d100c28571,
+        type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f44598389ba21b243aac50d100c28571, type: 3}
 --- !u!1 &93637980 stripped
@@ -1159,6 +1164,89 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 3
+--- !u!4 &93637983 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 3265070919329408107, guid: f44598389ba21b243aac50d100c28571,
+    type: 3}
+  m_PrefabInstance: {fileID: 93637979}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &93637984
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 93637980}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8b9a305e18de0c04dbd257a21cd47087, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sharedProfile: {fileID: 11400000, guid: 00dc12c58e33dc44a82024c847cffe8f, type: 2}
+  isGlobal: 1
+  blendDistance: 0
+  weight: 1
+  priority: 0
+--- !u!114 &93637985
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 93637980}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 948f4100a11a5c24981795d21301da5c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  volumeTrigger: {fileID: 93637983}
+  volumeLayer:
+    serializedVersion: 2
+    m_Bits: 256
+  stopNaNPropagation: 1
+  finalBlitToCameraTarget: 1
+  antialiasingMode: 1
+  temporalAntialiasing:
+    jitterSpread: 0.75
+    sharpness: 0.25
+    stationaryBlending: 0.95
+    motionBlending: 0.85
+  subpixelMorphologicalAntialiasing:
+    quality: 2
+  fastApproximateAntialiasing:
+    fastMode: 1
+    keepAlpha: 1
+  fog:
+    enabled: 1
+    excludeSkybox: 1
+  debugLayer:
+    lightMeter:
+      width: 512
+      height: 256
+      showCurves: 1
+    histogram:
+      width: 512
+      height: 256
+      channel: 3
+    waveform:
+      exposure: 0.12
+      height: 256
+    vectorscope:
+      size: 256
+      exposure: 0.12
+    overlaySettings:
+      linearDepth: 0
+      motionColorIntensity: 4
+      motionGridSize: 64
+      colorBlindnessType: 0
+      colorBlindnessStrength: 1
+  m_Resources: {fileID: 11400000, guid: d82512f9c8e5d4a4d938b575d47f88d4, type: 2}
+  m_ShowToolkit: 0
+  m_ShowCustomSorter: 0
+  breakBeforeColorGrading: 0
+  m_BeforeTransparentBundles: []
+  m_BeforeStackBundles: []
+  m_AfterStackBundles: []
 --- !u!1 &93973380
 GameObject:
   m_ObjectHideFlags: 0
@@ -1686,7 +1774,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: a74da047f6f888949a7f6e5cea87d6ed, type: 2}
+      objectReference: {fileID: 2100000, guid: 431bfb1b8475fbe4fbcafda4a32e072f, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2794fe8b7b24f554dbf38804905b575f, type: 3}
 --- !u!4 &123353570 stripped
@@ -2397,7 +2485,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: a74da047f6f888949a7f6e5cea87d6ed, type: 2}
+      objectReference: {fileID: 2100000, guid: 431bfb1b8475fbe4fbcafda4a32e072f, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2794fe8b7b24f554dbf38804905b575f, type: 3}
 --- !u!4 &232019459 stripped
@@ -5278,7 +5366,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: a74da047f6f888949a7f6e5cea87d6ed, type: 2}
+      objectReference: {fileID: 2100000, guid: 431bfb1b8475fbe4fbcafda4a32e072f, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2794fe8b7b24f554dbf38804905b575f, type: 3}
 --- !u!4 &426502833 stripped
@@ -6642,7 +6730,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: a74da047f6f888949a7f6e5cea87d6ed, type: 2}
+      objectReference: {fileID: 2100000, guid: 431bfb1b8475fbe4fbcafda4a32e072f, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2794fe8b7b24f554dbf38804905b575f, type: 3}
 --- !u!1001 &544503238
@@ -9578,7 +9666,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: a74da047f6f888949a7f6e5cea87d6ed, type: 2}
+      objectReference: {fileID: 2100000, guid: 431bfb1b8475fbe4fbcafda4a32e072f, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2794fe8b7b24f554dbf38804905b575f, type: 3}
 --- !u!4 &771416971 stripped
@@ -11396,7 +11484,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: a74da047f6f888949a7f6e5cea87d6ed, type: 2}
+      objectReference: {fileID: 2100000, guid: 431bfb1b8475fbe4fbcafda4a32e072f, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2794fe8b7b24f554dbf38804905b575f, type: 3}
 --- !u!4 &874956130 stripped
@@ -11476,7 +11564,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: a74da047f6f888949a7f6e5cea87d6ed, type: 2}
+      objectReference: {fileID: 2100000, guid: 431bfb1b8475fbe4fbcafda4a32e072f, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2794fe8b7b24f554dbf38804905b575f, type: 3}
 --- !u!4 &876357617 stripped
@@ -13065,7 +13153,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: a74da047f6f888949a7f6e5cea87d6ed, type: 2}
+      objectReference: {fileID: 2100000, guid: 431bfb1b8475fbe4fbcafda4a32e072f, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2794fe8b7b24f554dbf38804905b575f, type: 3}
 --- !u!4 &1031486070 stripped
@@ -16480,7 +16568,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: a74da047f6f888949a7f6e5cea87d6ed, type: 2}
+      objectReference: {fileID: 2100000, guid: 431bfb1b8475fbe4fbcafda4a32e072f, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2794fe8b7b24f554dbf38804905b575f, type: 3}
 --- !u!4 &1266436141 stripped
@@ -18083,7 +18171,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: a74da047f6f888949a7f6e5cea87d6ed, type: 2}
+      objectReference: {fileID: 2100000, guid: 431bfb1b8475fbe4fbcafda4a32e072f, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2794fe8b7b24f554dbf38804905b575f, type: 3}
 --- !u!4 &1425982665 stripped
