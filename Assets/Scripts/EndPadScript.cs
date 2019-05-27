@@ -12,11 +12,11 @@ public class EndPadScript : MonoBehaviour
 	private bool IsCoRunning;			// Is the courutine running? - just stops it been called a million times
 	private Canvas EndUIElements;		// The Canvas that holds the end of level UI
 	private CameraController CamCtrl;	// The Camera Controller Script
-	private LevelTimerScript TimeCtrl;	// The Level Timer Script
+	private LevelUIScript UICtrl;	// The Level Timer Script
 
 	/* Gem Variables */
 	internal int GemsCollected;     // Number of Gems Collected
-	public int NumberofGems;        // Number of gems in the level
+	internal int NumberofGems;        // Number of gems in the level
 	public bool AreGemsInLevel;		// Checks to see if gems are in the level
 
 	
@@ -24,10 +24,10 @@ public class EndPadScript : MonoBehaviour
     {
 		// Setting up references
 		CamCtrl = Camera.main.GetComponentInParent<CameraController>();
-		TimeCtrl = GameObject.FindGameObjectWithTag("TimeCtrl").GetComponent<LevelTimerScript>();
+		UICtrl = FindObjectOfType<LevelUIScript>();
 		EndUIElements = GetComponentInChildren<Canvas>();
 
-		//Disables the end of level ui when referneced
+		// Disables the end of level ui when referneced
 		EndUIElements.enabled = false;
 
 		// Finds any gems in the level and adds them to the list
@@ -54,7 +54,7 @@ public class EndPadScript : MonoBehaviour
 		if ((collision.gameObject.tag == "Player") && AreAllGemsCollected())
 		{
 			// Pauses the timer
-			TimeCtrl.StopTimer();
+			UICtrl.StopTimer();
 
 			// Freezes the Camera
 			CamCtrl.CamEnabled = false;

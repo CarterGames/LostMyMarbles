@@ -4,15 +4,17 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
-public class LevelTimerScript : MonoBehaviour
+public class LevelUIScript : MonoBehaviour
 {
-	internal string PlayerName;
 	internal bool RunTimer;
 	private float Timer;
 	private Text TimerText;
 	private SaveScript Scores;
 	private LevelScores Changes;
 	private EndUIScript EndUI;
+	private EndPadScript EpScript;
+	private bool AreGems;
+	private GameObject GemUI;
 
 	// Start is called before the first frame update
 	void Start()
@@ -20,6 +22,10 @@ public class LevelTimerScript : MonoBehaviour
 		Scores = FindObjectOfType<SaveScript>();
 		TimerText = GetComponentInChildren<Text>();
 		EndUI = FindObjectOfType<EndUIScript>();
+		EpScript = FindObjectOfType<EndPadScript>();
+		GemUI = GameObject.Find("GemsUI");
+		GemUI.SetActive(false);
+		AreGems = GameObject.FindGameObjectWithTag("Gem");
     }
 
     // Update is called once per frame
@@ -31,6 +37,12 @@ public class LevelTimerScript : MonoBehaviour
 		}
 
 		DisplayTime();
+
+		if (AreGems)
+		{
+			GemUI.SetActive(true);
+			GemUI.GetComponentInChildren<Text>().text = " " + EpScript.GemsCollected + " / " + EpScript.NumberofGems;
+		}
     }
 
 	// Converts the float to a int and sets up its display value
@@ -88,7 +100,6 @@ public class LevelTimerScript : MonoBehaviour
 			Changes.SecondBestTime = Changes.BestTime;
 			Changes.SecondBestName = Changes.BestTimeName;
 			Changes.BestTime = Timer;
-			Changes.BestTimeName = PlayerName;
 			EndUI.NewScorePosition = 1;
 			Debug.Log("Best Time");
 		}
@@ -97,14 +108,12 @@ public class LevelTimerScript : MonoBehaviour
 			Changes.ThirdBestTime = Changes.SecondBestTime;
 			Changes.ThirdBestName = Changes.SecondBestName;
 			Changes.SecondBestTime = Timer;
-			Changes.SecondBestName = PlayerName;
 			EndUI.NewScorePosition = 2;
 			Debug.Log("Second Best Time");
 		}
 		else if (Timer < Changes.ThirdBestTime)
 		{
 			Changes.ThirdBestTime = Timer;
-			Changes.ThirdBestName = PlayerName;
 			EndUI.NewScorePosition = 3;
 			Debug.Log("Third Best Time");
 		}

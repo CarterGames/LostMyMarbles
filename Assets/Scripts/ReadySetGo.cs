@@ -25,7 +25,7 @@ public class ReadySetGo : MonoBehaviour
 	private Rigidbody PlayerRB;
 
 	// Timer Reference
-	private LevelTimerScript TimeCtrl;
+	private LevelUIScript TimeCtrl;
 
 	private void Start()
 	{
@@ -33,7 +33,7 @@ public class ReadySetGo : MonoBehaviour
 		PlayerRB = Player.GetComponent<Rigidbody>();
 
 		// Timer Reference
-		TimeCtrl = GameObject.FindGameObjectWithTag("TimeCtrl").GetComponent<LevelTimerScript>();
+		TimeCtrl = FindObjectOfType<LevelUIScript>();
 	}
 
 	// Update is called once per frame
