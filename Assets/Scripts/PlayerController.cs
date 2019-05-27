@@ -21,9 +21,13 @@ public class PlayerController : MonoBehaviour
 
 	private bool IsFalloffRunning;
 
+	private EndPadScript EPScript;
+
 	private void Start()
 	{
 		MoveDirGO = GameObject.FindGameObjectWithTag("CameraPoint");
+		HideMouse();
+		EPScript = FindObjectOfType<EndPadScript>();
 	}
 
 
@@ -42,7 +46,6 @@ public class PlayerController : MonoBehaviour
 		GetComponent<Rigidbody>().AddForce(Movement * MoveSpeed);
 
 		JumpSmoothing();
-		HideMouse();
 	}
 
 
@@ -59,19 +62,32 @@ public class PlayerController : MonoBehaviour
 	}
 
 
-	// Just hides the mouse cursor when playing the game
-	private void HideMouse()
+	// Just toggles whether the mouse is visible in the game or not
+	internal void HideMouse()
 	{
-		//Cursor.visible = false;
+		Cursor.visible = !Cursor.visible;
 	}
 
 
 	private void OnTriggerEnter(Collider other)
 	{
-		if (other.gameObject.tag == "OutOfBounds")
+		// Does all the out of bounds stuff
+		switch (other.gameObject.tag)
 		{
-			Debug.Log("Out Of Bounds");
-			other.gameObject.GetComponentInChildren<Canvas>().enabled = true;
+			case "OutOfBounds":
+				Debug.Log("Out Of Bounds");
+				other.gameObject.GetComponentInChildren<Canvas>().enabled = true;
+				Camera.main.transform.parent.LookAt(gameObject.transform);
+				Camera.main.GetComponentInParent<CameraController>().enabled = false;
+				HideMouse();
+				break;
+			case "Gem":
+				Debug.Log("Gem Collected");
+				other.gameObject.SetActive(false);
+				EPScript.GemsCollected++;
+				break;
+			default:
+				break;
 		}
 	}
 }

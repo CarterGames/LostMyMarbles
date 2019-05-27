@@ -65,11 +65,10 @@
     <Compile Include="Assets\Scripts\CameraController.cs" />
     <Compile Include="Assets\Scripts\EndPadScript.cs" />
     <Compile Include="Assets\Scripts\EndUIScript.cs" />
-    <Compile Include="Assets\Scripts\GameController.cs" />
     <Compile Include="Assets\Scripts\LevelTimerScript.cs" />
-    <Compile Include="Assets\Scripts\MenuItems.cs" />
     <Compile Include="Assets\Scripts\PlayerController.cs" />
     <Compile Include="Assets\Scripts\ReadySetGo.cs" />
+    <Compile Include="Assets\Scripts\RotateScript.cs" />
     <Compile Include="Assets\Scripts\SaveScript.cs" />
     <Compile Include="Assets\Scripts\StartPadScript.cs" />
     <Reference Include="Unity.Timeline.Editor">
