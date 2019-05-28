@@ -1,6 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class PlayerController : MonoBehaviour
 {
@@ -23,6 +25,9 @@ public class PlayerController : MonoBehaviour
 
 	private EndPadScript EPScript;
 
+	private bool LevelFailed;
+	private bool IsCoRunning;
+
 	private void Start()
 	{
 		MoveDirGO = GameObject.FindGameObjectWithTag("CameraPoint");
@@ -33,19 +38,27 @@ public class PlayerController : MonoBehaviour
 
 	private void Update()
 	{
-		if (Input.GetButtonDown("Jump"))
+		if (!LevelFailed)
 		{
-			Debug.Log("Jump Pressed");
-			GetComponent<Rigidbody>().velocity += Vector3.up * JumpHeight;
+			if (Input.GetButtonDown("Jump"))
+			{
+				Debug.Log("Jump Pressed");
+				GetComponent<Rigidbody>().velocity += Vector3.up * JumpHeight;
+			}
+
+			Vector3 Movement = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
+
+			Movement = MoveDirGO.transform.TransformDirection(Movement);
+
+			GetComponent<Rigidbody>().AddForce(Movement * MoveSpeed);
+
+			JumpSmoothing();
 		}
 
-		Vector3 Movement = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
-
-		Movement = MoveDirGO.transform.TransformDirection(Movement);
-
-		GetComponent<Rigidbody>().AddForce(Movement * MoveSpeed);
-
-		JumpSmoothing();
+		if (LevelFailed)
+		{
+			ResetScene();
+		}
 	}
 
 
@@ -68,6 +81,22 @@ public class PlayerController : MonoBehaviour
 		Cursor.visible = !Cursor.visible;
 	}
 
+	// Resets the game when the player dies
+	private void ResetScene()
+	{
+		if (Input.GetMouseButtonDown(0))
+		{
+			string ThisScene = SceneManager.GetActiveScene().name;
+			Debug.Log(ThisScene);
+			SceneManager.LoadSceneAsync(ThisScene);
+			LevelFailed = false;
+		}
+		else
+		{
+			GameObject.FindGameObjectWithTag("OutOfBounds").GetComponentInChildren<Animator>().SetBool("Flicker", true);
+		}
+	}
+
 
 	private void OnTriggerEnter(Collider other)
 	{
@@ -80,11 +109,21 @@ public class PlayerController : MonoBehaviour
 				Camera.main.transform.parent.LookAt(gameObject.transform);
 				Camera.main.GetComponentInParent<CameraController>().enabled = false;
 				HideMouse();
+				LevelFailed = true;
 				break;
 			case "Gem":
 				Debug.Log("Gem Collected");
 				other.gameObject.SetActive(false);
 				EPScript.GemsCollected++;
+				break;
+			case "Zomball":
+				Debug.Log("Zomball Hit Player");
+				GameObject.FindGameObjectWithTag("OutOfBounds").GetComponentInChildren<Text>().text = "A Zom-ball Ate You!";
+				GameObject.FindGameObjectWithTag("OutOfBounds").GetComponentInChildren<Canvas>().enabled = true;
+				Camera.main.transform.parent.LookAt(gameObject.transform);
+				Camera.main.GetComponentInParent<CameraController>().enabled = false;
+				HideMouse();
+				LevelFailed = true;
 				break;
 			default:
 				break;

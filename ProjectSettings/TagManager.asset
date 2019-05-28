@@ -8,6 +8,7 @@ TagManager:
   - TimeCtrl
   - OutOfBounds
   - Gem
+  - Zomball
   layers:
   - Default
   - TransparentFX
