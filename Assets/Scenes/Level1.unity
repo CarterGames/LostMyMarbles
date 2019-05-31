@@ -3892,12 +3892,6 @@ PrefabInstance:
       propertyPath: FallSpeed
       value: 5
       objectReference: {fileID: 0}
-    - target: {fileID: 5547985453113771636, guid: bcd3bc85113dd5d42ae74e7bb077b023,
-        type: 3}
-      propertyPath: m_Material
-      value: 
-      objectReference: {fileID: 13400000, guid: 47af56c6bda6371439e5e18f01249f61,
-        type: 2}
     - target: {fileID: 5547985453113771632, guid: bcd3bc85113dd5d42ae74e7bb077b023,
         type: 3}
       propertyPath: m_CollisionDetection
@@ -3908,6 +3902,12 @@ PrefabInstance:
       propertyPath: m_Interpolate
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 5547985453113771636, guid: bcd3bc85113dd5d42ae74e7bb077b023,
+        type: 3}
+      propertyPath: m_Material
+      value: 
+      objectReference: {fileID: 13400000, guid: 47af56c6bda6371439e5e18f01249f61,
+        type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bcd3bc85113dd5d42ae74e7bb077b023, type: 3}
 --- !u!1001 &1179661667
@@ -6547,7 +6547,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1660200041, guid: 969823aefb3bd7943a7d6394b9d5d474, type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 969823aefb3bd7943a7d6394b9d5d474, type: 3}

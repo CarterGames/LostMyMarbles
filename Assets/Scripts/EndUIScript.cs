@@ -7,15 +7,18 @@ using UnityEngine.SceneManagement;
 
 public class EndUIScript : MonoBehaviour
 {
-	public LevelScores ThisLevelData;
+	public LevelScores ThisLevelData;	// A LevelScores to hold the new data for this level
 
-	private int Position;
-	private SaveScript Save;
-	internal int NewScorePosition;
-	private List<Text> Elements;
+	private int Position;				// Int to hold the position in the save data this level is in
+	private SaveScript Save;			// Ref to the save script
+	internal int NewScorePosition;		// Int to hold the position the player got on the attempt
+	private List<Text> Elements;		// List to hold the text compoents
 
+
+	// Start
 	private void Start()
 	{
+		// Init List of Text components
 		Elements = new List<Text>();
 
 		for (int i = 0; i < GetComponentsInChildren<Text>().Length; i++)
@@ -24,18 +27,29 @@ public class EndUIScript : MonoBehaviour
 		}
 	}
 
+
+	// Gets the latest data from the save file to be inputted into the end UI
 	internal void GetData()
     {
+		// Sets up a new levelscores to hold the loaded data
 		ThisLevelData = new LevelScores();
 
+		// Refers to the save script wherever it is in the scene
 		Save = FindObjectOfType<SaveScript>();
 
+		// for each level scores in the save 
 		for (int i = 0; i < Save.LevelData.Count; i++)
 		{
+			// Find the level scores relevant to this level
 			if (Save.LevelData[i].LevelName == SceneManager.GetActiveScene().name)
 			{
+				// Set the levelscores varible to the leveldata needed
 				ThisLevelData = Save.LevelData[i];
+
+				// Sets the position needed when saving again
 				Position = i;
+
+				// runs the setvalues function
 				SetValues();
 			}
 		}

@@ -53,6 +53,15 @@ public class EndPadScript : MonoBehaviour
 	{
 		if ((collision.gameObject.tag == "Player") && AreAllGemsCollected())
 		{
+			// Disables any Zomballs that are in the level if they are present
+			if (FindObjectOfType<ZomballScript>())
+			{
+				for (int i = 0; i < FindObjectsOfType<ZomballScript>().Length; i++)
+				{
+					FindObjectsOfType<ZomballScript>()[i].enabled = false;
+				}
+			}
+
 			// Pauses the timer
 			UICtrl.StopTimer();
 
