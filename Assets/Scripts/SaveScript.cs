@@ -5,6 +5,8 @@ using UnityEngine;
 using System;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.IO;
+using System.Linq;
+
 
 [Serializable]
 public struct LevelScores
@@ -22,6 +24,7 @@ public struct LevelScores
 	public float StarTime;
 
 	public string LevelName;
+	public Sprite LevelImage;
 }
 
 
@@ -30,7 +33,7 @@ public class SaveScript : MonoBehaviour
 	public List<LevelScores> LevelData;
 	public List<string> StarTimes;
 
-	private void Start()
+	private void Awake()
 	{
 		LevelData = new List<LevelScores>();
 		StarTimes = new List<string>(20);
@@ -57,6 +60,13 @@ public class SaveScript : MonoBehaviour
 		// Sets up the default values for all elements in each Level Score
 		if (!File.Exists(Application.persistentDataPath + "/gamedata.ini"))
 		{
+			List<Sprite> LevelSS = new List<Sprite>();
+
+			for (int i = 0; i < Resources.LoadAll("LevelScreenshots", typeof(Sprite)).Cast<Sprite>().ToList().Count; i++)
+			{
+				LevelSS.Add(Resources.LoadAll("LevelScreenshots", typeof(Sprite)).Cast<Sprite>().ToList()[i]);
+			}
+
 			// Goes through the LevelData and sets it up to have default values
 			for (int i = 0; i < LevelData.Count; i++)
 			{
@@ -73,6 +83,7 @@ public class SaveScript : MonoBehaviour
 				Update.StarTime = LevelData[i].StarTime;
 				Update.LastTime = LevelData[i].LastTime;
 				Update.LevelName = LevelData[i].LevelName;
+				Update.LevelImage = LevelSS[i];
 
 				// Makes the changes to the LevelData
 				LevelData[i] = Update;

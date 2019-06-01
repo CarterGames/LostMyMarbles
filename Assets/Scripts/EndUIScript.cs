@@ -12,8 +12,9 @@ public class EndUIScript : MonoBehaviour
 	private int Position;				// Int to hold the position in the save data this level is in
 	private SaveScript Save;			// Ref to the save script
 	internal int NewScorePosition;		// Int to hold the position the player got on the attempt
-	private List<Text> Elements;		// List to hold the text compoents
+	private List<Text> Elements;        // List to hold the text compoents
 
+	private bool IsCoRunning;
 
 	// Start
 	private void Start()
@@ -68,7 +69,7 @@ public class EndUIScript : MonoBehaviour
 	private string ConvertTime(float Time)
 	{
 		string Mins = Mathf.FloorToInt(Time / 60).ToString("00");
-		string Secs = (Time % 60).ToString("00");
+		string Secs = Mathf.Floor((Time % 60)).ToString("00");
 		string MilSecs = ((Time * 100) % 100).ToString("00");
 		return Mins + ":" + Secs + ":" + MilSecs;
 	}
@@ -104,4 +105,21 @@ public class EndUIScript : MonoBehaviour
 	{
 		GameObject.Find("NewRecordUI").SetActive(false);
 	}
+
+
+	// Takes the player to the next level
+	public void NextLevel()
+	{
+		SceneManager.LoadSceneAsync(SceneManager.GetActiveScene().buildIndex + 1);
+	}
+
+
+	//private IEnumerator ChangeScene()
+	//{
+	//	IsCoRunning = true;
+	//	GetComponentInChildren<Animator>().SetBool("LevelChange", true);
+	//	yield return new WaitForSeconds(1);
+	//	SceneManager.LoadSceneAsync(SceneManager.GetActiveScene().buildIndex + 1);
+
+	//}
 }

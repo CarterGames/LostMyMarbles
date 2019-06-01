@@ -65,6 +65,7 @@
     <Compile Include="Assets\Scripts\CameraController.cs" />
     <Compile Include="Assets\Scripts\EndPadScript.cs" />
     <Compile Include="Assets\Scripts\EndUIScript.cs" />
+    <Compile Include="Assets\Scripts\LevelSelectScript.cs" />
     <Compile Include="Assets\Scripts\LevelUIScript.cs" />
     <Compile Include="Assets\Scripts\MenuRotate.cs" />
     <Compile Include="Assets\Scripts\PlayerController.cs" />
