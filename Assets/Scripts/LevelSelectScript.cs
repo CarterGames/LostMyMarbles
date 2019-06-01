@@ -10,6 +10,7 @@ public class LevelSelectScript : MonoBehaviour
 
 	public LevelScores CurrentLevelSelected;
 	public List<LevelScores> AllLevels;
+	public List<Sprite> LevelImages;
 
 	public Text LevelNameText;
 	public Text GoldTimeText;
@@ -26,6 +27,13 @@ public class LevelSelectScript : MonoBehaviour
 	private void Awake()
 	{
 		Save = FindObjectOfType<SaveScript>();
+
+		Debug.Log(Resources.LoadAll("LevelScreenshots", typeof(Sprite)).Cast<Sprite>().ToList().Count);
+
+		for (int i = 0; i < Resources.LoadAll("LevelScreenshots", typeof(Sprite)).Cast<Sprite>().ToList().Count; i++)
+		{
+			LevelImages.Add(Resources.LoadAll("LevelScreenshots", typeof(Sprite)).Cast<Sprite>().ToList()[i]);
+		}
 	}
 
 	private void Start()
@@ -43,6 +51,7 @@ public class LevelSelectScript : MonoBehaviour
 		GoldTimeText.text = "1st: " + CurrentLevelSelected.BestTimeName + "\n" + ConvertTime(CurrentLevelSelected.BestTime);
 		SilverTimeText.text = "2nd: " + CurrentLevelSelected.SecondBestName + "\n" + ConvertTime(CurrentLevelSelected.SecondBestTime);
 		BronzeTimeText.text = "3rd: " + CurrentLevelSelected.ThirdBestName + "\n" + ConvertTime(CurrentLevelSelected.ThirdBestTime);
+		LevelPreviewImage.sprite = LevelImages[int.Parse(GetLevelNumber(CurrentLevelSelected.LevelName))];
 	}
 
 	// Converts the Timer float value to a more readable format
@@ -65,7 +74,6 @@ public class LevelSelectScript : MonoBehaviour
 		if (Input.Substring(Input.Length - 2) == "l" + Input.Substring(Input.Length - 1)) { return Input.Substring(Input.Length - 1); }
 		else { return Input.Substring(Input.Length - 2); }
 	}
-
 
 
 	public void LeftPressed()
