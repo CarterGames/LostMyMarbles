@@ -62,17 +62,20 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\Scripts\Camcol.cs" />
     <Compile Include="Assets\Scripts\CameraController.cs" />
     <Compile Include="Assets\Scripts\EndPadScript.cs" />
     <Compile Include="Assets\Scripts\EndUIScript.cs" />
     <Compile Include="Assets\Scripts\LevelSelectScript.cs" />
     <Compile Include="Assets\Scripts\LevelUIScript.cs" />
+    <Compile Include="Assets\Scripts\MenuController.cs" />
     <Compile Include="Assets\Scripts\MenuRotate.cs" />
     <Compile Include="Assets\Scripts\PlayerController.cs" />
     <Compile Include="Assets\Scripts\ReadySetGo.cs" />
     <Compile Include="Assets\Scripts\ResetLevelScript.cs" />
     <Compile Include="Assets\Scripts\RotateScript.cs" />
     <Compile Include="Assets\Scripts\SaveScript.cs" />
+    <Compile Include="Assets\Scripts\SettingsScript.cs" />
     <Compile Include="Assets\Scripts\StartPadScript.cs" />
     <Compile Include="Assets\Scripts\ZomballScript.cs" />
     <Reference Include="Unity.Timeline.Editor">

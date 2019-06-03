@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using System.Linq;
+using UnityEngine.SceneManagement;
 
 
 public class LevelSelectScript : MonoBehaviour
@@ -13,6 +14,7 @@ public class LevelSelectScript : MonoBehaviour
 	public List<Sprite> LevelImages;
 
 	public Text LevelNameText;
+	public Text CrystalTimeText;
 	public Text GoldTimeText;
 	public Text SilverTimeText;
 	public Text BronzeTimeText;
@@ -23,6 +25,8 @@ public class LevelSelectScript : MonoBehaviour
 
 	private int LastPos;
 	private SaveScript Save;
+
+	private Color32 CrystalCol = new Color32(25, 150, 150, 255);
 
 	private void Awake()
 	{
@@ -48,10 +52,11 @@ public class LevelSelectScript : MonoBehaviour
 	private void UpdateUI()
 	{
 		LevelNameText.text = "Level: " + GetLevelNumber(CurrentLevelSelected.LevelName);
+		CrystalTimeText.text = "Crystal Time" + "\n" + ConvertTime(CurrentLevelSelected.CrystalTime);
 		GoldTimeText.text = "1st: " + CurrentLevelSelected.BestTimeName + "\n" + ConvertTime(CurrentLevelSelected.BestTime);
 		SilverTimeText.text = "2nd: " + CurrentLevelSelected.SecondBestName + "\n" + ConvertTime(CurrentLevelSelected.SecondBestTime);
 		BronzeTimeText.text = "3rd: " + CurrentLevelSelected.ThirdBestName + "\n" + ConvertTime(CurrentLevelSelected.ThirdBestTime);
-		LevelPreviewImage.sprite = LevelImages[int.Parse(GetLevelNumber(CurrentLevelSelected.LevelName))];
+		LevelPreviewImage.sprite = LevelImages[int.Parse(GetLevelNumber(CurrentLevelSelected.LevelName)) - 1];
 	}
 
 	// Converts the Timer float value to a more readable format
@@ -76,6 +81,15 @@ public class LevelSelectScript : MonoBehaviour
 	}
 
 
+	private void IsCrystalTime(float Crystal, float Input)
+	{
+		if (Input < Crystal)
+		{
+
+		}
+	}
+
+
 	public void LeftPressed()
 	{
 		if (LastPos - 1 >= 0) { LastPos--; CurrentLevelSelected = AllLevels[LastPos]; }
@@ -83,10 +97,17 @@ public class LevelSelectScript : MonoBehaviour
 		UpdateUI();
 	}
 
+
 	public void RightPressed()
 	{
 		if (LastPos + 1 != AllLevels.Count) { LastPos++; CurrentLevelSelected = AllLevels[LastPos]; }
 		else { LastPos = 0; CurrentLevelSelected = AllLevels[LastPos]; }
 		UpdateUI();
+	}
+
+
+	public void PlayLevel()
+	{
+		SceneManager.LoadSceneAsync(CurrentLevelSelected.LevelName);
 	}
 }

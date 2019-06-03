@@ -59,7 +59,7 @@ public class EndUIScript : MonoBehaviour
 	private void SetValues()
 	{
 		Elements[0].text = "Level: " + ThisLevelData.LevelName.Substring(ThisLevelData.LevelName.Length - 1);
-		Elements[1].text = "Star Time\n" + ConvertTime(ThisLevelData.StarTime);
+		Elements[1].text = "Crystal Time:\n" + ConvertTime(ThisLevelData.CrystalTime);
 		Elements[2].text = "1st: " + ThisLevelData.BestTimeName + "\n" + ConvertTime(ThisLevelData.BestTime);
 		Elements[3].text = "2nd: " + ThisLevelData.SecondBestName + "\n" + ConvertTime(ThisLevelData.SecondBestTime);
 		Elements[4].text = "3rd: " + ThisLevelData.ThirdBestName + "\n" + ConvertTime(ThisLevelData.ThirdBestTime);
@@ -68,7 +68,7 @@ public class EndUIScript : MonoBehaviour
 
 	private string ConvertTime(float Time)
 	{
-		string Mins = Mathf.FloorToInt(Time / 60).ToString("00");
+		string Mins = Mathf.Floor(Time / 60).ToString("00");
 		string Secs = Mathf.Floor((Time % 60)).ToString("00");
 		string MilSecs = ((Time * 100) % 100).ToString("00");
 		return Mins + ":" + Secs + ":" + MilSecs;
@@ -111,6 +111,12 @@ public class EndUIScript : MonoBehaviour
 	public void NextLevel()
 	{
 		SceneManager.LoadSceneAsync(SceneManager.GetActiveScene().buildIndex + 1);
+	}
+
+
+	public void Menu()
+	{
+		SceneManager.LoadSceneAsync("Menu");
 	}
 
 

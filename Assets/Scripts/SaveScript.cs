@@ -21,7 +21,7 @@ public struct LevelScores
 	public string ThirdBestName;
 
 	public float LastTime;
-	public float StarTime;
+	public float CrystalTime;
 
 	public string LevelName;
 }
@@ -30,18 +30,19 @@ public struct LevelScores
 public class SaveScript : MonoBehaviour
 {
 	public List<LevelScores> LevelData;
-	public List<string> StarTimes;
+	public List<float> CrystalTimes;
 
 	private void Awake()
 	{
 		LevelData = new List<LevelScores>();
-		StarTimes = new List<string>(20);
+		CrystalTimes = new List<float>(20);
 
 		for (int i = 0; i < 20; i++)
 		{
 			LevelData.Add(new LevelScores());
 		}
 
+		SetupCrystalTimes();
 		Setup();
 	}
 
@@ -73,7 +74,7 @@ public class SaveScript : MonoBehaviour
 				Update.BestTimeName = LevelData[i].BestTimeName;
 				Update.SecondBestName = LevelData[i].SecondBestName;
 				Update.ThirdBestName = LevelData[i].ThirdBestName;
-				Update.StarTime = LevelData[i].StarTime;
+				Update.CrystalTime = CrystalTimes[i];
 				Update.LastTime = LevelData[i].LastTime;
 				Update.LevelName = LevelData[i].LevelName;
 
@@ -92,12 +93,28 @@ public class SaveScript : MonoBehaviour
 	}
 
 
-	private void SetupStarTimes()
+	private void SetupCrystalTimes()
 	{
-		if (!File.Exists(Application.persistentDataPath + "/gamedata.ini"))
-		{
-			
-		}
+		CrystalTimes.Add(3f);
+		CrystalTimes.Add(10f);
+		CrystalTimes.Add(10f);
+		CrystalTimes.Add(10f);
+		CrystalTimes.Add(10f);
+		CrystalTimes.Add(10f);
+		CrystalTimes.Add(10f);
+		CrystalTimes.Add(10f);
+		CrystalTimes.Add(10f);
+		CrystalTimes.Add(10f);
+		CrystalTimes.Add(10f);
+		CrystalTimes.Add(10f);
+		CrystalTimes.Add(10f);
+		CrystalTimes.Add(10f);
+		CrystalTimes.Add(10f);
+		CrystalTimes.Add(10f);
+		CrystalTimes.Add(10f);
+		CrystalTimes.Add(10f);
+		CrystalTimes.Add(10f);
+		CrystalTimes.Add(10f);
 	}
 
 	// Saves the Level Scores to the file
