@@ -67,7 +67,6 @@
     <Compile Include="Assets\Scripts\EndPadScript.cs" />
     <Compile Include="Assets\Scripts\EndUIScript.cs" />
     <Compile Include="Assets\Scripts\LevelSelectScript.cs" />
-    <Compile Include="Assets\Scripts\LevelUIScript.cs" />
     <Compile Include="Assets\Scripts\MenuController.cs" />
     <Compile Include="Assets\Scripts\MenuRotate.cs" />
     <Compile Include="Assets\Scripts\PlayerController.cs" />
@@ -77,6 +76,7 @@
     <Compile Include="Assets\Scripts\SaveScript.cs" />
     <Compile Include="Assets\Scripts\SettingsScript.cs" />
     <Compile Include="Assets\Scripts\StartPadScript.cs" />
+    <Compile Include="Assets\Scripts\TimerUIScript.cs" />
     <Compile Include="Assets\Scripts\ZomballScript.cs" />
     <Reference Include="Unity.Timeline.Editor">
       <HintPath>C:/Users/J/Desktop/LostMyMarbles/Library/ScriptAssemblies/Unity.Timeline.Editor.dll</HintPath>

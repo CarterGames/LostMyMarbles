@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
-public class LevelUIScript : MonoBehaviour
+public class TimerUIScript : MonoBehaviour
 {
 	internal bool RunTimer;
 	private float Timer;
@@ -20,7 +20,7 @@ public class LevelUIScript : MonoBehaviour
 	void Start()
     {
 		Scores = FindObjectOfType<SaveScript>();
-		TimerText = GetComponentInChildren<Text>();
+		TimerText = GetComponentsInChildren<Text>()[1];
 		EndUI = FindObjectOfType<EndUIScript>();
 		EpScript = FindObjectOfType<EndPadScript>();
 		GemUI = GameObject.Find("GemsUI");
@@ -48,8 +48,8 @@ public class LevelUIScript : MonoBehaviour
 	// Converts the float to a int and sets up its display value
 	private void DisplayTime()
 	{ 
-		string Mins = Mathf.FloorToInt(Timer / 60).ToString("00");
-		string Secs = (Timer % 60).ToString("00");
+		string Mins = Mathf.Floor(Timer / 60).ToString("00");
+		string Secs = Mathf.Floor(Timer % 60).ToString("00");
 		string MilSecs = ((Timer * 100) % 100).ToString("00");
 
 		TimerText.text = Mins + ":" + Secs + ":" + MilSecs;
@@ -60,11 +60,6 @@ public class LevelUIScript : MonoBehaviour
 	{
 		RunTimer = false;
 		UpdateLevelScores();
-	}
-
-	internal float GetTmer()
-	{
-		return Timer;
 	}
 
 
@@ -93,33 +88,35 @@ public class LevelUIScript : MonoBehaviour
 
 		// Sorting out if the time is a new best or not.........
 
-		if (Timer < Changes.BestTime)
+		switch (Timer)
 		{
-			Changes.ThirdBestTime = Changes.SecondBestTime;
-			Changes.ThirdBestName = Changes.SecondBestName;
-			Changes.SecondBestTime = Changes.BestTime;
-			Changes.SecondBestName = Changes.BestTimeName;
-			Changes.BestTime = Timer;
-			EndUI.NewScorePosition = 1;
-			Debug.Log("Best Time");
-		}
-		else if (Timer < Changes.SecondBestTime)
-		{
-			Changes.ThirdBestTime = Changes.SecondBestTime;
-			Changes.ThirdBestName = Changes.SecondBestName;
-			Changes.SecondBestTime = Timer;
-			EndUI.NewScorePosition = 2;
-			Debug.Log("Second Best Time");
-		}
-		else if (Timer < Changes.ThirdBestTime)
-		{
-			Changes.ThirdBestTime = Timer;
-			EndUI.NewScorePosition = 3;
-			Debug.Log("Third Best Time");
-		}
-		else
-		{
-			EndUI.CloseNameUI();
+			case float number when (number < Changes.BestTime):
+				Changes.ThirdBestTime = Changes.SecondBestTime;
+				Changes.ThirdBestName = Changes.SecondBestName;
+				Changes.SecondBestTime = Changes.BestTime;
+				Changes.SecondBestName = Changes.BestTimeName;
+				Changes.BestTime = Timer;
+				EndUI.NewScorePosition = 1;
+				Changes.BestTimeName = "New Best Score!!!";
+				Debug.Log("Best Time");
+				break;
+			case float number when (number < Changes.SecondBestTime):
+				Changes.ThirdBestTime = Changes.SecondBestTime;
+				Changes.ThirdBestName = Changes.SecondBestName;
+				Changes.SecondBestTime = Timer;
+				EndUI.NewScorePosition = 2;
+				Changes.SecondBestName = "New 2nd Best Score!!!";
+				Debug.Log("Second Best Time");
+				break;
+			case float number when (number < Changes.ThirdBestTime):
+				Changes.ThirdBestTime = Timer;
+				EndUI.NewScorePosition = 3;
+				Changes.ThirdBestName = "New 3rd Best Score!!!";
+				Debug.Log("Third Best Time");
+				break;
+			default:
+				EndUI.CloseNameUI();
+				break;
 		}
 
 

@@ -68,10 +68,14 @@ public class EndUIScript : MonoBehaviour
 
 	private string ConvertTime(float Time)
 	{
-		string Mins = Mathf.Floor(Time / 60).ToString("00");
-		string Secs = Mathf.Floor((Time % 60)).ToString("00");
-		string MilSecs = ((Time * 100) % 100).ToString("00");
-		return Mins + ":" + Secs + ":" + MilSecs;
+		if (Time == 9999999) { return "99:99:99"; }
+		else
+		{
+			string Mins = Mathf.FloorToInt(Time / 60).ToString("00");
+			string Secs = Mathf.Floor((Time % 60)).ToString("00");
+			string MilSecs = ((Time * 100) % 100).ToString("00");
+			return Mins + ":" + Secs + ":" + MilSecs;
+		}
 	}
 
 	public void UpdatePlayerNameText()
@@ -119,6 +123,16 @@ public class EndUIScript : MonoBehaviour
 		SceneManager.LoadSceneAsync("Menu");
 	}
 
+
+	public void Replay()
+	{
+		SceneManager.LoadSceneAsync(SceneManager.GetActiveScene().buildIndex);
+	}
+
+	public void ClearInputFeild()
+	{
+		GetComponentInChildren<InputField>().text = "";
+	}
 
 	//private IEnumerator ChangeScene()
 	//{

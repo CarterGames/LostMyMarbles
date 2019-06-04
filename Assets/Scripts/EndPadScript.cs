@@ -12,7 +12,7 @@ public class EndPadScript : MonoBehaviour
 	private bool IsCoRunning;			// Is the courutine running? - just stops it been called a million times
 	private Canvas EndUIElements;		// The Canvas that holds the end of level UI
 	private CameraController CamCtrl;	// The Camera Controller Script
-	private LevelUIScript UICtrl;	// The Level Timer Script
+	private TimerUIScript UICtrl;	// The Level Timer Script
 
 	/* Gem Variables */
 	internal int GemsCollected;     // Number of Gems Collected
@@ -24,7 +24,7 @@ public class EndPadScript : MonoBehaviour
     {
 		// Setting up references
 		CamCtrl = Camera.main.GetComponentInParent<CameraController>();
-		UICtrl = FindObjectOfType<LevelUIScript>();
+		UICtrl = FindObjectOfType<TimerUIScript>();
 		EndUIElements = GetComponentInChildren<Canvas>();
 
 		// Disables the end of level ui when referneced
