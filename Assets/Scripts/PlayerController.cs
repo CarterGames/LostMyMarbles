@@ -50,6 +50,11 @@ public class PlayerController : MonoBehaviour
 		GetComponent<Rigidbody>().AddForce(Movement * MoveSpeed);
 
 		JumpSmoothing();
+
+		if (LevelFailed)
+		{
+			ResetScene();
+		}
 	}
 
 
@@ -79,6 +84,7 @@ public class PlayerController : MonoBehaviour
 	{
 		if (Input.GetMouseButtonDown(0))
 		{
+			GameObject.FindGameObjectWithTag("OutOfBounds").GetComponentInChildren<Animator>().SetBool("IsOFB", false);
 			string ThisScene = SceneManager.GetActiveScene().name;
 			Debug.Log(ThisScene);
 			SceneManager.LoadSceneAsync(ThisScene);
@@ -86,7 +92,7 @@ public class PlayerController : MonoBehaviour
 		}
 		else
 		{
-			GameObject.FindGameObjectWithTag("OutOfBounds").GetComponentInChildren<Animator>().SetBool("Flicker", true);
+			GameObject.FindGameObjectWithTag("OutOfBounds").GetComponentInChildren<Animator>().SetBool("IsOFB", true);
 		}
 	}
 
