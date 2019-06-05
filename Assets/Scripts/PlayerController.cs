@@ -74,7 +74,8 @@ public class PlayerController : MonoBehaviour
 	// Just toggles whether the mouse is visible in the game or not
 	internal void HideMouse()
 	{
-		Cursor.lockState = CursorLockMode.Locked;
+		if (Cursor.lockState == CursorLockMode.None) { Cursor.lockState = CursorLockMode.Locked; }
+		else { Cursor.lockState = CursorLockMode.None; }
 		Cursor.visible = !Cursor.visible;
 	}
 

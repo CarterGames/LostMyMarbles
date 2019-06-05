@@ -29,4 +29,11 @@ public class MenuController : MonoBehaviour
 		LevelSelect.enabled = false;
 		SettingsScreen.enabled = true;
 	}
+
+	public void Menu()
+	{
+		TitleScreen.enabled = true;
+		LevelSelect.enabled = false;
+		SettingsScreen.enabled = false;
+	}
 }

@@ -11,6 +11,8 @@ public class SettingsScript : MonoBehaviour
 
 	private bool IsFullScreen = false;
 
+	public Dropdown QualityDD;
+
 	public Dropdown ResOptions;
 	public Resolution[] AllResOptions;
 	public int CurrentResIndex = 0;
@@ -44,7 +46,12 @@ public class SettingsScript : MonoBehaviour
 
 	public void SetAASetting(int Input)
 	{
-		QualitySettings.antiAliasing = Input; 
+		if (Input.ToString() != "Disabled")
+		{
+			QualitySettings.SetQualityLevel(5);
+			QualityDD.RefreshShownValue();
+			QualitySettings.antiAliasing = Input;
+		}
 	}
 
 
