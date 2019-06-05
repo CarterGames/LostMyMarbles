@@ -28,6 +28,8 @@ public class LevelSelectScript : MonoBehaviour
 
 	private Color32 CrystalCol = new Color32(25, 150, 150, 255);
 
+	private AudioManager Audio;
+
 	private void Awake()
 	{
 		Save = FindObjectOfType<SaveScript>();
@@ -42,6 +44,7 @@ public class LevelSelectScript : MonoBehaviour
 
 	private void Start()
 	{
+		Audio = FindObjectOfType<AudioManager>();
 		Save.LoadData();
 		AllLevels = Save.LevelData;
 		CurrentLevelSelected = AllLevels[0];
@@ -92,6 +95,7 @@ public class LevelSelectScript : MonoBehaviour
 
 	public void LeftPressed()
 	{
+		Audio.PlayClip("Button_Pressed", Pitch: .75f);
 		if (LastPos - 1 >= 0) { LastPos--; CurrentLevelSelected = AllLevels[LastPos]; }
 		else { LastPos = AllLevels.Count - 1; CurrentLevelSelected = AllLevels[LastPos]; }
 		UpdateUI();
@@ -100,6 +104,7 @@ public class LevelSelectScript : MonoBehaviour
 
 	public void RightPressed()
 	{
+		Audio.PlayClip("Button_Pressed", Pitch: .85f);
 		if (LastPos + 1 != AllLevels.Count) { LastPos++; CurrentLevelSelected = AllLevels[LastPos]; }
 		else { LastPos = 0; CurrentLevelSelected = AllLevels[LastPos]; }
 		UpdateUI();
@@ -109,5 +114,6 @@ public class LevelSelectScript : MonoBehaviour
 	public void PlayLevel()
 	{
 		SceneManager.LoadSceneAsync(CurrentLevelSelected.LevelName);
+		Audio.PlayClip("Button_Pressed");
 	}
 }

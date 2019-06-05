@@ -19,8 +19,12 @@ public class SettingsScript : MonoBehaviour
 	public List<string> Options;
 
 
+	private AudioManager Audio;
+
 	private void Start()
 	{
+		Audio = FindObjectOfType<AudioManager>();
+
 		AllResOptions = Screen.resolutions.Distinct().ToArray();
 
 		ResOptions.ClearOptions();
@@ -58,18 +62,21 @@ public class SettingsScript : MonoBehaviour
 	public void SetRes(int ResIndex)
 	{
 		Screen.SetResolution(AllResOptions[ResIndex].width, AllResOptions[ResIndex].height, IsFullScreen);
+		Audio.PlayClip("Button_Press", Pitch: .5f);
 	}
 
 
 	public void SetFullScreen(bool Input)
 	{
 		Screen.fullScreen = Input;
+		Audio.PlayClip("Button_Press", Pitch: .5f);
 	}
 
 
 	public void SetQuailty(int Input)
 	{
 		QualitySettings.SetQualityLevel(Input);
+		Audio.PlayClip("Button_Press", Pitch: .5f);
 	}
 
 

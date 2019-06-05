@@ -8,8 +8,11 @@ public class MenuController : MonoBehaviour
 	public Canvas LevelSelect;
 	public Canvas SettingsScreen;
 
+	private AudioManager Audio;
+
 	private void Start()
 	{
+		Audio = FindObjectOfType<AudioManager>();
 		TitleScreen.enabled = true;
 		LevelSelect.enabled = false;
 		SettingsScreen.enabled = false;
@@ -21,6 +24,7 @@ public class MenuController : MonoBehaviour
 		TitleScreen.enabled = false;
 		LevelSelect.enabled = true;
 		SettingsScreen.enabled = false;
+		Audio.PlayClip("Button_Press");
 	}
 
 	public void Settings()
@@ -28,6 +32,7 @@ public class MenuController : MonoBehaviour
 		TitleScreen.enabled = false;
 		LevelSelect.enabled = false;
 		SettingsScreen.enabled = true;
+		Audio.PlayClip("Button_Press");
 	}
 
 	public void Menu()
@@ -35,5 +40,6 @@ public class MenuController : MonoBehaviour
 		TitleScreen.enabled = true;
 		LevelSelect.enabled = false;
 		SettingsScreen.enabled = false;
+		Audio.PlayClip("Button_Press");
 	}
 }
