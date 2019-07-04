@@ -4,5 +4,8 @@ using UnityEngine;
 
 public class Camcol : MonoBehaviour
 {
-
+	private void OnCollisionEnter(Collision collision)
+	{
+		transform.localPosition = new Vector3(0, 2, -7);
+	}
 }
