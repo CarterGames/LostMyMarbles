@@ -6,13 +6,14 @@ using System.IO;
 
 /*
  * 
- *			Audio Manager Editor Script
+ *							Audio Manager Editor Script
  *			
- *			Created by Jonathan Carter
- *				  Carter Games
+ *			Script written by: Jonathan Carter (https://jonathan.carter.games)
+ *									Version: 1
+ *							  Last Updated: 22/06/19						
  * 
  * 
-*/ 
+*/
 
 [CustomEditor(typeof(AudioManager))]
 public class AudioManagerEditor : Editor
@@ -21,6 +22,7 @@ public class AudioManagerEditor : Editor
 	private Color32 ScanCol = new Color32(41, 176, 97, 255);
 	private Color32 ScannedCol = new Color32(189, 191, 60, 255);
 	private Color32 RedCol = new Color32(190, 42, 42, 255);
+	private Color32 CyanCol = new Color32(100, 215, 175, 255);
 
 	private bool SortedAudio;			// Bool for if the audio has been sorted
 	private bool HasScannedOnce;		// Bool for if the scan button has been pressed before
@@ -29,8 +31,12 @@ public class AudioManagerEditor : Editor
 	private List<AudioClip> AudioList;	// List of Audioclips used to add the audio to the library in the Audio Manager Script
 	private List<string> AudioStrings;	// List of Strings used to add the names of the audio clips to the library in the Audio Manager Script
 
-	private AudioManager Script;		// Reference to the Audio Manager Script that this script overrides the inspector for
+	private AudioManager Script;        // Reference to the Audio Manager Script that this script overrides the inspector for
 
+
+	private GameObject InputtedPrefab;
+	private bool ChangePrefab;
+	private string ChangePrefabString;
 
 	// When the script first enables - do this stuff!
 	private void OnEnable()
@@ -57,8 +63,6 @@ public class AudioManagerEditor : Editor
 	// Overrides the Inspector of the Audio Manager Script with this stuff...
 	public override void OnInspectorGUI()
 	{
-		Script.GetComponent<AudioSource>().playOnAwake = false;
-
 		// The Path to the audio folder in your project
 		string Dir = Application.dataPath + "/audio";
 
@@ -115,8 +119,37 @@ public class AudioManagerEditor : Editor
 			HasScannedOnce = false;
 		}
 
+
+		if (InputtedPrefab == null) { ChangePrefabString = "Assign Prefab"; GUI.color = ScanCol; }
+		else if (InputtedPrefab) { ChangePrefabString = "Change Prefab"; GUI.color = CyanCol; }
+
+
+		if (GUILayout.Button(ChangePrefabString))
+		{
+			ChangePrefab = !ChangePrefab;
+		}
+
+		GUI.color = Color.white;
+
 		// Ends the grouping for the buttons
 		EditorGUILayout.EndHorizontal();
+
+
+		if (ChangePrefab)
+		{
+			if (InputtedPrefab == null)
+			{
+				EditorGUILayout.HelpBox("Please assign a prefab that will play the audio. The prefab needs to be an empty gameobject with only an audiosoruce component on it.", MessageType.Info);
+				InputtedPrefab = (GameObject)EditorGUILayout.ObjectField("Prefab: ", InputtedPrefab, typeof (GameObject), false);
+				Script.Sound_Prefab = InputtedPrefab;
+			}
+			else
+			{
+				EditorGUILayout.HelpBox("Prefab has been assigned, you may change it below if you need to.", MessageType.Info);
+				InputtedPrefab = (GameObject)EditorGUILayout.ObjectField("Prefab: ", InputtedPrefab, typeof(GameObject), false);
+				Script.Sound_Prefab = InputtedPrefab;
+			}
+		}
 
 
 		// *** Labels ***
@@ -127,11 +160,11 @@ public class AudioManagerEditor : Editor
 			DisplayNames();
 		}
 
-
 		Repaint();
+
 		// Shows anything that would normally be on the inspector - unless it has the Hide From Inspector
-		// * If uncommented this will only show the script reference as everytinh else from the script is either internal, private or hidden from inspector *
-		base.OnInspectorGUI();
+		// * If uncommented this will show the normal inspector for the script as the custom editor, not recommended and shouldn't be needed *
+		//base.OnInspectorGUI();
 	}
 
 
@@ -144,21 +177,25 @@ public class AudioManagerEditor : Editor
 		// Checks to see if there is anything in the path, if its empty it will not run the rest of the code and instead put a message in the console
 		if (AllFiles.Count > 0)
 		{
-			HasScannedOnce = true;	// Sets the has scanned once to true so the scan button turns into the re-scan button
+			HasScannedOnce = true;  // Sets the has scanned once to true so the scan button turns into the re-scan button
+
+			AudioClip Source = null;
 
 			foreach (string Thingy in AllFiles)
 			{
 				string Path = "Assets" + Thingy.Replace(Application.dataPath, "").Replace('\\', '/');
 
-				AudioClip Source = (AudioClip)AssetDatabase.LoadAssetAtPath(Path, typeof(AudioClip));
-
-				AudioList.Add(Source);
+				if (AssetDatabase.LoadAssetAtPath(Path, typeof(AudioClip)))
+				{
+					Source = (AudioClip)AssetDatabase.LoadAssetAtPath(Path, typeof(AudioClip));
+					AudioList.Add(Source);
+				}
 			}
 		}
 		else
 		{
 			// !Warning Message - shown in the console should there be no audio in the directory been scanned
-			Debug.LogWarning("Audio Manager: Please ensure there are Audio files in the directory: " + Application.dataPath + "/Audio");
+			Debug.LogWarning("(*Audio Manager*): Please ensure there are Audio files in the directory: " + Application.dataPath + "/Audio");
 		}
 	}
 
@@ -174,9 +211,26 @@ public class AudioManagerEditor : Editor
 			}
 		}
 
+		int Ignored = 0;
+
 		for (int i = 0; i < AudioList.Count; i++)
 		{
-			AudioStrings.Add(AudioList[i].ToString().Replace(" (UnityEngine.AudioClip)", ""));
+			Debug.Log(AudioList[i].ToString());
+
+			if (AudioList[i].ToString().Contains("(UnityEngine.AudioClip)"))
+			{
+				AudioStrings.Add(AudioList[i].ToString().Replace(" (UnityEngine.AudioClip)", ""));
+			}
+			else
+			{
+				Ignored++;
+			}
+		}
+
+		if (Ignored > 0)
+		{
+			// This message should never show up, but its here just incase
+			Debug.LogAssertion("(*Audio Manager*): " + Ignored + " entries ignored, this is due to the files either been in sub directories or other files that are not Unity AudioClips.");
 		}
 	}
 
@@ -204,21 +258,27 @@ public class AudioManagerEditor : Editor
 	}
 
 
+	// Displayes all the audio clips with the name and a button to preview said clips
 	private void DisplayNames()
 	{
+		// Used as a placeholder for the clip name each loop
 		string Elements = "";
-		bool IsPlaying = false;
 
+		// Going through all the audio clips and making an element in the Inspector for them
 		for (int i = 0; i < Script.Sound_Clips.Count; i++)
 		{
 			Elements = Script.Sound_Names[i];
 
-
+			// Starts the ordering
 			EditorGUILayout.BeginHorizontal();
+
+			// Adds the text for the clip 
 			EditorGUILayout.TextArea(Elements, GUILayout.MaxWidth(200));
 
+			// Changes the GUI colour to green for the buttons
 			GUI.color = ScanCol;
 
+			// If there are no clips playing it will show "preview clip" buttons for all elements
 			if (!Script.GetComponent<AudioSource>().isPlaying)
 			{
 				if (GUILayout.Button("Preview Clip"))
@@ -227,7 +287,8 @@ public class AudioManagerEditor : Editor
 					Script.GetComponent<AudioSource>().PlayOneShot(Script.GetComponent<AudioSource>().clip);
 				}
 			}
-			else
+			// if a clip is playing, the clip that is playing will have a "stop clip" button instead of "preview clip" 
+			else if (Script.GetComponent<AudioSource>().clip == Script.Sound_Clips[i])
 			{
 				GUI.color = RedCol;
 
@@ -236,10 +297,20 @@ public class AudioManagerEditor : Editor
 					Script.GetComponent<AudioSource>().Stop();
 				}
 			}
+			// This just ensures the rest of the elements keep a button next to them
+			else
+			{
+				if (GUILayout.Button("Preview Clip"))
+				{
+					Script.GetComponent<AudioSource>().clip = Script.Sound_Clips[i];
+					Script.GetComponent<AudioSource>().PlayOneShot(Script.GetComponent<AudioSource>().clip);
+				}
+			}
 
-
+			// Resets the GUI colour
 			GUI.color = Color.white;
 
+			// Ends the GUI ordering
 			EditorGUILayout.EndHorizontal();
 		}
 	}

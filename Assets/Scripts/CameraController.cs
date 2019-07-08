@@ -41,7 +41,7 @@ public class CameraController : MonoBehaviour
 		// Updates the forward position for the players movement
 		MarbleForward.transform.eulerAngles += new Vector3(0, Input.GetAxis("Mouse X") * RotSpdLeftRight, 0);
 
-		Camera.main.transform.localPosition = new Vector3(/*Camera.main.transform.localPosition.x*/ 0, 2, -7);
+		//Camera.main.transform.localPosition = new Vector3(/*Camera.main.transform.localPosition.x*/ 0, 2, -7);
 		Camera.main.transform.localRotation = Quaternion.Euler(15, 0, 0);
 	}
 }

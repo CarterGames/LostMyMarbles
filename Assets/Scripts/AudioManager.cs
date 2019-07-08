@@ -3,22 +3,21 @@ using UnityEngine;
 
 
 /*
-
-
-		Universal Audio Managment Script
-
-		Scripts written by: Jonathan Carter (https://jonathan.carter.games)
- 
-		- Useful for Selcting and playing SFX and pretty much works for any game.
-
-
+ * 
+ *								Audio Manager Script
+ *			
+ *			Script written by: Jonathan Carter (https://jonathan.carter.games)
+ *									Version: 1
+ *							  Last Updated: 22/06/19
+ * 
+ * 
 */
 
 
 public class AudioManager : MonoBehaviour
 {
 
-   public GameObject Sound_Prefab = null;       // Holds the prefab that plays the sound requested
+    public GameObject Sound_Prefab = null;       // Holds the prefab that plays the sound requested
 	[HideInInspector]
 	public List<string> Sound_Names = new List<string>();       // A list to hold the audioclip names
 	[HideInInspector]
@@ -27,7 +26,12 @@ public class AudioManager : MonoBehaviour
 
 	
     private void Start()
-	{ 
+    {
+		if (Sound_Prefab == null)
+		{
+			Debug.LogWarning("(*Audio Manager*): Prefab has not been assigned! Please assign a prefab in the inspector before using the manager.");
+		}
+
 		GetComponent<AudioSource>().hideFlags = HideFlags.HideInInspector;
 
 		for (int i = 0; i < Sound_Names.Count; i++)         // For loop that populates the dictionary with all the sound assets in the lists
@@ -38,30 +42,34 @@ public class AudioManager : MonoBehaviour
 
 	
 	// Fuction to select and play a sound asset from the start with options
-    public void PlayClip(string request, float Volume = 1, float Pitch = 1)                   
+    public void PlayClip(string Request, float Volume = 1, float Pitch = 1)                   
     {
-        if (Sound_Lib.ContainsKey(request))												// If the sound is in the library
+        if (Sound_Lib.ContainsKey(Request))												// If the sound is in the library
         {
             GameObject clip = Instantiate(Sound_Prefab);									// Instantiate a Sound prefab
-            clip.GetComponent<AudioSource>().clip = Sound_Lib[request];                     // Get the prefab and add the requested clip to it
+            clip.GetComponent<AudioSource>().clip = Sound_Lib[Request];						// Get the prefab and add the requested clip to it
 
-			clip.GetComponent<AudioSource>().volume = Volume;
-			clip.GetComponent<AudioSource>().pitch = Pitch;
+			clip.GetComponent<AudioSource>().volume = Volume;	// changes the volume if a it is inputted
+			clip.GetComponent<AudioSource>().pitch = Pitch;      // changes the pitch if a change is inputted
 
 			clip.GetComponent<AudioSource>().Play();										// play the audio from the prefab
 			Destroy(clip, clip.GetComponent<AudioSource>().clip.length);					// Destroy the prefab once the clip has finished playing
         }
+		else
+		{
+			Debug.LogWarning("(*Audio Manager*): Could not find clip. Please ensure the clip is scanned and the string you entered is correct (Note the input is CaSe SeNsItIvE).");
+		}
     }
 
 
 	// Function to select and play a sound asset from a selected time with options
-	public void PlayClipFromTime(string request, float time, float Volume = 1, float Pitch = 1)
+	public void PlayClipFromTime(string Request, float Time, float Volume = 1, float Pitch = 1)
 	{
-		if (Sound_Lib.ContainsKey(request))
+		if (Sound_Lib.ContainsKey(Request))
 		{
 			GameObject clip = Instantiate(Sound_Prefab);
-			clip.GetComponent<AudioSource>().clip = Sound_Lib[request];
-			clip.GetComponent<AudioSource>().time = time;
+			clip.GetComponent<AudioSource>().clip = Sound_Lib[Request];
+			clip.GetComponent<AudioSource>().time = Time;
 
 			clip.GetComponent<AudioSource>().volume = Volume;
 			clip.GetComponent<AudioSource>().pitch = Pitch;
@@ -69,26 +77,34 @@ public class AudioManager : MonoBehaviour
 			clip.GetComponent<AudioSource>().Play();
 			Destroy(clip, clip.GetComponent<AudioSource>().clip.length);
 		}
+		else
+		{
+			Debug.LogWarning("(*Audio Manager*): Could not find clip. Please ensure the clip is scanned and the string you entered is correct (Note the input is CaSe SeNsItIvE).");
+		}
 	}
 
 
 	// Function to select and play a sound asset with a delay and options
-	public void PlayClipWithDelay(string request, float delay, float Volume = 1, float Pitch = 1)
+	public void PlayClipWithDelay(string Request, float Delay, float Volume = 1, float Pitch = 1)
     {
-        if (Sound_Lib.ContainsKey(request))
+        if (Sound_Lib.ContainsKey(Request))
         {
             GameObject clip = Instantiate(Sound_Prefab);
-            clip.GetComponent<AudioSource>().clip = Sound_Lib[request];
+            clip.GetComponent<AudioSource>().clip = Sound_Lib[Request];
 
 			clip.GetComponent<AudioSource>().volume = Volume;
 			clip.GetComponent<AudioSource>().pitch = Pitch;
 
-			clip.GetComponent<AudioSource>().PlayDelayed(delay);							// Only difference, played with a delay rather that right away
+			clip.GetComponent<AudioSource>().PlayDelayed(Delay);							// Only difference, played with a delay rather that right away
             Destroy(clip, clip.GetComponent<AudioSource>().clip.length);
         }
+		else
+		{
+			Debug.LogWarning("(*Audio Manager*): Could not find clip. Please ensure the clip is scanned and the string you entered is correct (Note the input is CaSe SeNsItIvE).");
+		}
     }
 
-
+	// Used in the editor script, to update the library with a fresh input, don't call this, it doesn't play audio
 	public void UpdateLibrary()
 	{
 		for (int i = 0; i < Sound_Names.Count; i++)         // For loop that populates the dictionary with all the sound assets in the lists
