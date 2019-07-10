@@ -15,13 +15,11 @@ public class RotateScript : MonoBehaviour
 	public bool ZAxis;		// Bool for the ZAxis
 
 	[Header("Speed of the rotation")]
-	public float Speed;		// Float for the speed of the rotation
-	
+	public float Speed;     // Float for the speed of the rotation
 
 	// Update is called once per display frame
 	void FixedUpdate ()
 	{
-
 		// Roates the object with whatever rotation selected at the desired speed (note there is not time.deltatime here so its small changes
 		transform.Rotate(ConvertBool(XAxis) * Speed, ConvertBool(YAxis) * Speed, ConvertBool(ZAxis) * Speed);
 	}

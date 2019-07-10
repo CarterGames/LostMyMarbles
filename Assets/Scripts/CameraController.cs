@@ -32,7 +32,8 @@ public class CameraController : MonoBehaviour
 		// Allows the player to rotate the camera via mouse input
 		if (CamEnabled)
 		{
-			transform.eulerAngles += new Vector3(Input.GetAxis("Mouse Y") * RotSpdUpDown, Input.GetAxis("Mouse X") * RotSpdLeftRight, 0);
+			//transform.eulerAngles += new Vector3(Input.GetAxis("Mouse Y") * RotSpdUpDown, Input.GetAxis("Mouse X") * RotSpdLeftRight, 0);
+			transform.Rotate(new Vector3(0, Input.GetAxis("Mouse X") * RotSpdLeftRight, 0));
 		}
 
 		transform.position = new Vector3(transform.position.x, 5.5f, transform.position.z);
@@ -42,6 +43,6 @@ public class CameraController : MonoBehaviour
 		MarbleForward.transform.eulerAngles += new Vector3(0, Input.GetAxis("Mouse X") * RotSpdLeftRight, 0);
 
 		//Camera.main.transform.localPosition = new Vector3(/*Camera.main.transform.localPosition.x*/ 0, 2, -7);
-		Camera.main.transform.localRotation = Quaternion.Euler(15, 0, 0);
+		Camera.main.transform.localRotation = Quaternion.Euler(20, 0, 0);
 	}
 }

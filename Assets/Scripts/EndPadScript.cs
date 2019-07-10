@@ -44,7 +44,7 @@ public class EndPadScript : MonoBehaviour
         if (IsRot)
 		{
 			// Rotates the camera around the Marble
-			Camera.main.transform.parent.eulerAngles += new Vector3(0, RotSpd, 0);
+			Camera.main.transform.parent.transform.parent.eulerAngles += new Vector3(0, RotSpd, 0);
 		}
     }
 
