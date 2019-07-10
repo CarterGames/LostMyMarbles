@@ -81,6 +81,12 @@ public class ReadySetGo : MonoBehaviour
 				// Case 6 - No Text
 				case (6):
 					DisplayText.text = " ";
+
+					foreach (ZomballScript i in FindObjectsOfType<ZomballScript>())
+					{
+						i.Enabled = true;
+					}
+
 					break;
 			}
 		}
