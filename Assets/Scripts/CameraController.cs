@@ -37,7 +37,6 @@ public class CameraController : MonoBehaviour
 		}
 
 		transform.position = new Vector3(transform.position.x, 5.5f, transform.position.z);
-	
 
 		// Updates the forward position for the players movement
 		MarbleForward.transform.eulerAngles += new Vector3(0, Input.GetAxis("Mouse X") * RotSpdLeftRight, 0);

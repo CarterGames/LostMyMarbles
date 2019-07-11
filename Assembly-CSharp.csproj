@@ -71,6 +71,7 @@
     <Compile Include="Assets\Scripts\LevelSelectScript.cs" />
     <Compile Include="Assets\Scripts\MenuController.cs" />
     <Compile Include="Assets\Scripts\MenuRotate.cs" />
+    <Compile Include="Assets\Scripts\MineScript.cs" />
     <Compile Include="Assets\Scripts\PlayerController.cs" />
     <Compile Include="Assets\Scripts\ReadySetGo.cs" />
     <Compile Include="Assets\Scripts\ResetLevelScript.cs" />

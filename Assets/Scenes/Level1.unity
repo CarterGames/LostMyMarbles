@@ -5440,6 +5440,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: CameraPoint
       objectReference: {fileID: 0}
+    - target: {fileID: 2225421672171365480, guid: f44598389ba21b243aac50d100c28571,
+        type: 3}
+      propertyPath: m_Icon
+      value: 
+      objectReference: {fileID: 419385456094870383, guid: 0000000000000000d000000000000000,
+        type: 0}
+    - target: {fileID: 5118743675957170881, guid: f44598389ba21b243aac50d100c28571,
+        type: 3}
+      propertyPath: m_Icon
+      value: 
+      objectReference: {fileID: 7250588514170254948, guid: 0000000000000000d000000000000000,
+        type: 0}
     - target: {fileID: 3229926689448876264, guid: f44598389ba21b243aac50d100c28571,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -5505,6 +5517,12 @@ PrefabInstance:
       propertyPath: MarbleForward
       value: 
       objectReference: {fileID: 6330831665648587828}
+    - target: {fileID: 3706001091702649182, guid: f44598389ba21b243aac50d100c28571,
+        type: 3}
+      propertyPath: m_Icon
+      value: 
+      objectReference: {fileID: 3936346786652291628, guid: 0000000000000000d000000000000000,
+        type: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f44598389ba21b243aac50d100c28571, type: 3}
 --- !u!1001 &5847280070932699010

@@ -11,8 +11,13 @@ public class Camcol : MonoBehaviour
 		Marble = GameObject.FindGameObjectWithTag("Player");
 	}
 
+	private void Update()
+	{
+		transform.localPosition = new Vector3(0, Marble.transform.position.y - 2, -7);
+	}
+
 	private void OnCollisionEnter(Collision collision)
 	{
-		transform.localPosition = new Vector3(0, Marble.transform.position.y + 4, -7);
+		//transform.localPosition = new Vector3(0, Marble.transform.position.y + 4, -7);
 	}
 }
