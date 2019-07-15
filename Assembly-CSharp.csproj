@@ -80,6 +80,7 @@
     <Compile Include="Assets\Scripts\SettingsScript.cs" />
     <Compile Include="Assets\Scripts\StartPadScript.cs" />
     <Compile Include="Assets\Scripts\TimerUIScript.cs" />
+    <Compile Include="Assets\Scripts\WindScript.cs" />
     <Compile Include="Assets\Scripts\ZomballScript.cs" />
     <None Include="Assets\(CG) AudioManager\ReadMe\AudioManagerReadMe.txt" />
     <Reference Include="Unity.Timeline.Editor">

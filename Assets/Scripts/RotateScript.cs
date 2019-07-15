@@ -17,11 +17,22 @@ public class RotateScript : MonoBehaviour
 	[Header("Speed of the rotation")]
 	public float Speed;     // Float for the speed of the rotation
 
+	[Header("Local Rotation?")]
+	public bool LocalRot = false;
+
+
 	// Update is called once per display frame
 	void FixedUpdate ()
 	{
-		// Roates the object with whatever rotation selected at the desired speed (note there is not time.deltatime here so its small changes
-		transform.Rotate(ConvertBool(XAxis) * Speed, ConvertBool(YAxis) * Speed, ConvertBool(ZAxis) * Speed);
+		if (!LocalRot)
+		{
+			// Roates the object with whatever rotation selected at the desired speed (note there is not time.deltatime here so its small changes
+			transform.Rotate(ConvertBool(XAxis) * Speed, ConvertBool(YAxis) * Speed, ConvertBool(ZAxis) * Speed);
+		}
+		else
+		{
+			transform.Rotate(ConvertBool(XAxis) * Speed, ConvertBool(YAxis) * Speed, ConvertBool(ZAxis) * Speed, Space.Self);
+		}
 	}
 
 
