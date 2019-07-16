@@ -11,14 +11,8 @@ public class CameraController : MonoBehaviour
 	public float RotSpdLeftRight;
 
 	// Bool used to disable this script partially when the player hits the end pad
-	internal bool CamEnabled;
+	public bool CamEnabled = true;
 
-
-	private void Start()
-	{
-		// Sets the camera to be enabled by default
-		CamEnabled = true;
-	}
 
 	private void Update()
 	{
@@ -41,7 +35,10 @@ public class CameraController : MonoBehaviour
 		// Updates the forward position for the players movement
 		MarbleForward.transform.eulerAngles += new Vector3(0, Input.GetAxis("Mouse X") * RotSpdLeftRight, 0);
 
-		//Camera.main.transform.localPosition = new Vector3(/*Camera.main.transform.localPosition.x*/ 0, 2, -7);
-		Camera.main.transform.localRotation = Quaternion.Euler(20, 0, 0);
+		if (CamEnabled)
+		{
+			//Camera.main.transform.localPosition = new Vector3(/*Camera.main.transform.localPosition.x*/ 0, 2, -7);
+			Camera.main.transform.localRotation = Quaternion.Euler(20, 0, 0);
+		}
 	}
 }

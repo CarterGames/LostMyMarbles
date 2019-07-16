@@ -70,6 +70,7 @@
     <Compile Include="Assets\Scripts\EndUIScript.cs" />
     <Compile Include="Assets\Scripts\LevelSelectScript.cs" />
     <Compile Include="Assets\Scripts\MenuController.cs" />
+    <Compile Include="Assets\Scripts\MenuPadScript.cs" />
     <Compile Include="Assets\Scripts\MenuRotate.cs" />
     <Compile Include="Assets\Scripts\MineScript.cs" />
     <Compile Include="Assets\Scripts\PlayerController.cs" />

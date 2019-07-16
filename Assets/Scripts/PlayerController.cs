@@ -17,6 +17,9 @@ public class PlayerController : MonoBehaviour
 	public float SpeedReductionRate;
 	public float FallOffDelay;
 
+	public bool UseCameraPoint = true;
+	public bool CanJump = true;
+
 	private GameObject MoveDirGO;
 
 	private Vector3 StartPos;
@@ -29,7 +32,10 @@ public class PlayerController : MonoBehaviour
 
 	private void Start()
 	{
-		MoveDirGO = GameObject.FindGameObjectWithTag("CameraPoint");
+		if (UseCameraPoint)
+		{
+			MoveDirGO = GameObject.FindGameObjectWithTag("CameraPoint");
+		}
 		HideMouse();
 		EPScript = FindObjectOfType<EndPadScript>();
 	}
@@ -37,7 +43,7 @@ public class PlayerController : MonoBehaviour
 
 	private void Update()
 	{
-		if (Input.GetButtonDown("Jump"))
+		if ((Input.GetButtonDown("Jump") && (CanJump)))
 		{
 			Debug.Log("Jump Pressed");
 			GetComponent<Rigidbody>().velocity += Vector3.up * JumpHeight;
@@ -45,9 +51,13 @@ public class PlayerController : MonoBehaviour
 
 		Vector3 Movement = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
 
-		Movement = MoveDirGO.transform.TransformDirection(Movement);
+		if (UseCameraPoint)
+		{
+			Movement = MoveDirGO.transform.TransformDirection(Movement);
+		}
 
 		GetComponent<Rigidbody>().AddForce(Movement * MoveSpeed);
+
 
 		JumpSmoothing();
 
