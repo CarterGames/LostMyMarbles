@@ -26,10 +26,33 @@ public class MineScript : MonoBehaviour
 	[Tooltip("Mine Smoke Particles")]
 	public ParticleSystem SmokeParticles;
 
+	[Header("Mine Debug")]
+	[Tooltip("Enable if you want to detonate the mines with mouse 0")]
+	public bool DebugMine = false;
+
 	// Check for Co running
 	private bool IsCoRunning;
 
-
+	// Allows the mines to be actived by mouse 0 for showcasing and testing.
+	private void Update()
+	{
+		if ((Input.GetMouseButtonDown(0)) && DebugMine)
+		{
+			if ((RespawnMine) && (!IsCoRunning))
+			{
+				StartCoroutine(MineRespawnDelay());
+			}
+			else
+			{
+				// Disables Mines Collision and mesh 
+				GetComponent<MeshRenderer>().enabled = false;
+				GetComponent<SphereCollider>().enabled = false;
+				// Particles Play
+				ExplosionParticles.Play();
+				SmokeParticles.Play();
+			}
+		}
+	}
 
 	private void OnTriggerEnter(Collider other)
 	{

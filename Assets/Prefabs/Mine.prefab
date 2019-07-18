@@ -4011,32 +4011,32 @@ ParticleSystem:
       maxGradient:
         serializedVersion: 2
         key0: {r: 0.5471698, g: 0, b: 0, a: 1}
-        key1: {r: 0.73333335, g: 0.58162314, b: 0.40784314, a: 0}
-        key2: {r: 0.754717, g: 0.754717, b: 0.36667857, a: 0}
-        key3: {r: 1, g: 1, b: 1, a: 0}
-        key4: {r: 0, g: 0, b: 0, a: 0}
+        key1: {r: 0.8584906, g: 0.5711724, b: 0.24701849, a: 0.77254903}
+        key2: {r: 0.9433962, g: 0.9433962, b: 0.14684942, a: 0}
+        key3: {r: 0.79558486, g: 0.79558486, b: 0.47219953, a: 0}
+        key4: {r: 1, g: 1, b: 1, a: 0}
         key5: {r: 0, g: 0, b: 0, a: 0}
         key6: {r: 0, g: 0, b: 0, a: 0}
         key7: {r: 0, g: 0, b: 0, a: 0}
         ctime0: 0
-        ctime1: 20432
-        ctime2: 41249
-        ctime3: 65535
-        ctime4: 0
+        ctime1: 8288
+        ctime2: 18890
+        ctime3: 59174
+        ctime4: 65535
         ctime5: 0
         ctime6: 0
         ctime7: 0
         atime0: 0
-        atime1: 65342
-        atime2: 0
+        atime1: 63993
+        atime2: 65342
         atime3: 0
         atime4: 0
         atime5: 0
         atime6: 0
         atime7: 0
         m_Mode: 0
-        m_NumColorKeys: 4
-        m_NumAlphaKeys: 2
+        m_NumColorKeys: 5
+        m_NumAlphaKeys: 3
       minGradient:
         serializedVersion: 2
         key0: {r: 1, g: 1, b: 1, a: 1}
@@ -9729,7 +9729,8 @@ MonoBehaviour:
   ExplosionPower: 50
   ExplosionRadius: 50
   ExplosionUpwardPower: 35
-  RespawnMine: 0
+  RespawnMine: 1
   RespawnTime: 3
   ExplosionParticles: {fileID: 71036519395014878}
   SmokeParticles: {fileID: 71036519640226278}
+  DebugMine: 0

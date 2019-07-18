@@ -207,6 +207,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 71036520596922755, guid: 625361b8718614e4cbe7e77a48a4191c,
+        type: 3}
+      propertyPath: RespawnMine
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 625361b8718614e4cbe7e77a48a4191c, type: 3}
 --- !u!1001 &28091905
@@ -661,6 +666,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 71036520596922755, guid: 625361b8718614e4cbe7e77a48a4191c,
+        type: 3}
+      propertyPath: RespawnMine
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 625361b8718614e4cbe7e77a48a4191c, type: 3}
@@ -3458,6 +3468,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 71036520596922755, guid: 625361b8718614e4cbe7e77a48a4191c,
+        type: 3}
+      propertyPath: RespawnMine
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 625361b8718614e4cbe7e77a48a4191c, type: 3}
 --- !u!1 &894025912 stripped
@@ -5051,6 +5066,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 71036520596922755, guid: 625361b8718614e4cbe7e77a48a4191c,
+        type: 3}
+      propertyPath: RespawnMine
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 625361b8718614e4cbe7e77a48a4191c, type: 3}
 --- !u!1001 &1259679987
@@ -5219,6 +5239,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 71036520596922755, guid: 625361b8718614e4cbe7e77a48a4191c,
+        type: 3}
+      propertyPath: RespawnMine
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 625361b8718614e4cbe7e77a48a4191c, type: 3}
@@ -5844,6 +5869,7 @@ MonoBehaviour:
   YAxis: 0
   ZAxis: 1
   Speed: 3
+  LocalRot: 0
 --- !u!1001 &1458841980
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6153,6 +6179,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 71036520596922755, guid: 625361b8718614e4cbe7e77a48a4191c,
+        type: 3}
+      propertyPath: RespawnMine
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 625361b8718614e4cbe7e77a48a4191c, type: 3}
@@ -7580,6 +7611,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 71036520596922755, guid: 625361b8718614e4cbe7e77a48a4191c,
+        type: 3}
+      propertyPath: RespawnMine
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 625361b8718614e4cbe7e77a48a4191c, type: 3}
 --- !u!1001 &1923459464
@@ -7648,6 +7684,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 71036520596922755, guid: 625361b8718614e4cbe7e77a48a4191c,
+        type: 3}
+      propertyPath: RespawnMine
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 625361b8718614e4cbe7e77a48a4191c, type: 3}
@@ -7791,6 +7832,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 71036520596922755, guid: 625361b8718614e4cbe7e77a48a4191c,
+        type: 3}
+      propertyPath: RespawnMine
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 625361b8718614e4cbe7e77a48a4191c, type: 3}
@@ -8158,6 +8204,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 71036520596922755, guid: 625361b8718614e4cbe7e77a48a4191c,
+        type: 3}
+      propertyPath: RespawnMine
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 625361b8718614e4cbe7e77a48a4191c, type: 3}
 --- !u!1001 &2013347649
@@ -8445,6 +8496,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 71036520596922755, guid: 625361b8718614e4cbe7e77a48a4191c,
+        type: 3}
+      propertyPath: RespawnMine
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 625361b8718614e4cbe7e77a48a4191c, type: 3}
 --- !u!1001 &2082613133
@@ -8719,6 +8775,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 71036520596922755, guid: 625361b8718614e4cbe7e77a48a4191c,
+        type: 3}
+      propertyPath: RespawnMine
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 625361b8718614e4cbe7e77a48a4191c, type: 3}
 --- !u!1001 &2131407416
@@ -8861,6 +8922,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 71036520596922755, guid: 625361b8718614e4cbe7e77a48a4191c,
+        type: 3}
+      propertyPath: RespawnMine
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 625361b8718614e4cbe7e77a48a4191c, type: 3}

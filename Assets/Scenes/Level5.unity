@@ -4066,11 +4066,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 71036520596922755, guid: 625361b8718614e4cbe7e77a48a4191c,
-        type: 3}
-      propertyPath: RespawnMine
-      value: 1
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 625361b8718614e4cbe7e77a48a4191c, type: 3}
 --- !u!1 &745294940 stripped
@@ -10114,6 +10109,7 @@ MonoBehaviour:
   YAxis: 0
   ZAxis: 1
   Speed: 3
+  LocalRot: 0
 --- !u!1 &1794870901 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: -927199367670048503, guid: 4bb7840bb999c664db6960d65c940aeb,
