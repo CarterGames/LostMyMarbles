@@ -16,22 +16,38 @@ public class WindScript : MonoBehaviour
 	[Tooltip("Should the fan top rotate?")]
 	public bool RotateFanTop;
 
-	[Tooltip("Amount the rotationg happens")]
-	public float RotationAmount;
+	[Tooltip("Speed of Fan Rotation")]
+	public float RotationSpeed;
 
-	private Vector3 StartRot;
+	private bool Dir;
 
 
-	private void Start()
-	{
-		StartRot = new Vector3(FanTop.transform.rotation.x, FanTop.transform.rotation.y, FanTop.transform.rotation.z);
-	}
 
 	private void Update()
 	{
-		if (RotateFanTop && (StartRot.y > RotationAmount))
+		if (RotateFanTop)
 		{
-			FanTop.transform.Rotate(-RotationAmount, 0, 0);
+			switch (Mathf.FloorToInt(FanTop.transform.localRotation.eulerAngles.y))
+			{
+				case 20:
+					Dir = false;
+					break;
+				case 340:
+					Dir = true;
+					break;
+				default:
+					break;
+			}
+
+
+			if (Dir)
+			{
+				FanTop.transform.Rotate(0, 0, RotationSpeed * Time.deltaTime);
+			}
+			else if (!Dir)
+			{
+				FanTop.transform.Rotate(0, 0, -RotationSpeed * Time.deltaTime);
+			}
 		}
 	}
 
