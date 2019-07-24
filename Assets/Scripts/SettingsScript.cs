@@ -62,7 +62,7 @@ public class SettingsScript : MonoBehaviour
 	public void SetRes(int ResIndex)
 	{
 		Screen.SetResolution(AllResOptions[ResIndex].width, AllResOptions[ResIndex].height, IsFullScreen);
-		Audio.PlayClip("Button_Press", Pitch: .5f);
+		//Audio.PlayClip("Button_Press", Pitch: .5f);
 	}
 
 
