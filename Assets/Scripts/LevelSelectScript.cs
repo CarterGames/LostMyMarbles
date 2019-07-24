@@ -54,8 +54,8 @@ public class LevelSelectScript : MonoBehaviour
 	// Updates the UI elements on th elevel select
 	private void UpdateUI()
 	{
+		Audio.PlayClip("Button_Pressed", Pitch: .75f);
 		LevelNameText.text = "Level: " + GetLevelNumber(CurrentLevelSelected.LevelName);
-		CrystalTimeText.text = "Crystal Time" + "\n" + ConvertTime(CurrentLevelSelected.CrystalTime);
 		GoldTimeText.text = "1st: " + CurrentLevelSelected.BestTimeName + "\n" + ConvertTime(CurrentLevelSelected.BestTime);
 		SilverTimeText.text = "2nd: " + CurrentLevelSelected.SecondBestName + "\n" + ConvertTime(CurrentLevelSelected.SecondBestTime);
 		BronzeTimeText.text = "3rd: " + CurrentLevelSelected.ThirdBestName + "\n" + ConvertTime(CurrentLevelSelected.ThirdBestTime);
@@ -95,7 +95,6 @@ public class LevelSelectScript : MonoBehaviour
 
 	public void LeftPressed()
 	{
-		Audio.PlayClip("Button_Pressed", Pitch: .75f);
 		if (LastPos - 1 >= 0) { LastPos--; CurrentLevelSelected = AllLevels[LastPos]; }
 		else { LastPos = AllLevels.Count - 1; CurrentLevelSelected = AllLevels[LastPos]; }
 		UpdateUI();
@@ -104,11 +103,11 @@ public class LevelSelectScript : MonoBehaviour
 
 	public void RightPressed()
 	{
-		Audio.PlayClip("Button_Pressed", Pitch: .85f);
 		if (LastPos + 1 != AllLevels.Count) { LastPos++; CurrentLevelSelected = AllLevels[LastPos]; }
 		else { LastPos = 0; CurrentLevelSelected = AllLevels[LastPos]; }
 		UpdateUI();
 	}
+
 
 
 	public void PlayLevel()
