@@ -19,11 +19,15 @@ public class SettingsScript : MonoBehaviour
 	public List<string> Options;
 
 
-	private AudioManager Audio;
+	public GameObject Video;
+	public GameObject Audio;
+	public GameObject Marbles;
+
+	private AudioManager AudioManager;
 
 	private void Start()
 	{
-		Audio = FindObjectOfType<AudioManager>();
+		AudioManager = FindObjectOfType<AudioManager>();
 
 		AllResOptions = Screen.resolutions.Distinct().ToArray();
 
@@ -62,21 +66,21 @@ public class SettingsScript : MonoBehaviour
 	public void SetRes(int ResIndex)
 	{
 		Screen.SetResolution(AllResOptions[ResIndex].width, AllResOptions[ResIndex].height, IsFullScreen);
-		//Audio.PlayClip("Button_Press", Pitch: .5f);
+		//AudioManager.PlayClip("Button_Press", Pitch: .5f);
 	}
 
 
 	public void SetFullScreen(bool Input)
 	{
 		Screen.fullScreen = Input;
-		Audio.PlayClip("Button_Press", Pitch: .5f);
+		AudioManager.PlayClip("Button_Press", Pitch: .5f);
 	}
 
 
 	public void SetQuailty(int Input)
 	{
 		QualitySettings.SetQualityLevel(Input);
-		Audio.PlayClip("Button_Press", Pitch: .5f);
+		AudioManager.PlayClip("Button_Press", Pitch: .5f);
 	}
 
 

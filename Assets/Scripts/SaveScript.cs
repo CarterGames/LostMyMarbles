@@ -32,8 +32,11 @@ public class SaveScript : MonoBehaviour
 	public List<LevelScores> LevelData;
 	public List<float> CrystalTimes;
 
+	public CustomMarbleScript MarbleScript;
+
 	private void Awake()
 	{
+		MarbleScript = FindObjectOfType<CustomMarbleScript>();
 		LevelData = new List<LevelScores>();
 		CrystalTimes = new List<float>(20);
 
@@ -42,7 +45,6 @@ public class SaveScript : MonoBehaviour
 			LevelData.Add(new LevelScores());
 		}
 
-		SetupCrystalTimes();
 		Setup();
 	}
 
@@ -93,30 +95,6 @@ public class SaveScript : MonoBehaviour
 	}
 
 
-	private void SetupCrystalTimes()
-	{
-		CrystalTimes.Add(3f);
-		CrystalTimes.Add(10f);
-		CrystalTimes.Add(10f);
-		CrystalTimes.Add(10f);
-		CrystalTimes.Add(10f);
-		CrystalTimes.Add(10f);
-		CrystalTimes.Add(10f);
-		CrystalTimes.Add(10f);
-		CrystalTimes.Add(10f);
-		CrystalTimes.Add(10f);
-		CrystalTimes.Add(10f);
-		CrystalTimes.Add(10f);
-		CrystalTimes.Add(10f);
-		CrystalTimes.Add(10f);
-		CrystalTimes.Add(10f);
-		CrystalTimes.Add(10f);
-		CrystalTimes.Add(10f);
-		CrystalTimes.Add(10f);
-		CrystalTimes.Add(10f);
-		CrystalTimes.Add(10f);
-	}
-
 	// Saves the Level Scores to the file
 	public void SaveData()
 	{
@@ -159,6 +137,8 @@ public class SaveScript : MonoBehaviour
 		Data.Level18 = LevelData[17];
 		Data.Level19 = LevelData[18];
 		Data.Level20 = LevelData[19];
+
+		Data.Marble = MarbleScript.Data;
 
 		// Converts to binrary, using the data from the data thingy in a data file
 		BinFormat.Serialize(DataFile, Data);
@@ -205,6 +185,8 @@ public class SaveScript : MonoBehaviour
 			LevelData[17] = Data.Level18;
 			LevelData[18] = Data.Level19;
 			LevelData[19] = Data.Level20;
+
+			MarbleScript.Data = Data.Marble;
 		}
 	}
 }
@@ -233,4 +215,6 @@ class GameData
 	public LevelScores Level18;
 	public LevelScores Level19;
 	public LevelScores Level20;
+
+	public MarbleData Marble;
 }
