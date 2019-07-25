@@ -6,10 +6,13 @@ using System;
 using UnityEngine.EventSystems;
 
 
+// What holds the data about the marble so it can be saved.
 [Serializable]
 public struct MarbleData
 {
-	public Color32 MarbleColour;
+	public float ColorR;
+	public float ColorG;
+	public float ColorB;
 	public Sprite MarbleTexture;
 }
 
@@ -25,10 +28,13 @@ public class CustomMarbleScript : MonoBehaviour
 	public PointerEventData PointerEventData;
 	public EventSystem EventSystem;
 
+	private SaveScript Save;
+
 	void Start()
     {
 		Raycaster = GetComponent<GraphicRaycaster>();
 		EventSystem = GetComponent<EventSystem>();
+		Save = FindObjectOfType<SaveScript>();
 	}
 
 
@@ -66,10 +72,14 @@ public class CustomMarbleScript : MonoBehaviour
 
 	public void ChangeColour(Image InputColour)
 	{
-		DataOld.MarbleColour = Data.MarbleColour;
+		DataOld.ColorR = Data.ColorR;
+		DataOld.ColorG = Data.ColorG;
+		DataOld.ColorB = Data.ColorB;
 		DataOld.MarbleTexture = Data.MarbleTexture;
 		Data = new MarbleData();
-		Data.MarbleColour = InputColour.color;
+		Data.ColorR = InputColour.color.r;
+		Data.ColorG = InputColour.color.g;
+		Data.ColorB = InputColour.color.b;
 		Data.MarbleTexture = DataOld.MarbleTexture;
 		UpdateMarble();
 	}
@@ -77,10 +87,14 @@ public class CustomMarbleScript : MonoBehaviour
 
 	public void ChangeTexture(Image InputMat)
 	{
-		DataOld.MarbleColour = Data.MarbleColour;
+		DataOld.ColorR = Data.ColorR;
+		DataOld.ColorG = Data.ColorG;
+		DataOld.ColorB = Data.ColorB;
 		DataOld.MarbleTexture = Data.MarbleTexture;
 		Data = new MarbleData();
-		Data.MarbleColour = DataOld.MarbleColour;
+		Data.ColorR = DataOld.ColorR;
+		Data.ColorG = DataOld.ColorG;
+		Data.ColorB = DataOld.ColorB;
 		Data.MarbleTexture = InputMat.sprite;
 		UpdateMarble();
 	}
@@ -88,7 +102,11 @@ public class CustomMarbleScript : MonoBehaviour
 
 	private void UpdateMarble()
 	{
-		MarbleMat.color = Data.MarbleColour;
-		MarbleMat.mainTexture = Data.MarbleTexture.texture;
+		MarbleMat.color = new Color(Data.ColorR, Data.ColorG, Data.ColorB, 255);
+		if (Data.MarbleTexture != null)
+		{
+			MarbleMat.mainTexture = Data.MarbleTexture.texture;
+		}
+		Save.SaveData();
 	}
 }

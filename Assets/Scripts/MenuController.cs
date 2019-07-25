@@ -8,6 +8,10 @@ public class MenuController : MonoBehaviour
 	public Canvas LevelSelect;
 	public Canvas SettingsScreen;
 
+	public GameObject VideoSet;
+	public GameObject AudioSet;
+	public GameObject MarbleSet;
+
 	private AudioManager Audio;
 
 	private void Start()
@@ -41,5 +45,53 @@ public class MenuController : MonoBehaviour
 		LevelSelect.enabled = false;
 		SettingsScreen.enabled = false;
 		Audio.PlayClip("Button_Press");
+	}
+
+
+	public void VideoSettings()
+	{
+		if (AudioSet.activeInHierarchy)
+		{
+			AudioSet.SetActive(false);
+		}
+
+		if (MarbleSet.activeInHierarchy)
+		{
+			MarbleSet.SetActive(false);
+		}
+
+		VideoSet.SetActive(true);
+	}
+
+
+	public void AudioSettings()
+	{
+		if (VideoSet.activeInHierarchy)
+		{
+			VideoSet.SetActive(false);
+		}
+
+		if (MarbleSet.activeInHierarchy)
+		{
+			MarbleSet.SetActive(false);
+		}
+
+		AudioSet.SetActive(true);
+	}
+
+
+	public void MarbleSettings()
+	{
+		if (VideoSet.activeInHierarchy)
+		{
+			VideoSet.SetActive(false);
+		}
+
+		if (AudioSet.activeInHierarchy)
+		{
+			AudioSet.SetActive(false);
+		}
+
+		MarbleSet.SetActive(true);
 	}
 }

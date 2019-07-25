@@ -21,7 +21,6 @@ public struct LevelScores
 	public string ThirdBestName;
 
 	public float LastTime;
-	public float CrystalTime;
 
 	public string LevelName;
 }
@@ -38,7 +37,6 @@ public class SaveScript : MonoBehaviour
 	{
 		MarbleScript = FindObjectOfType<CustomMarbleScript>();
 		LevelData = new List<LevelScores>();
-		CrystalTimes = new List<float>(20);
 
 		for (int i = 0; i < 20; i++)
 		{
@@ -76,7 +74,6 @@ public class SaveScript : MonoBehaviour
 				Update.BestTimeName = LevelData[i].BestTimeName;
 				Update.SecondBestName = LevelData[i].SecondBestName;
 				Update.ThirdBestName = LevelData[i].ThirdBestName;
-				Update.CrystalTime = CrystalTimes[i];
 				Update.LastTime = LevelData[i].LastTime;
 				Update.LevelName = LevelData[i].LevelName;
 
@@ -138,7 +135,10 @@ public class SaveScript : MonoBehaviour
 		Data.Level19 = LevelData[18];
 		Data.Level20 = LevelData[19];
 
-		Data.Marble = MarbleScript.Data;
+		if (MarbleScript)
+		{
+			Data.Marble = MarbleScript.Data;
+		}
 
 		// Converts to binrary, using the data from the data thingy in a data file
 		BinFormat.Serialize(DataFile, Data);
@@ -186,7 +186,10 @@ public class SaveScript : MonoBehaviour
 			LevelData[18] = Data.Level19;
 			LevelData[19] = Data.Level20;
 
-			MarbleScript.Data = Data.Marble;
+			if (MarbleScript)
+			{
+				MarbleScript.Data = Data.Marble;
+			}
 		}
 	}
 }
