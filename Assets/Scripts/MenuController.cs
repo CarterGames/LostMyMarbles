@@ -12,6 +12,8 @@ public class MenuController : MonoBehaviour
 	public GameObject AudioSet;
 	public GameObject MarbleSet;
 
+	public List<GameObject> SettingsButtons;
+
 	private AudioManager Audio;
 
 	private void Start()
@@ -50,6 +52,8 @@ public class MenuController : MonoBehaviour
 
 	public void VideoSettings()
 	{
+		Debug.Log("Video Settings Button");
+
 		if (AudioSet.activeInHierarchy)
 		{
 			AudioSet.SetActive(false);
@@ -61,11 +65,20 @@ public class MenuController : MonoBehaviour
 		}
 
 		VideoSet.SetActive(true);
+
+		for (int i = 0; i < SettingsButtons.Count; i++)
+		{
+			SettingsButtons[i].SetActive(false);
+		}
+
+		Audio.PlayClip("Button_Press");
 	}
 
 
 	public void AudioSettings()
 	{
+		Debug.Log("Audio Settings Button");
+
 		if (VideoSet.activeInHierarchy)
 		{
 			VideoSet.SetActive(false);
@@ -77,11 +90,20 @@ public class MenuController : MonoBehaviour
 		}
 
 		AudioSet.SetActive(true);
+
+		for (int i = 0; i < SettingsButtons.Count; i++)
+		{
+			SettingsButtons[i].SetActive(false);
+		}
+
+		Audio.PlayClip("Button_Press");
 	}
 
 
 	public void MarbleSettings()
 	{
+		Debug.Log("Marble Settings Button");
+
 		if (VideoSet.activeInHierarchy)
 		{
 			VideoSet.SetActive(false);
@@ -93,5 +115,41 @@ public class MenuController : MonoBehaviour
 		}
 
 		MarbleSet.SetActive(true);
+
+		for (int i = 0; i < SettingsButtons.Count; i++)
+		{
+			SettingsButtons[i].SetActive(false);
+		}
+
+		Audio.PlayClip("Button_Press");
+	}
+
+
+
+	public void SettingsMenu()
+	{
+		Debug.Log("Settings Button");
+
+		if (VideoSet.activeInHierarchy)
+		{
+			VideoSet.SetActive(false);
+		}
+
+		if (AudioSet.activeInHierarchy)
+		{
+			AudioSet.SetActive(false);
+		}
+
+		if (MarbleSet.activeInHierarchy)
+		{
+			MarbleSet.SetActive(false);
+		}
+
+		for (int i = 0; i < SettingsButtons.Count; i++)
+		{
+			SettingsButtons[i].SetActive(true);
+		}
+
+		Audio.PlayClip("Button_Press");
 	}
 }

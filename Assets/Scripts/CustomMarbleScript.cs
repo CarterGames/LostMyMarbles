@@ -13,14 +13,18 @@ public struct MarbleData
 	public float ColorR;
 	public float ColorG;
 	public float ColorB;
-	public Sprite MarbleTexture;
+
+	public int SpriteNumber;
 }
 
 
 public class CustomMarbleScript : MonoBehaviour
 {
+	public GameObject Tick;
+
 	public Material MarbleMat;
 
+	public MarbleData Saved;
 	public MarbleData DataOld;
 	public MarbleData Data;
 
@@ -28,13 +32,17 @@ public class CustomMarbleScript : MonoBehaviour
 	public PointerEventData PointerEventData;
 	public EventSystem EventSystem;
 
+	public List<Texture> Textures;
+
 	private SaveScript Save;
+	private MenuController Menu;
 
 	void Start()
     {
 		Raycaster = GetComponent<GraphicRaycaster>();
 		EventSystem = GetComponent<EventSystem>();
 		Save = FindObjectOfType<SaveScript>();
+		Menu = FindObjectOfType<MenuController>();
 	}
 
 
@@ -61,10 +69,6 @@ public class CustomMarbleScript : MonoBehaviour
 				{
 					ChangeColour(result.gameObject.GetComponent<Image>());
 				}
-				else if (result.gameObject.transform.parent.name.Contains("Texture"))
-				{
-					ChangeTexture(result.gameObject.GetComponent<Image>());
-				}
 			}
 		}
 	}
@@ -75,27 +79,33 @@ public class CustomMarbleScript : MonoBehaviour
 		DataOld.ColorR = Data.ColorR;
 		DataOld.ColorG = Data.ColorG;
 		DataOld.ColorB = Data.ColorB;
-		DataOld.MarbleTexture = Data.MarbleTexture;
+		DataOld.SpriteNumber = Data.SpriteNumber;
+
 		Data = new MarbleData();
 		Data.ColorR = InputColour.color.r;
 		Data.ColorG = InputColour.color.g;
 		Data.ColorB = InputColour.color.b;
-		Data.MarbleTexture = DataOld.MarbleTexture;
+		Data.SpriteNumber = DataOld.SpriteNumber;
+
+		Tick.gameObject.transform.SetParent(InputColour.transform);
+		Tick.transform.position = InputColour.transform.position;
+
 		UpdateMarble();
 	}
 
 
-	public void ChangeTexture(Image InputMat)
+	public void ChangeTexture(int Number)
 	{
 		DataOld.ColorR = Data.ColorR;
 		DataOld.ColorG = Data.ColorG;
 		DataOld.ColorB = Data.ColorB;
-		DataOld.MarbleTexture = Data.MarbleTexture;
+		DataOld.SpriteNumber = Data.SpriteNumber;
+
 		Data = new MarbleData();
 		Data.ColorR = DataOld.ColorR;
 		Data.ColorG = DataOld.ColorG;
 		Data.ColorB = DataOld.ColorB;
-		Data.MarbleTexture = InputMat.sprite;
+		Data.SpriteNumber = Number;
 		UpdateMarble();
 	}
 
@@ -103,10 +113,37 @@ public class CustomMarbleScript : MonoBehaviour
 	private void UpdateMarble()
 	{
 		MarbleMat.color = new Color(Data.ColorR, Data.ColorG, Data.ColorB, 255);
-		if (Data.MarbleTexture != null)
+
+		switch (Data.SpriteNumber)
 		{
-			MarbleMat.mainTexture = Data.MarbleTexture.texture;
+			case 0:
+				MarbleMat.SetTexture("_MainTex", Textures[0]);
+				break;
+			case 1:
+				MarbleMat.SetTexture("_MainTex", Textures[1]);
+				break;
+			case 2:
+				MarbleMat.SetTexture("_MainTex", Textures[2]);
+				break;
+			case 3:
+				MarbleMat.SetTexture("_MainTex", Textures[3]);
+				break;
+			default:
+				break;
 		}
+	}
+
+
+	public void Accept()
+	{
 		Save.SaveData();
+		Saved = Data;
+	}
+
+	public void Reject()
+	{
+		Data = Saved;
+		Save.SaveData();
+		Menu.SettingsMenu();
 	}
 }
