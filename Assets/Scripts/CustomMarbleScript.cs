@@ -20,7 +20,8 @@ public struct MarbleData
 
 public class CustomMarbleScript : MonoBehaviour
 {
-	public GameObject Tick;
+	public GameObject TickColour;
+	public GameObject TickTexture;
 
 	public Material MarbleMat;
 
@@ -69,6 +70,10 @@ public class CustomMarbleScript : MonoBehaviour
 				{
 					ChangeColour(result.gameObject.GetComponent<Image>());
 				}
+				else if (result.gameObject.transform.parent.name.Contains("Texture"))
+				{
+					UpdateTextureTick(result.gameObject);
+				}
 			}
 		}
 	}
@@ -87,8 +92,10 @@ public class CustomMarbleScript : MonoBehaviour
 		Data.ColorB = InputColour.color.b;
 		Data.SpriteNumber = DataOld.SpriteNumber;
 
-		Tick.gameObject.transform.SetParent(InputColour.transform);
-		Tick.transform.position = InputColour.transform.position;
+		TickColour.gameObject.transform.SetParent(InputColour.transform);
+		TickColour.transform.position = InputColour.transform.position;
+
+		if (!TickColour.activeInHierarchy) { TickColour.SetActive(true); }
 
 		UpdateMarble();
 	}
@@ -106,7 +113,17 @@ public class CustomMarbleScript : MonoBehaviour
 		Data.ColorG = DataOld.ColorG;
 		Data.ColorB = DataOld.ColorB;
 		Data.SpriteNumber = Number;
+
 		UpdateMarble();
+	}
+
+
+	private void UpdateTextureTick(GameObject Input)
+	{
+		TickTexture.gameObject.transform.SetParent(Input.transform);
+		TickTexture.transform.position = Input.transform.position;
+
+		if (!TickTexture.activeInHierarchy) { TickTexture.SetActive(true); }
 	}
 
 

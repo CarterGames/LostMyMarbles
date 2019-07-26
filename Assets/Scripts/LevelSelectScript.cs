@@ -25,8 +25,6 @@ public class LevelSelectScript : MonoBehaviour
 	private int LastPos;
 	private SaveScript Save;
 
-	private Color32 CrystalCol = new Color32(25, 150, 150, 255);
-
 	private AudioManager Audio;
 
 	private void Awake()

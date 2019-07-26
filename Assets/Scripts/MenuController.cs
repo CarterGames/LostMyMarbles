@@ -7,6 +7,7 @@ public class MenuController : MonoBehaviour
 	public Canvas TitleScreen;
 	public Canvas LevelSelect;
 	public Canvas SettingsScreen;
+	public Canvas CreditsScreen;
 
 	public GameObject VideoSet;
 	public GameObject AudioSet;
@@ -21,6 +22,7 @@ public class MenuController : MonoBehaviour
 		Audio = FindObjectOfType<AudioManager>();
 		TitleScreen.enabled = true;
 		LevelSelect.enabled = false;
+		CreditsScreen.enabled = false;
 		SettingsScreen.enabled = false;
 	}
 
@@ -30,6 +32,7 @@ public class MenuController : MonoBehaviour
 		TitleScreen.enabled = false;
 		LevelSelect.enabled = true;
 		SettingsScreen.enabled = false;
+		CreditsScreen.enabled = false;
 		Audio.PlayClip("Button_Press");
 	}
 
@@ -38,6 +41,7 @@ public class MenuController : MonoBehaviour
 		TitleScreen.enabled = false;
 		LevelSelect.enabled = false;
 		SettingsScreen.enabled = true;
+		CreditsScreen.enabled = false;
 		Audio.PlayClip("Button_Press");
 	}
 
@@ -46,6 +50,17 @@ public class MenuController : MonoBehaviour
 		TitleScreen.enabled = true;
 		LevelSelect.enabled = false;
 		SettingsScreen.enabled = false;
+		CreditsScreen.enabled = false;
+		Audio.PlayClip("Button_Press");
+	}
+
+
+	public void Credits()
+	{
+		TitleScreen.enabled = false;
+		LevelSelect.enabled = false;
+		SettingsScreen.enabled = false;
+		CreditsScreen.enabled = true;
 		Audio.PlayClip("Button_Press");
 	}
 
