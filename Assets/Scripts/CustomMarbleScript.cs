@@ -33,7 +33,12 @@ public class CustomMarbleScript : MonoBehaviour
 	public PointerEventData PointerEventData;
 	public EventSystem EventSystem;
 
+	public List<Image> Colours;
 	public List<Texture> Textures;
+
+	public Text ResponseTextBox;
+
+	private bool Loaded;
 
 	private SaveScript Save;
 	private MenuController Menu;
@@ -49,6 +54,35 @@ public class CustomMarbleScript : MonoBehaviour
 
     void Update()
     {
+		// Loads the data from the save file and moves te ticks to the current saved options
+		if (!Loaded)
+		{
+			Save.LoadData();
+			Color LoadedCol = new Color(Data.ColorR, Data.ColorG, Data.ColorB);
+
+			for (int i = 0; i < Colours.Count; i++)
+			{
+				if (Colours[i].color == LoadedCol)
+				{
+					TickColour.gameObject.transform.SetParent(Colours[i].gameObject.transform);
+					TickColour.transform.position = Colours[i].gameObject.transform.position;
+					if (!TickColour.activeInHierarchy) { TickColour.SetActive(true); }
+				}
+			}
+
+			for (int i = 0; i < Textures.Count; i++)
+			{
+				if (i == Data.SpriteNumber)
+				{
+					TickTexture.gameObject.transform.SetParent(GameObject.Find("MA:Textures").GetComponentsInChildren<Button>()[i].gameObject.transform);
+					TickTexture.transform.position = GameObject.Find("MA:Textures").GetComponentsInChildren<Button>()[i].gameObject.transform.position;
+					if (!TickTexture.activeInHierarchy) { TickTexture.SetActive(true); }
+				}
+			}
+
+			Loaded = true;
+		}
+
 		if (Input.GetMouseButtonDown(0))
 		{
 			if ((Raycaster == null) && (EventSystem == null))

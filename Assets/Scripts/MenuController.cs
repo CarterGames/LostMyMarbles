@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class MenuController : MonoBehaviour
 {
@@ -16,6 +17,7 @@ public class MenuController : MonoBehaviour
 	public List<GameObject> SettingsButtons;
 
 	private AudioManager Audio;
+	private bool MusicPlaying = false;
 
 	private void Start()
 	{
@@ -24,6 +26,15 @@ public class MenuController : MonoBehaviour
 		LevelSelect.enabled = false;
 		CreditsScreen.enabled = false;
 		SettingsScreen.enabled = false;
+	}
+
+	private void Update()
+	{
+		if (!MusicPlaying)
+		{
+			Audio.PlayClip("MenuMusic", Volume: .5f);
+			MusicPlaying = true;
+		}
 	}
 
 
@@ -81,10 +92,10 @@ public class MenuController : MonoBehaviour
 
 		VideoSet.SetActive(true);
 
-		for (int i = 0; i < SettingsButtons.Count; i++)
-		{
-			SettingsButtons[i].SetActive(false);
-		}
+		//for (int i = 0; i < SettingsButtons.Count; i++)
+		//{
+		//	SettingsButtons[i].SetActive(false);
+		//}
 
 		Audio.PlayClip("Button_Press");
 	}
@@ -106,10 +117,10 @@ public class MenuController : MonoBehaviour
 
 		AudioSet.SetActive(true);
 
-		for (int i = 0; i < SettingsButtons.Count; i++)
-		{
-			SettingsButtons[i].SetActive(false);
-		}
+		//for (int i = 0; i < SettingsButtons.Count; i++)
+		//{
+		//	SettingsButtons[i].SetActive(false);
+		//}
 
 		Audio.PlayClip("Button_Press");
 	}
@@ -131,10 +142,10 @@ public class MenuController : MonoBehaviour
 
 		MarbleSet.SetActive(true);
 
-		for (int i = 0; i < SettingsButtons.Count; i++)
-		{
-			SettingsButtons[i].SetActive(false);
-		}
+		//for (int i = 0; i < SettingsButtons.Count; i++)
+		//{
+		//	SettingsButtons[i].SetActive(false);
+		//}
 
 		Audio.PlayClip("Button_Press");
 	}
@@ -160,10 +171,10 @@ public class MenuController : MonoBehaviour
 			MarbleSet.SetActive(false);
 		}
 
-		for (int i = 0; i < SettingsButtons.Count; i++)
-		{
-			SettingsButtons[i].SetActive(true);
-		}
+		//for (int i = 0; i < SettingsButtons.Count; i++)
+		//{
+		//	SettingsButtons[i].SetActive(true);
+		//}
 
 		Audio.PlayClip("Button_Press");
 	}
