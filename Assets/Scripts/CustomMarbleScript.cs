@@ -20,28 +20,37 @@ public struct MarbleData
 
 public class CustomMarbleScript : MonoBehaviour
 {
+	[Header("Ticks")]
+	[Tooltip("Tick used for the colour selecter")]
 	public GameObject TickColour;
+	[Tooltip("Tick used for the texture selector")]
 	public GameObject TickTexture;
 
+	[Header("Marble Material")]
+	[Tooltip("The Material used on the marble in game")]
 	public Material MarbleMat;
 
-	public MarbleData Saved;
-	public MarbleData DataOld;
+	[Header("Marble Data")]
+	[Tooltip("Holds the info for the marble customisations")]
 	public MarbleData Data;
+	public MarbleData DataOld;
 
+	[Header("Raycasting Stuff")]
 	public GraphicRaycaster Raycaster;
 	public PointerEventData PointerEventData;
 	public EventSystem EventSystem;
 
+	[Header("Lists")]
 	public List<Image> Colours;
 	public List<Texture> Textures;
 
-	public Text ResponseTextBox;
-
 	private bool Loaded;
+	private bool Setup;
 
 	private SaveScript Save;
 	private MenuController Menu;
+
+
 
 	void Start()
     {
@@ -49,6 +58,13 @@ public class CustomMarbleScript : MonoBehaviour
 		EventSystem = GetComponent<EventSystem>();
 		Save = FindObjectOfType<SaveScript>();
 		Menu = FindObjectOfType<MenuController>();
+
+		if (!Setup)
+		{
+			Raycaster = GameObject.Find("SettingsCanvas").GetComponent<GraphicRaycaster>();
+			EventSystem = FindObjectOfType<EventSystem>();
+			Setup = true;
+		}
 	}
 
 
@@ -83,14 +99,9 @@ public class CustomMarbleScript : MonoBehaviour
 			Loaded = true;
 		}
 
+
 		if (Input.GetMouseButtonDown(0))
 		{
-			if ((Raycaster == null) && (EventSystem == null))
-			{
-				Raycaster = GameObject.Find("SettingsCanvas").GetComponent<GraphicRaycaster>();
-				EventSystem = FindObjectOfType<EventSystem>();
-			}
-
 			PointerEventData = new PointerEventData(EventSystem);
 			PointerEventData.position = Input.mousePosition;
 
@@ -182,19 +193,13 @@ public class CustomMarbleScript : MonoBehaviour
 			default:
 				break;
 		}
+
+		Accept();
 	}
 
 
 	public void Accept()
 	{
 		Save.SaveData();
-		Saved = Data;
-	}
-
-	public void Reject()
-	{
-		Data = Saved;
-		Save.SaveData();
-		Menu.SettingsMenu();
 	}
 }
