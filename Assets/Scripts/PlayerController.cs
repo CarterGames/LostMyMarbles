@@ -8,7 +8,7 @@ public class PlayerController : MonoBehaviour
 {
 	public float MoveSpeed = 20;
 
-	[Range(0,50)]
+	[Range(0, 50)]
 	public float JumpHeight;
 	public float FallSpeed;
 
@@ -18,68 +18,52 @@ public class PlayerController : MonoBehaviour
 	public float FallOffDelay;
 
 	public bool UseCameraPoint = true;
-	public bool CanJump = true;
 
 	private GameObject MoveDirGO;
-
 	private Vector3 StartPos;
 
 	private bool IsFalloffRunning;
+	private bool LevelFailed;
 
 	private EndPadScript EPScript;
+	private AudioManager Audio;
 
-	private bool LevelFailed;
 
 	private void Start()
 	{
-		if (UseCameraPoint)
-		{
-			MoveDirGO = GameObject.FindGameObjectWithTag("CameraPoint");
-		}
+		if (UseCameraPoint) { MoveDirGO = GameObject.FindGameObjectWithTag("CameraPoint"); }
+
 		HideMouse();
 		EPScript = FindObjectOfType<EndPadScript>();
+		Audio = FindObjectOfType<AudioManager>();
 	}
 
 
 	private void Update()
 	{
-		if ((Input.GetButtonDown("Jump") && (CanJump)))
+		if (Input.GetButtonDown("Jump"))
 		{
 			Debug.Log("Jump Pressed");
 			GetComponent<Rigidbody>().velocity += Vector3.up * JumpHeight;
+			//Audio.PlayClip("Jump", Volume:.25f, Pitch: .5f);
+			Audio.PlayClipFromTime("Jump", .015f, Volume: .25f, Pitch: .5f);
 		}
 
 		Vector3 Movement = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
 
-		if (UseCameraPoint)
-		{
-			Movement = MoveDirGO.transform.TransformDirection(Movement);
-		}
+		if (UseCameraPoint) { Movement = MoveDirGO.transform.TransformDirection(Movement); }
 
 		GetComponent<Rigidbody>().AddForce(Movement * MoveSpeed);
 
-
 		JumpSmoothing();
 
-		if (LevelFailed)
-		{
-			ResetScene();
-		}
+		if (LevelFailed) { ResetScene(); }
 	}
 
 
 	private void JumpSmoothing()
 	{
-		//if (GetComponent<Rigidbody>().velocity.y < 0)
-		//{
-			//GetComponent<Rigidbody>().velocity += Vector3.up * Physics.gravity.y * (FallSpeed - 1) * Time.deltaTime;
-
 		GetComponent<Rigidbody>().AddForce(Vector3.up * Physics.gravity.y * (FallSpeed - 1) * Time.deltaTime, ForceMode.Impulse);
-		//}
-		//else if (GetComponent<Rigidbody>().velocity.y > 0 && !Input.GetButton("Jump"))
-		//{
-		//	GetComponent<Rigidbody>().velocity += Vector3.up * Physics.gravity.y * (JumpHeight - 1) * Time.deltaTime;
-		//}
 	}
 
 
@@ -140,5 +124,5 @@ public class PlayerController : MonoBehaviour
 			default:
 				break;
 		}
-	}
+	} 
 }
