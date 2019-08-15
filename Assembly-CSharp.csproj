@@ -71,6 +71,7 @@
     <Compile Include="Assets\Scripts\EndPadScript.cs" />
     <Compile Include="Assets\Scripts\EndUIScript.cs" />
     <Compile Include="Assets\Scripts\LevelSelectScript.cs" />
+    <Compile Include="Assets\Scripts\MarbleData.cs" />
     <Compile Include="Assets\Scripts\MenuController.cs" />
     <Compile Include="Assets\Scripts\MenuPadScript.cs" />
     <Compile Include="Assets\Scripts\MenuRotate.cs" />
@@ -93,8 +94,14 @@
     <Reference Include="Unity.Timeline.Editor">
       <HintPath>C:/Users/J/Desktop/LostMyMarbles/Library/ScriptAssemblies/Unity.Timeline.Editor.dll</HintPath>
     </Reference>
+    <Reference Include="Unity.VSCode.Editor">
+      <HintPath>C:/Users/J/Desktop/LostMyMarbles/Library/ScriptAssemblies/Unity.VSCode.Editor.dll</HintPath>
+    </Reference>
     <Reference Include="Unity.TextMeshPro.Editor">
       <HintPath>C:/Users/J/Desktop/LostMyMarbles/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.UI">
+      <HintPath>C:/Users/J/Desktop/LostMyMarbles/Library/ScriptAssemblies/UnityEngine.UI.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Timeline">
       <HintPath>C:/Users/J/Desktop/LostMyMarbles/Library/ScriptAssemblies/Unity.Timeline.dll</HintPath>
@@ -105,29 +112,23 @@
     <Reference Include="Unity.Postprocessing.Editor">
       <HintPath>C:/Users/J/Desktop/LostMyMarbles/Library/ScriptAssemblies/Unity.Postprocessing.Editor.dll</HintPath>
     </Reference>
-    <Reference Include="Unity.Postprocessing.Runtime">
-      <HintPath>C:/Users/J/Desktop/LostMyMarbles/Library/ScriptAssemblies/Unity.Postprocessing.Runtime.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.TextMeshPro">
-      <HintPath>C:/Users/J/Desktop/LostMyMarbles/Library/ScriptAssemblies/Unity.TextMeshPro.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.Analytics.DataPrivacy">
-      <HintPath>C:/Users/J/Desktop/LostMyMarbles/Library/ScriptAssemblies/Unity.Analytics.DataPrivacy.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.VSCode.Editor">
-      <HintPath>C:/Users/J/Desktop/LostMyMarbles/Library/ScriptAssemblies/Unity.VSCode.Editor.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEngine.UI">
-      <HintPath>C:/Users/J/Desktop/LostMyMarbles/Library/ScriptAssemblies/UnityEngine.UI.dll</HintPath>
-    </Reference>
     <Reference Include="Unity.Rider.Editor">
       <HintPath>C:/Users/J/Desktop/LostMyMarbles/Library/ScriptAssemblies/Unity.Rider.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.2D.Sprite.Editor">
       <HintPath>C:/Users/J/Desktop/LostMyMarbles/Library/ScriptAssemblies/Unity.2D.Sprite.Editor.dll</HintPath>
     </Reference>
+    <Reference Include="Unity.Postprocessing.Runtime">
+      <HintPath>C:/Users/J/Desktop/LostMyMarbles/Library/ScriptAssemblies/Unity.Postprocessing.Runtime.dll</HintPath>
+    </Reference>
     <Reference Include="Unity.2D.Tilemap.Editor">
       <HintPath>C:/Users/J/Desktop/LostMyMarbles/Library/ScriptAssemblies/Unity.2D.Tilemap.Editor.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.TextMeshPro">
+      <HintPath>C:/Users/J/Desktop/LostMyMarbles/Library/ScriptAssemblies/Unity.TextMeshPro.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.Analytics.DataPrivacy">
+      <HintPath>C:/Users/J/Desktop/LostMyMarbles/Library/ScriptAssemblies/Unity.Analytics.DataPrivacy.dll</HintPath>
     </Reference>
     <Reference Include="UnityEditor.UI">
       <HintPath>C:/Users/J/Desktop/LostMyMarbles/Library/ScriptAssemblies/UnityEditor.UI.dll</HintPath>
