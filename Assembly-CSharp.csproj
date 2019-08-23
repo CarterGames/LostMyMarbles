@@ -63,6 +63,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Scripts\AudioManager.cs" />
+    <Compile Include="Assets\Scripts\AudioManagerFile.cs" />
     <Compile Include="Assets\Scripts\Camcol.cs" />
     <Compile Include="Assets\Scripts\CameraController.cs" />
     <Compile Include="Assets\Scripts\ColourPickerScript.cs" />
@@ -86,11 +87,11 @@
     <Compile Include="Assets\Scripts\RotateScript.cs" />
     <Compile Include="Assets\Scripts\SaveScript.cs" />
     <Compile Include="Assets\Scripts\SettingsScript.cs" />
+    <Compile Include="Assets\Scripts\Setup.cs" />
     <Compile Include="Assets\Scripts\StartPadScript.cs" />
     <Compile Include="Assets\Scripts\TimerUIScript.cs" />
     <Compile Include="Assets\Scripts\WindScript.cs" />
     <Compile Include="Assets\Scripts\ZomballScript.cs" />
-    <None Include="Assets\(CG) AudioManager\ReadMe\AudioManagerReadMe.txt" />
     <Reference Include="Unity.Timeline.Editor">
       <HintPath>C:/Users/J/Desktop/LostMyMarbles/Library/ScriptAssemblies/Unity.Timeline.Editor.dll</HintPath>
     </Reference>

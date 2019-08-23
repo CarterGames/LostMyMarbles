@@ -7,8 +7,8 @@ using UnityEngine;
  *								Audio Manager Script
  *			
  *			Script written by: Jonathan Carter (https://jonathan.carter.games)
- *									Version: 1
- *							  Last Updated: 22/06/19
+ *									Version: 2.1
+ *							  Last Updated: 22/08/19
  * 
  * 
 */
@@ -16,12 +16,11 @@ using UnityEngine;
 
 public class AudioManager : MonoBehaviour
 {
+    [Header("Audio Manager File In Use")]
+    [Tooltip("This should be the Audio Manager File you are working with, if it is not then please change it to the correct one.")]
+    public AudioManagerFile File;
 
     public GameObject Sound_Prefab = null;       // Holds the prefab that plays the sound requested
-	[HideInInspector]
-	public List<string> Sound_Names = new List<string>();       // A list to hold the audioclip names
-	[HideInInspector]
-	public List<AudioClip> Sound_Clips = new List<AudioClip>();									// A list to hold the audioclips themselves
     public Dictionary<string, AudioClip> Sound_Lib = new Dictionary<string, AudioClip>();       // Dictionary that holds the audio names and clips
 
 	
@@ -30,13 +29,15 @@ public class AudioManager : MonoBehaviour
 		if (Sound_Prefab == null)
 		{
 			Debug.LogWarning("(*Audio Manager*): Prefab has not been assigned! Please assign a prefab in the inspector before using the manager.");
+
+            Sound_Prefab = File.Prefab;
 		}
 
 		GetComponent<AudioSource>().hideFlags = HideFlags.HideInInspector;
 
-		for (int i = 0; i < Sound_Names.Count; i++)         // For loop that populates the dictionary with all the sound assets in the lists
+        for (int i = 0; i < File.ClipName.Count; i++)         // For loop that populates the dictionary with all the sound assets in the lists
         {
-            Sound_Lib.Add(Sound_Names[i], Sound_Clips[i]);
+            Sound_Lib.Add(File.ClipName[i], File.Clip[i]);
         }
     }
 
@@ -104,13 +105,25 @@ public class AudioManager : MonoBehaviour
 		}
     }
 
+    // New Function in V2 | Changes the Audio Manager File to what is inputted
+    public void ChangeAudioManagerFile(AudioManagerFile NewFile)
+    {
+        File = NewFile;
+    }
+
+    // New Function in V2 | returns the Audio Manager File that is currently in use
+    public AudioManagerFile GetAudioManagerFile()
+    {
+        return File;
+    }
+
 	// Used in the editor script, to update the library with a fresh input, don't call this, it doesn't play audio
 	public void UpdateLibrary()
 	{
-		for (int i = 0; i < Sound_Names.Count; i++)         // For loop that populates the dictionary with all the sound assets in the lists
+		for (int i = 0; i < File.ClipName.Count; i++)         // For loop that populates the dictionary with all the sound assets in the lists
 		{
 			Sound_Lib.Clear();
-			Sound_Lib.Add(Sound_Names[i], Sound_Clips[i]);
+			Sound_Lib.Add(File.ClipName[i], File.Clip[i]);
 		}
 	}
 }

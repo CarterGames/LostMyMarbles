@@ -26,7 +26,7 @@ RenderSettings:
   m_AmbientIntensity: 1
   m_AmbientMode: 0
   m_SubtractiveShadowColor: {r: 0.42, g: 0.478, b: 0.627, a: 1}
-  m_SkyboxMaterial: {fileID: 10304, guid: 0000000000000000f000000000000000, type: 0}
+  m_SkyboxMaterial: {fileID: 2100000, guid: ceb0a3ed2cb53a94fa21843cc958c52b, type: 2}
   m_HaloStrength: 0.5
   m_FlareStrength: 1
   m_FlareFadeSpeed: 3
@@ -207,20 +207,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c38508754cf11bc4a891810fdefd2aa9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Sound_Prefab: {fileID: 977031777656076914, guid: a455bf878f2f7624480eebaa733feb5b,
-    type: 3}
-  Sound_Names:
-  - Button_Press
-  - Jump
-  - Land
-  - MenuMusic
-  - Purple Planet Music - A New World 2813A0529 60bpm
-  Sound_Clips:
-  - {fileID: 8300000, guid: 12beda02e00885d43bbf90a1a4c1578b, type: 3}
-  - {fileID: 8300000, guid: 7508ba95cc44655468cdef3edfb04c90, type: 3}
-  - {fileID: 8300000, guid: db9ac4fef547e6540894d0bbaeb763cb, type: 3}
-  - {fileID: 8300000, guid: 7f540f21396789f4f8e5089bf92edc83, type: 3}
-  - {fileID: 8300000, guid: d2d9197dc8d712043b3c6a00237a62e5, type: 3}
+  File: {fileID: 11400000, guid: 4b91cc966fe5824408a81db8265cadf4, type: 2}
+  Sound_Prefab: {fileID: 0}
 --- !u!82 &30113189
 AudioSource:
   m_ObjectHideFlags: 2
@@ -231,7 +219,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: d2d9197dc8d712043b3c6a00237a62e5, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
@@ -317,6 +305,18 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &30113190
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 30113187}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7a15db013bb5d9e438df5d256268375c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &940525178
 GameObject:
   m_ObjectHideFlags: 0

@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class MenuController : MonoBehaviour
@@ -16,21 +17,24 @@ public class MenuController : MonoBehaviour
 
 	public List<GameObject> SettingsButtons;
 
-	private AudioManager Audio;
+	public AudioManager Audio;
 	private bool MusicPlaying = false;
 
-	private void Start()
+
+
+
+    private void Start()
 	{
-		Audio = FindObjectOfType<AudioManager>();
 		TitleScreen.enabled = true;
 		LevelSelect.enabled = false;
 		CreditsScreen.enabled = false;
 		SettingsScreen.enabled = false;
-	}
+        Audio = GameObject.FindGameObjectWithTag("GameController").GetComponent<AudioManager>();
+    }
 
-	private void Update()
+    private void Update()
 	{
-		if (!MusicPlaying)
+        if (!MusicPlaying)
 		{
 			Audio.PlayClip("MenuMusic", Volume: .5f);
 			MusicPlaying = true;
