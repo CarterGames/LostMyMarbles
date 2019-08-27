@@ -72,7 +72,7 @@ public class TimerUIScript : MonoBehaviour
 			if (Scores.LevelData[i].LevelName == SceneManager.GetActiveScene().name)
 			{
 				Changes = Scores.LevelData[i];
-				Debug.Log("Prev Best Time v1" + " : " + Changes.BestTime);
+				//Debug.Log("Prev Best Time v1" + " : " + Changes.BestTime);
 				Position = i;
 			}
 			else
@@ -82,42 +82,42 @@ public class TimerUIScript : MonoBehaviour
 			}
 		}
 
-		Changes.LastTime = Timer;
+		//Changes.LastTime = Timer;
 
-		Debug.Log("Prev Best Time" + " : " + Changes.BestTime);
+		//Debug.Log("Prev Best Time" + " : " + Changes.BestTime);
 
 		// Sorting out if the time is a new best or not.........
 
-		switch (Timer)
-		{
-			case float number when (number < Changes.BestTime):
-				Changes.ThirdBestTime = Changes.SecondBestTime;
-				Changes.ThirdBestName = Changes.SecondBestName;
-				Changes.SecondBestTime = Changes.BestTime;
-				Changes.SecondBestName = Changes.BestTimeName;
-				Changes.BestTime = Timer;
-				EndUI.NewScorePosition = 1;
-				Changes.BestTimeName = "New Best Score!!!";
-				Debug.Log("Best Time");
-				break;
-			case float number when (number < Changes.SecondBestTime):
-				Changes.ThirdBestTime = Changes.SecondBestTime;
-				Changes.ThirdBestName = Changes.SecondBestName;
-				Changes.SecondBestTime = Timer;
-				EndUI.NewScorePosition = 2;
-				Changes.SecondBestName = "New 2nd Best Score!!!";
-				Debug.Log("Second Best Time");
-				break;
-			case float number when (number < Changes.ThirdBestTime):
-				Changes.ThirdBestTime = Timer;
-				EndUI.NewScorePosition = 3;
-				Changes.ThirdBestName = "New 3rd Best Score!!!";
-				Debug.Log("Third Best Time");
-				break;
-			default:
-				EndUI.CloseNameUI();
-				break;
-		}
+		//switch (Timer)
+		//{
+		//	case float number when (number < Changes.BestTime):
+		//		Changes.ThirdBestTime = Changes.SecondBestTime;
+		//		Changes.ThirdBestName = Changes.SecondBestName;
+		//		Changes.SecondBestTime = Changes.BestTime;
+		//		Changes.SecondBestName = Changes.BestTimeName;
+		//		Changes.BestTime = Timer;
+		//		EndUI.NewScorePosition = 1;
+		//		Changes.BestTimeName = "New Best Score!!!";
+		//		Debug.Log("Best Time");
+		//		break;
+		//	case float number when (number < Changes.SecondBestTime):
+		//		//Changes.ThirdBestTime = Changes.SecondBestTime;
+		//		//Changes.ThirdBestName = Changes.SecondBestName;
+		//		//Changes.SecondBestTime = Timer;
+		//		//EndUI.NewScorePosition = 2;
+		//		//Changes.SecondBestName = "New 2nd Best Score!!!";
+		//		//Debug.Log("Second Best Time");
+		//		break;
+		//	case float number when (number < Changes.ThirdBestTime):
+		//		Changes.ThirdBestTime = Timer;
+		//		EndUI.NewScorePosition = 3;
+		//		Changes.ThirdBestName = "New 3rd Best Score!!!";
+		//		Debug.Log("Third Best Time");
+		//		break;
+		//	default:
+		//		EndUI.CloseNameUI();
+		//		break;
+		//}
 
 
 		// Sets the new changes, in theory

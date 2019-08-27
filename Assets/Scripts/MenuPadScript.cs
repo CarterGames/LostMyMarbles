@@ -33,8 +33,8 @@ public class MenuPadScript : MonoBehaviour
 
 		// Setup Elements
 		LevelSelectUI.GetComponentsInChildren<Text>()[0].text = "Level " + LvlData.LevelName.Substring(LvlData.LevelName.Length - 1);
-		LevelSelectUI.GetComponentsInChildren<Text>()[1].text = "1st: " + LvlData.BestTimeName;
-		LevelSelectUI.GetComponentsInChildren<Text>()[2].text = ConvertTime(LvlData.BestTime);
+		//LevelSelectUI.GetComponentsInChildren<Text>()[1].text = "1st: " + LvlData.BestTimeName;
+		//LevelSelectUI.GetComponentsInChildren<Text>()[2].text = ConvertTime(LvlData.BestTime);
 
 		LevelSelectUI.transform.parent.GetComponent<Canvas>().enabled = true;
 	}

@@ -9,14 +9,17 @@ using UnityEngine.SceneManagement;
 public class LevelSelectScript : MonoBehaviour
 {
 
-	public LevelScores CurrentLevelSelected;
+    public LevelScores TopLeft;
+    public LevelScores TopRight;
+    public LevelScores BottomLeft;
+    public LevelScores BottomRight;
+
 	public List<LevelScores> AllLevels;
 	public List<Sprite> LevelImages;
 
 	public Text LevelNameText;
-	public Text GoldTimeText;
-	public Text SilverTimeText;
-	public Text BronzeTimeText;
+	public Text PBText;
+	public Text LastText;
 	public Image LevelPreviewImage;
 
 	public Button LeftButton;
@@ -26,6 +29,9 @@ public class LevelSelectScript : MonoBehaviour
 	private SaveScript Save;
 
 	private AudioManager Audio;
+
+    private int Slide = 1;
+    private int MaxSlides = 2;
 
 	private void Awake()
 	{
@@ -42,20 +48,25 @@ public class LevelSelectScript : MonoBehaviour
 	private void Start()
 	{
 		Audio = FindObjectOfType<AudioManager>();
-		Save.LoadData();
-		AllLevels = Save.LevelData;
-		CurrentLevelSelected = AllLevels[0];
 		UpdateUI();
 	}
 
-	// Updates the UI elements on th elevel select
-	private void UpdateUI()
+    private void Update()
+    {
+        if (AllLevels.Count == 0)
+        {
+            AllLevels = Save.LevelData;
+            GetLevelScores();
+        }
+    }
+
+    // Updates the UI elements on th elevel select
+    private void UpdateUI()
 	{
-		LevelNameText.text = "Level: " + GetLevelNumber(CurrentLevelSelected.LevelName);
-		GoldTimeText.text = "1st: " + CurrentLevelSelected.BestTimeName + "\n" + ConvertTime(CurrentLevelSelected.BestTime);
-		SilverTimeText.text = "2nd: " + CurrentLevelSelected.SecondBestName + "\n" + ConvertTime(CurrentLevelSelected.SecondBestTime);
-		BronzeTimeText.text = "3rd: " + CurrentLevelSelected.ThirdBestName + "\n" + ConvertTime(CurrentLevelSelected.ThirdBestTime);
-		LevelPreviewImage.sprite = LevelImages[int.Parse(GetLevelNumber(CurrentLevelSelected.LevelName)) - 1];
+		//LevelNameText.text = "Level: " + GetLevelNumber(CurrentLevelSelected.LevelName);
+		//PBText.text = "PB: " + CurrentLevelSelected.BestTimeName + "\n" + ConvertTime(CurrentLevelSelected.BestTime);
+		//LastText.text = "Last: " + CurrentLevelSelected.SecondBestName + "\n" + ConvertTime(CurrentLevelSelected.SecondBestTime);
+		//LevelPreviewImage.sprite = LevelImages[int.Parse(GetLevelNumber(CurrentLevelSelected.LevelName)) - 1];
 	}
 
 	// Converts the Timer float value to a more readable format
@@ -82,8 +93,21 @@ public class LevelSelectScript : MonoBehaviour
 
 	public void LeftPressed()
 	{
-		if (LastPos - 1 >= 0) { LastPos--; CurrentLevelSelected = AllLevels[LastPos]; }
-		else { LastPos = AllLevels.Count - 1; CurrentLevelSelected = AllLevels[LastPos]; }
+        if (Slide == 1)
+        {
+            Slide = MaxSlides;
+            // Change Levels Shown
+            GetLevelScores();
+        }
+        else
+        {
+            Slide--;
+            // Change Levels Shown
+            GetLevelScores();
+        }
+
+        //if (LastPos - 1 >= 0) { LastPos--; CurrentLevelSelected = AllLevels[LastPos]; }
+		//else { LastPos = AllLevels.Count - 1; CurrentLevelSelected = AllLevels[LastPos]; }
 		UpdateUI();
 		Audio.PlayClip("Button_Press", Pitch: .65f);
 	}
@@ -91,8 +115,21 @@ public class LevelSelectScript : MonoBehaviour
 
 	public void RightPressed()
 	{
-		if (LastPos + 1 != AllLevels.Count) { LastPos++; CurrentLevelSelected = AllLevels[LastPos]; }
-		else { LastPos = 0; CurrentLevelSelected = AllLevels[LastPos]; }
+        if (Slide == MaxSlides)
+        {
+            Slide = 1;
+            // Change Levels Shown
+            GetLevelScores();
+        }
+        else
+        {
+            Slide++;
+            // Change Levels Shown
+            GetLevelScores();
+        }
+
+        //if (LastPos + 1 != AllLevels.Count) { LastPos++; CurrentLevelSelected = AllLevels[LastPos]; }
+		//else { LastPos = 0; CurrentLevelSelected = AllLevels[LastPos]; }
 		UpdateUI();
 		Audio.PlayClip("Button_Press", Pitch: .75f);
 	}
@@ -101,7 +138,16 @@ public class LevelSelectScript : MonoBehaviour
 
 	public void PlayLevel()
 	{
-		SceneManager.LoadSceneAsync(CurrentLevelSelected.LevelName);
+		//SceneManager.LoadSceneAsync(CurrentLevelSelected.LevelName);
 		Audio.PlayClip("Button_Press");
 	}
+
+
+    public void GetLevelScores()
+    {
+        BottomRight = AllLevels[(Slide * 4) - 1];
+        BottomLeft = AllLevels[(Slide * 4) - 2];
+        TopRight = AllLevels[(Slide * 4) - 3];
+        TopLeft = AllLevels[(Slide * 4) - 4];
+    }
 }

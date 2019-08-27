@@ -58,10 +58,10 @@ public class EndUIScript : MonoBehaviour
 
 	private void SetValues()
 	{
-		Elements[0].text = "Level: " + ThisLevelData.LevelName.Substring(ThisLevelData.LevelName.Length - 1);
-		Elements[2].text = "1st: " + ThisLevelData.BestTimeName + "\n" + ConvertTime(ThisLevelData.BestTime);
-		Elements[3].text = "2nd: " + ThisLevelData.SecondBestName + "\n" + ConvertTime(ThisLevelData.SecondBestTime);
-		Elements[4].text = "3rd: " + ThisLevelData.ThirdBestName + "\n" + ConvertTime(ThisLevelData.ThirdBestTime);
+		//Elements[0].text = "Level: " + ThisLevelData.LevelName.Substring(ThisLevelData.LevelName.Length - 1);
+		//Elements[2].text = "1st: " + ThisLevelData.BestTimeName + "\n" + ConvertTime(ThisLevelData.BestTime);
+		//Elements[3].text = "2nd: " + ThisLevelData.SecondBestName + "\n" + ConvertTime(ThisLevelData.SecondBestTime);
+		//Elements[4].text = "3rd: " + ThisLevelData.ThirdBestName + "\n" + ConvertTime(ThisLevelData.ThirdBestTime);
 	}
 
 
@@ -84,15 +84,15 @@ public class EndUIScript : MonoBehaviour
 		switch (NewScorePosition)
 		{
 			case 1:
-				ThisLevelData.BestTimeName = Name;
+				//ThisLevelData.BestTimeName = Name;
 				Save.LevelData[Position] = ThisLevelData;
 				break;
 			case 2:
-				ThisLevelData.SecondBestName = Name;
+				//ThisLevelData.SecondBestName = Name;
 				Save.LevelData[Position] = ThisLevelData;
 				break;
 			case 3:
-				ThisLevelData.ThirdBestName = Name;
+				//ThisLevelData.ThirdBestName = Name;
 				Save.LevelData[Position] = ThisLevelData;
 				break;
 			default:

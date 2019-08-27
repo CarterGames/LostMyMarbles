@@ -11,18 +11,10 @@ using System.Linq;
 [Serializable]
 public struct LevelScores
 {
-	public float BestTime;
-	public string BestTimeName;
-
-	public float SecondBestTime;
-	public string SecondBestName;
-
-	public float ThirdBestTime;
-	public string ThirdBestName;
-
-	public float LastTime;
-
+    public float PB;
+    public float Last;
 	public string LevelName;
+    public bool LevelLocked;
 }
 
 
@@ -66,13 +58,8 @@ public class SaveScript : MonoBehaviour
 				LevelScores Update = new LevelScores();
 
 				// Sets up the default values
-				Update.BestTime = 9999999;
-				Update.SecondBestTime = 9999999;
-				Update.ThirdBestTime = 9999999;
-				Update.BestTimeName = LevelData[i].BestTimeName;
-				Update.SecondBestName = LevelData[i].SecondBestName;
-				Update.ThirdBestName = LevelData[i].ThirdBestName;
-				Update.LastTime = LevelData[i].LastTime;
+				Update.PB = 9999999;
+				Update.Last = 9999999;
 				Update.LevelName = LevelData[i].LevelName;
 
 				// Makes the changes to the LevelData
