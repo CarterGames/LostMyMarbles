@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using System.Linq;
+using CarterGames.Assets.AudioManager;
 
 public class SettingsScript : MonoBehaviour
 {
@@ -73,14 +74,14 @@ public class SettingsScript : MonoBehaviour
 	public void SetFullScreen(bool Input)
 	{
 		Screen.fullScreen = Input;
-		AudioManager.PlayClip("Button_Press", Pitch: .5f);
+		AudioManager.Play("Button_Press", 1f, .5f);
 	}
 
 
 	public void SetQuailty(int Input)
 	{
 		QualitySettings.SetQualityLevel(Input);
-		AudioManager.PlayClip("Button_Press", Pitch: .5f);
+		AudioManager.Play("Button_Press", 1f, .5f);
 	}
 
 

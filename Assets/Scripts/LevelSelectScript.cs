@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using System.Linq;
 using UnityEngine.SceneManagement;
+using CarterGames.Assets.AudioManager;
 
 
 public class LevelSelectScript : MonoBehaviour
@@ -109,7 +110,7 @@ public class LevelSelectScript : MonoBehaviour
         //if (LastPos - 1 >= 0) { LastPos--; CurrentLevelSelected = AllLevels[LastPos]; }
 		//else { LastPos = AllLevels.Count - 1; CurrentLevelSelected = AllLevels[LastPos]; }
 		UpdateUI();
-		Audio.PlayClip("Button_Press", Pitch: .65f);
+		Audio.Play("Button_Press", 1f ,.65f);
 	}
 
 
@@ -131,7 +132,7 @@ public class LevelSelectScript : MonoBehaviour
         //if (LastPos + 1 != AllLevels.Count) { LastPos++; CurrentLevelSelected = AllLevels[LastPos]; }
 		//else { LastPos = 0; CurrentLevelSelected = AllLevels[LastPos]; }
 		UpdateUI();
-		Audio.PlayClip("Button_Press", Pitch: .75f);
+		Audio.Play("Button_Press", 1f, .75f);
 	}
 
 
@@ -139,7 +140,7 @@ public class LevelSelectScript : MonoBehaviour
 	public void PlayLevel()
 	{
 		//SceneManager.LoadSceneAsync(CurrentLevelSelected.LevelName);
-		Audio.PlayClip("Button_Press");
+		Audio.Play("Button_Press");
 	}
 
 

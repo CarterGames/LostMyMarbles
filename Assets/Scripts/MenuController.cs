@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using CarterGames.Assets.AudioManager;
 
 public class MenuController : MonoBehaviour
 {
@@ -36,7 +37,7 @@ public class MenuController : MonoBehaviour
 	{
         if (!MusicPlaying)
 		{
-			Audio.PlayClip("MenuMusic", Volume: .5f);
+			Audio.Play("MenuMusic", .5f);
 			MusicPlaying = true;
 		}
 	}
@@ -48,7 +49,7 @@ public class MenuController : MonoBehaviour
 		LevelSelect.enabled = true;
 		SettingsScreen.enabled = false;
 		CreditsScreen.enabled = false;
-		Audio.PlayClip("Button_Press");
+		Audio.Play("Button_Press");
 	}
 
 	public void Settings()
@@ -57,7 +58,7 @@ public class MenuController : MonoBehaviour
 		LevelSelect.enabled = false;
 		SettingsScreen.enabled = true;
 		CreditsScreen.enabled = false;
-		Audio.PlayClip("Button_Press");
+		Audio.Play("Button_Press");
 	}
 
 	public void Menu()
@@ -66,7 +67,7 @@ public class MenuController : MonoBehaviour
 		LevelSelect.enabled = false;
 		SettingsScreen.enabled = false;
 		CreditsScreen.enabled = false;
-		Audio.PlayClip("Button_Press");
+		Audio.Play("Button_Press");
 	}
 
 
@@ -76,7 +77,7 @@ public class MenuController : MonoBehaviour
 		LevelSelect.enabled = false;
 		SettingsScreen.enabled = false;
 		CreditsScreen.enabled = true;
-		Audio.PlayClip("Button_Press");
+		Audio.Play("Button_Press");
 	}
 
 
@@ -101,7 +102,7 @@ public class MenuController : MonoBehaviour
 		//	SettingsButtons[i].SetActive(false);
 		//}
 
-		Audio.PlayClip("Button_Press");
+		Audio.Play("Button_Press");
 	}
 
 
@@ -126,7 +127,7 @@ public class MenuController : MonoBehaviour
 		//	SettingsButtons[i].SetActive(false);
 		//}
 
-		Audio.PlayClip("Button_Press");
+		Audio.Play("Button_Press");
 	}
 
 
@@ -151,7 +152,7 @@ public class MenuController : MonoBehaviour
 		//	SettingsButtons[i].SetActive(false);
 		//}
 
-		Audio.PlayClip("Button_Press");
+		Audio.Play("Button_Press");
 	}
 
 
@@ -180,6 +181,6 @@ public class MenuController : MonoBehaviour
 		//	SettingsButtons[i].SetActive(true);
 		//}
 
-		Audio.PlayClip("Button_Press");
+		Audio.Play("Button_Press");
 	}
 }

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using CarterGames.Assets.AudioManager;
 
 public class PlayerController : MonoBehaviour
 {
@@ -46,7 +47,7 @@ public class PlayerController : MonoBehaviour
 			Debug.Log("Jump Pressed");
 			GetComponent<Rigidbody>().velocity += Vector3.up * JumpHeight;
 			//Audio.PlayClip("Jump", Volume:.25f, Pitch: .5f);
-			Audio.PlayClipFromTime("Jump", .015f, Volume: .25f, Pitch: .5f);
+			Audio.PlayFromTime("Jump", .015f, .25f, .5f);
 		}
 
 		Vector3 Movement = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
