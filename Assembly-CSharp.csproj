@@ -63,7 +63,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\Scripts\Camcol.cs" />
     <Compile Include="Assets\Scripts\CameraController.cs" />
     <Compile Include="Assets\Scripts\Carter Games\AudioManager.cs" />
     <Compile Include="Assets\Scripts\Carter Games\AudioManagerFile.cs" />
@@ -277,13 +276,13 @@
       <HintPath>C:/Program Files/Unity/Hub/Editor/2019.4.3f1/Editor/Data/Managed/UnityEditor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Analytics.Editor">
-      <HintPath>E:/# Carter Games/1. Carter Games Game Projects/5. Lost My Marbles/0. Project Files/Library/PackageCache/com.unity.analytics@3.3.2/Unity.Analytics.Editor.dll</HintPath>
+      <HintPath>E:/# Carter Games/1. Carter Games Game Projects/5. Lost My Marbles/0. Project Files/Library/PackageCache/com.unity.analytics@3.3.5/Unity.Analytics.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Analytics.Tracker">
-      <HintPath>E:/# Carter Games/1. Carter Games Game Projects/5. Lost My Marbles/0. Project Files/Library/PackageCache/com.unity.analytics@3.3.2/Unity.Analytics.Tracker.dll</HintPath>
+      <HintPath>E:/# Carter Games/1. Carter Games Game Projects/5. Lost My Marbles/0. Project Files/Library/PackageCache/com.unity.analytics@3.3.5/Unity.Analytics.Tracker.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Analytics.StandardEvents">
-      <HintPath>E:/# Carter Games/1. Carter Games Game Projects/5. Lost My Marbles/0. Project Files/Library/PackageCache/com.unity.analytics@3.3.2/Unity.Analytics.StandardEvents.dll</HintPath>
+      <HintPath>E:/# Carter Games/1. Carter Games Game Projects/5. Lost My Marbles/0. Project Files/Library/PackageCache/com.unity.analytics@3.3.5/AnalyticsStandardEvents/Unity.Analytics.StandardEvents.dll</HintPath>
     </Reference>
     <Reference Include="mscorlib">
       <HintPath>C:/Program Files/Unity/Hub/Editor/2019.4.3f1/Editor/Data/MonoBleedingEdge/lib/mono/4.7.1-api/mscorlib.dll</HintPath>
@@ -639,14 +638,44 @@
     <Reference Include="Boo.Lang">
       <HintPath>C:/Program Files/Unity/Hub/Editor/2019.4.3f1/Editor/Data/MonoBleedingEdge/lib/mono/unityscript/Boo.Lang.dll</HintPath>
     </Reference>
+    <Reference Include="Unity.RenderPipeline.Universal.ShaderLibrary">
+      <HintPath>E:/# Carter Games/1. Carter Games Game Projects/5. Lost My Marbles/0. Project Files/Library/ScriptAssemblies/Unity.RenderPipeline.Universal.ShaderLibrary.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.Timeline.Editor">
+      <HintPath>E:/# Carter Games/1. Carter Games Game Projects/5. Lost My Marbles/0. Project Files/Library/ScriptAssemblies/Unity.Timeline.Editor.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.Monetization">
+      <HintPath>E:/# Carter Games/1. Carter Games Game Projects/5. Lost My Marbles/0. Project Files/Library/ScriptAssemblies/UnityEngine.Monetization.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.RenderPipelines.Universal.Shaders">
+      <HintPath>E:/# Carter Games/1. Carter Games Game Projects/5. Lost My Marbles/0. Project Files/Library/ScriptAssemblies/Unity.RenderPipelines.Universal.Shaders.dll</HintPath>
+    </Reference>
     <Reference Include="Unity.VSCode.Editor">
       <HintPath>E:/# Carter Games/1. Carter Games Game Projects/5. Lost My Marbles/0. Project Files/Library/ScriptAssemblies/Unity.VSCode.Editor.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.Advertisements">
+      <HintPath>E:/# Carter Games/1. Carter Games Game Projects/5. Lost My Marbles/0. Project Files/Library/ScriptAssemblies/UnityEngine.Advertisements.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.RenderPipelines.Core.Editor">
+      <HintPath>E:/# Carter Games/1. Carter Games Game Projects/5. Lost My Marbles/0. Project Files/Library/ScriptAssemblies/Unity.RenderPipelines.Core.Editor.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.RenderPipelines.Core.Runtime">
+      <HintPath>E:/# Carter Games/1. Carter Games Game Projects/5. Lost My Marbles/0. Project Files/Library/ScriptAssemblies/Unity.RenderPipelines.Core.Runtime.dll</HintPath>
     </Reference>
     <Reference Include="Unity.TextMeshPro.Editor">
       <HintPath>E:/# Carter Games/1. Carter Games Game Projects/5. Lost My Marbles/0. Project Files/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
     </Reference>
+    <Reference Include="Unity.RenderPipelines.Universal.Runtime">
+      <HintPath>E:/# Carter Games/1. Carter Games Game Projects/5. Lost My Marbles/0. Project Files/Library/ScriptAssemblies/Unity.RenderPipelines.Universal.Runtime.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.RenderPipelines.Universal.Editor">
+      <HintPath>E:/# Carter Games/1. Carter Games Game Projects/5. Lost My Marbles/0. Project Files/Library/ScriptAssemblies/Unity.RenderPipelines.Universal.Editor.dll</HintPath>
+    </Reference>
     <Reference Include="UnityEngine.UI">
       <HintPath>E:/# Carter Games/1. Carter Games Game Projects/5. Lost My Marbles/0. Project Files/Library/ScriptAssemblies/UnityEngine.UI.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.Timeline">
+      <HintPath>E:/# Carter Games/1. Carter Games Game Projects/5. Lost My Marbles/0. Project Files/Library/ScriptAssemblies/Unity.Timeline.dll</HintPath>
     </Reference>
     <Reference Include="Unity.CollabProxy.Editor">
       <HintPath>E:/# Carter Games/1. Carter Games Game Projects/5. Lost My Marbles/0. Project Files/Library/ScriptAssemblies/Unity.CollabProxy.Editor.dll</HintPath>
@@ -657,6 +686,9 @@
     <Reference Include="Unity.Rider.Editor">
       <HintPath>E:/# Carter Games/1. Carter Games Game Projects/5. Lost My Marbles/0. Project Files/Library/ScriptAssemblies/Unity.Rider.Editor.dll</HintPath>
     </Reference>
+    <Reference Include="Unity.RenderPipelines.ShaderGraph.ShaderGraphLibrary">
+      <HintPath>E:/# Carter Games/1. Carter Games Game Projects/5. Lost My Marbles/0. Project Files/Library/ScriptAssemblies/Unity.RenderPipelines.ShaderGraph.ShaderGraphLibrary.dll</HintPath>
+    </Reference>
     <Reference Include="Unity.2D.Sprite.Editor">
       <HintPath>E:/# Carter Games/1. Carter Games Game Projects/5. Lost My Marbles/0. Project Files/Library/ScriptAssemblies/Unity.2D.Sprite.Editor.dll</HintPath>
     </Reference>
@@ -666,6 +698,12 @@
     <Reference Include="Unity.2D.Tilemap.Editor">
       <HintPath>E:/# Carter Games/1. Carter Games Game Projects/5. Lost My Marbles/0. Project Files/Library/ScriptAssemblies/Unity.2D.Tilemap.Editor.dll</HintPath>
     </Reference>
+    <Reference Include="Unity.ShaderGraph.Editor">
+      <HintPath>E:/# Carter Games/1. Carter Games Game Projects/5. Lost My Marbles/0. Project Files/Library/ScriptAssemblies/Unity.ShaderGraph.Editor.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.RenderPipelines.Core.ShaderLibrary">
+      <HintPath>E:/# Carter Games/1. Carter Games Game Projects/5. Lost My Marbles/0. Project Files/Library/ScriptAssemblies/Unity.RenderPipelines.Core.ShaderLibrary.dll</HintPath>
+    </Reference>
     <Reference Include="Unity.TextMeshPro">
       <HintPath>E:/# Carter Games/1. Carter Games Game Projects/5. Lost My Marbles/0. Project Files/Library/ScriptAssemblies/Unity.TextMeshPro.dll</HintPath>
     </Reference>
@@ -674,39 +712,6 @@
     </Reference>
     <Reference Include="UnityEditor.UI">
       <HintPath>E:/# Carter Games/1. Carter Games Game Projects/5. Lost My Marbles/0. Project Files/Library/ScriptAssemblies/UnityEditor.UI.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.Timeline.Editor">
-      <HintPath>E:/# Carter Games/1. Carter Games Game Projects/5. Lost My Marbles/0. Project Files/Library/ScriptAssemblies/Unity.Timeline.Editor.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.Timeline">
-      <HintPath>E:/# Carter Games/1. Carter Games Game Projects/5. Lost My Marbles/0. Project Files/Library/ScriptAssemblies/Unity.Timeline.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.RenderPipelines.Core.Editor">
-      <HintPath>E:/# Carter Games/1. Carter Games Game Projects/5. Lost My Marbles/0. Project Files/Library/ScriptAssemblies/Unity.RenderPipelines.Core.Editor.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.RenderPipelines.Core.Runtime">
-      <HintPath>E:/# Carter Games/1. Carter Games Game Projects/5. Lost My Marbles/0. Project Files/Library/ScriptAssemblies/Unity.RenderPipelines.Core.Runtime.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.RenderPipelines.Core.ShaderLibrary">
-      <HintPath>E:/# Carter Games/1. Carter Games Game Projects/5. Lost My Marbles/0. Project Files/Library/ScriptAssemblies/Unity.RenderPipelines.Core.ShaderLibrary.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.RenderPipelines.ShaderGraph.ShaderGraphLibrary">
-      <HintPath>E:/# Carter Games/1. Carter Games Game Projects/5. Lost My Marbles/0. Project Files/Library/ScriptAssemblies/Unity.RenderPipelines.ShaderGraph.ShaderGraphLibrary.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.ShaderGraph.Editor">
-      <HintPath>E:/# Carter Games/1. Carter Games Game Projects/5. Lost My Marbles/0. Project Files/Library/ScriptAssemblies/Unity.ShaderGraph.Editor.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.RenderPipeline.Universal.ShaderLibrary">
-      <HintPath>E:/# Carter Games/1. Carter Games Game Projects/5. Lost My Marbles/0. Project Files/Library/ScriptAssemblies/Unity.RenderPipeline.Universal.ShaderLibrary.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.RenderPipelines.Universal.Shaders">
-      <HintPath>E:/# Carter Games/1. Carter Games Game Projects/5. Lost My Marbles/0. Project Files/Library/ScriptAssemblies/Unity.RenderPipelines.Universal.Shaders.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.RenderPipelines.Universal.Runtime">
-      <HintPath>E:/# Carter Games/1. Carter Games Game Projects/5. Lost My Marbles/0. Project Files/Library/ScriptAssemblies/Unity.RenderPipelines.Universal.Runtime.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.RenderPipelines.Universal.Editor">
-      <HintPath>E:/# Carter Games/1. Carter Games Game Projects/5. Lost My Marbles/0. Project Files/Library/ScriptAssemblies/Unity.RenderPipelines.Universal.Editor.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup></ItemGroup>

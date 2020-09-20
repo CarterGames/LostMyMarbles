@@ -13,14 +13,16 @@
       "dependencies": {}
     },
     "com.unity.ads": {
-      "version": "2.0.8",
+      "version": "3.4.7",
       "depth": 0,
       "source": "registry",
-      "dependencies": {},
+      "dependencies": {
+        "com.unity.ugui": "1.0.0"
+      },
       "url": "https://packages.unity.com"
     },
     "com.unity.analytics": {
-      "version": "3.3.2",
+      "version": "3.3.5",
       "depth": 0,
       "source": "registry",
       "dependencies": {
@@ -43,29 +45,23 @@
       "url": "https://packages.unity.com"
     },
     "com.unity.ide.rider": {
-      "version": "1.0.8",
+      "version": "1.1.4",
       "depth": 0,
       "source": "registry",
       "dependencies": {
-        "com.unity.ext.nunit": "1.0.0"
+        "com.unity.test-framework": "1.1.1"
       },
       "url": "https://packages.unity.com"
     },
     "com.unity.ide.vscode": {
-      "version": "1.0.7",
+      "version": "1.2.1",
       "depth": 0,
       "source": "registry",
       "dependencies": {},
       "url": "https://packages.unity.com"
     },
-    "com.unity.package-manager-ui": {
-      "version": "2.2.0",
-      "depth": 0,
-      "source": "builtin",
-      "dependencies": {}
-    },
     "com.unity.postprocessing": {
-      "version": "2.1.6",
+      "version": "2.2.2",
       "depth": 0,
       "source": "registry",
       "dependencies": {},
@@ -107,11 +103,13 @@
       "url": "https://packages.unity.com"
     },
     "com.unity.test-framework": {
-      "version": "1.0.13",
+      "version": "1.1.14",
       "depth": 0,
       "source": "registry",
       "dependencies": {
-        "com.unity.ext.nunit": "1.0.0"
+        "com.unity.ext.nunit": "1.0.0",
+        "com.unity.modules.imgui": "1.0.0",
+        "com.unity.modules.jsonserialize": "1.0.0"
       },
       "url": "https://packages.unity.com"
     },

@@ -1,44 +1,47 @@
 ﻿using UnityEngine;
 
-public class CameraController : MonoBehaviour
+
+namespace CarterGames.LostMyMarbles
 {
-	// References to the Marble and Marble forward which determins the foward direction for movement
-	public GameObject Marble;
-	public GameObject MarbleForward;
-
-	// Rotation speeds, controls how fast the mouse movement is
-	public float RotSpdUpDown;
-	public float RotSpdLeftRight;
-
-	// Bool used to disable this script partially when the player hits the end pad
-	public bool CamEnabled = true;
-
-
-	private void Update()
+	/// <summary>
+	/// Class | Controls the camera movement for the player
+	/// </summary>
+	public class CameraController : MonoBehaviour
 	{
-		// New Vector3 for the new position when it gets updated
-		Vector3 NewPos = Marble.transform.position;
+		// References to the Marble and Marble forward which determins the foward direction for movement
+		[SerializeField] private  GameObject marble;
+		[SerializeField] private GameObject marbleForward;
+		[SerializeField] private Camera cam;
 
-		// Sets the new position
-		transform.position = NewPos;
-		MarbleForward.transform.position = NewPos;
+		// Rotation speeds, controls how fast the mouse movement is
+		[SerializeField] private  float rotSpdUpDown;
+		[SerializeField] private float rotSpdLeftRight;
 
-		// Allows the player to rotate the camera via mouse input
-		if (CamEnabled)
+		// Bool used to disable this script partially when the player hits the end pad
+		[SerializeField] internal bool camEnabled = true;
+
+
+		private Vector3 _startPos;
+		private Quaternion _startRot;
+
+
+        private void Start()
+        {
+			_startPos = cam.transform.position;
+			_startRot = cam.transform.rotation;
+        }
+
+
+        private void Update()
 		{
-			//transform.eulerAngles += new Vector3(Input.GetAxis("Mouse Y") * RotSpdUpDown, Input.GetAxis("Mouse X") * RotSpdLeftRight, 0);
-			transform.Rotate(new Vector3(0, Input.GetAxis("Mouse X") * RotSpdLeftRight, 0));
-		}
+			// New Vector3 for the new position when it gets updated
+			Vector3 _newPos = marble.transform.position;
 
-		transform.position = new Vector3(transform.position.x, 5.5f, transform.position.z);
+			// Sets the new position
+			cam.transform.position = new Vector3(_newPos.x + _startPos.x, _startPos.y, _newPos.z + _startPos.z);
+			marbleForward.transform.position = _newPos;
 
-		// Updates the forward position for the players movement
-		MarbleForward.transform.eulerAngles += new Vector3(0, Input.GetAxis("Mouse X") * RotSpdLeftRight, 0);
-
-		if (CamEnabled)
-		{
-			//Camera.main.transform.localPosition = new Vector3(/*Camera.main.transform.localPosition.x*/ 0, 2, -7);
-			Camera.main.transform.localRotation = Quaternion.Euler(20, 0, 0);
+			marbleForward.transform.rotation = new Quaternion(0, _startRot.y, 0, 0);
 		}
 	}
 }
