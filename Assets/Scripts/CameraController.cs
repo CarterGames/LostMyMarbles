@@ -12,9 +12,10 @@ namespace CarterGames.LostMyMarbles
 		[SerializeField] private  GameObject marble;
 		[SerializeField] private GameObject marbleForward;
 		[SerializeField] private Camera cam;
+		[SerializeField] private Transform camTransform;
 
 		// Rotation speeds, controls how fast the mouse movement is
-		[SerializeField] private  float rotSpdUpDown;
+		[SerializeField] private float rotSpdUpDown;
 		[SerializeField] private float rotSpdLeftRight;
 
 		// Bool used to disable this script partially when the player hits the end pad
@@ -34,14 +35,20 @@ namespace CarterGames.LostMyMarbles
 
         private void Update()
 		{
-			// New Vector3 for the new position when it gets updated
-			Vector3 _newPos = marble.transform.position;
+			if (camEnabled)
+			{
+				// New Vector3 for the new position when it gets updated
+				Vector3 _newPos = marble.transform.position;
 
-			// Sets the new position
-			cam.transform.position = new Vector3(_newPos.x + _startPos.x, _startPos.y, _newPos.z + _startPos.z);
-			marbleForward.transform.position = _newPos;
+				// Sets the new position
 
-			marbleForward.transform.rotation = new Quaternion(0, _startRot.y, 0, 0);
+				transform.position = new Vector3(_newPos.x + _startPos.x, _startPos.y, _newPos.z + _startPos.z);
+				marbleForward.transform.position = _newPos;
+			}
+            else
+            {
+				transform.position = marble.transform.position;
+            }
 		}
 	}
 }

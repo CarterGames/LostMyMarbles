@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using CarterGames.Assets.AudioManager;
+using UnityEngine.InputSystem;
 
 namespace CarterGames.LostMyMarbles
 {
@@ -18,7 +19,7 @@ namespace CarterGames.LostMyMarbles
 		[SerializeField] private float moveSpeed = 175f;
 
 		[Range(0, 50)]
-		[SerializeField] private  float jumpHeight = 10f;
+		[SerializeField] private float jumpHeight = 10f;
 		[SerializeField] private float fallSpeed = 3f;
 
 		[Range(0, 15)]
@@ -28,9 +29,17 @@ namespace CarterGames.LostMyMarbles
 
 		[SerializeField] private bool useCameraPoint = true;
 		[SerializeField] private bool isGrounded;
+		[SerializeField] private bool hasPlayedParticles = false;
+
+		[SerializeField] private GameObject groundHitParticlesPrefab;
+		private List<GameObject> groundHitParticlesPool;
 
 		private GameObject moveDirGO;
 		private Vector3 startPos;
+
+
+		private Controls userInput;
+		private Vector3 _movement;
 
 		/// <summary>
 		/// Controls whether or not the player need to respawn and is currently dead...
@@ -41,9 +50,35 @@ namespace CarterGames.LostMyMarbles
 		private AudioManager audioManager;
 
 
-		private void Start()
+        private void OnEnable()
+        {
+			userInput.Enable();
+        }
+
+
+        private void OnDisable()
+        {
+			userInput.Disable();
+        }
+
+
+        private void Awake()
+        {
+			userInput = new Controls();
+        }
+
+
+        private void Start()
 		{
 			if (useCameraPoint) { moveDirGO = GameObject.FindGameObjectWithTag("CameraPoint"); }
+
+			groundHitParticlesPool = new List<GameObject>();
+
+            for (int i = 0; i < 3; i++)
+            {
+				GameObject _go = Instantiate(groundHitParticlesPrefab);
+				groundHitParticlesPool.Add(_go);
+            }
 
 			//HideMouse();
 			epScript = FindObjectOfType<EndPadScript>();
@@ -53,26 +88,26 @@ namespace CarterGames.LostMyMarbles
 
         private void Update()
         {
-			if (Input.GetButtonDown("Jump"))
-			{
-				Debug.Log("Jump Pressed");
-				GetComponent<Rigidbody>().velocity += Vector3.up * jumpHeight;
-				//Audio.PlayClip("Jump", Volume:.25f, Pitch: .5f);
-				//Audio.PlayFromTime("Jump", .015f, .25f, .5f);
-			}
+			if (userInput.MarbleMovementControls.Jump.phase == InputActionPhase.Performed && isGrounded)
+            {
+                Debug.Log("Jump Pressed");
+				GetComponent<Rigidbody>().AddForce(Vector3.up * jumpHeight, ForceMode.Impulse);
+                //Audio.PlayClip("Jump", Volume:.25f, Pitch: .5f);
+                //Audio.PlayFromTime("Jump", .015f, .25f, .5f);
+            }
 
 
-			if (playerDead)
+            if (playerDead)
 			{
 				ResetScene();
 			}
+
+			_movement = new Vector3(userInput.MarbleMovementControls.Hoz.ReadValue<float>(), 0, userInput.MarbleMovementControls.Ver.ReadValue<float>());
 		}
 
 
         private void FixedUpdate()
 		{
-			Vector3 _movement = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
-
 			if (useCameraPoint) 
 			{ 
 				_movement = moveDirGO.transform.TransformDirection(_movement); 
@@ -81,6 +116,24 @@ namespace CarterGames.LostMyMarbles
 			GetComponent<Rigidbody>().AddForce(_movement * moveSpeed);
 
 			JumpSmoothing();
+
+			isGrounded = IsInAir();
+
+			if (isGrounded && !hasPlayedParticles)
+            {
+                for (int i = 0; i < groundHitParticlesPool.Count; i++)
+                {
+					if (!groundHitParticlesPool[i].activeInHierarchy)
+                    {
+						groundHitParticlesPool[i].transform.position = transform.position;
+						groundHitParticlesPool[i].SetActive(true);
+						groundHitParticlesPool[i].GetComponent<ParticleSystem>().Play();
+						break;
+                    }
+                }
+
+				hasPlayedParticles = true;
+			}
 		}
 
 		/// <summary>
@@ -108,6 +161,31 @@ namespace CarterGames.LostMyMarbles
 
 			Cursor.visible = !Cursor.visible;
 		}
+
+		
+		private bool IsInAir()
+        {
+			Debug.DrawLine(transform.position, new Vector3(transform.position.x, transform.position.y - .75f, transform.position.z), Color.green);
+			RaycastHit hit;
+
+			if (Physics.Linecast(transform.position, new Vector3(transform.position.x, transform.position.y - .75f, transform.position.z), out hit))
+			{
+				if (!hit.collider.gameObject.CompareTag("Player"))
+				{
+					return true;
+				}
+				else
+				{
+					hasPlayedParticles = false;
+					return false;
+				}
+			}
+			else
+			{
+				hasPlayedParticles = false;
+				return false;
+			}
+        }
 
 
 		/// <summary>
@@ -161,5 +239,5 @@ namespace CarterGames.LostMyMarbles
 					break;
 			}
 		}
-	}
+    }
 }
