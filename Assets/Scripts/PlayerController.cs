@@ -34,7 +34,7 @@ namespace CarterGames.LostMyMarbles
 		[SerializeField] private GameObject groundHitParticlesPrefab;
 		private List<GameObject> groundHitParticlesPool;
 
-		private GameObject moveDirGO;
+		[SerializeField] private GameObject moveDirGO;
 		private Vector3 startPos;
 
 
@@ -70,7 +70,6 @@ namespace CarterGames.LostMyMarbles
 
         private void Start()
 		{
-			if (useCameraPoint) { moveDirGO = GameObject.FindGameObjectWithTag("CameraPoint"); }
 
 			groundHitParticlesPool = new List<GameObject>();
 
@@ -217,7 +216,7 @@ namespace CarterGames.LostMyMarbles
 					Debug.Log("Out Of Bounds");
 					other.gameObject.GetComponentInChildren<Canvas>().enabled = true;
 					Camera.main.transform.parent.LookAt(gameObject.transform);
-					Camera.main.GetComponentInParent<CameraController>().enabled = false;
+					//Camera.main.GetComponentInParent<CameraController>().enabled = false;
 					HideMouse();
 					playerDead = true;
 					break;
@@ -231,7 +230,7 @@ namespace CarterGames.LostMyMarbles
 					GameObject.FindGameObjectWithTag("OutOfBounds").GetComponentInChildren<Text>().text = "A Zom-ball Ate You!";
 					GameObject.FindGameObjectWithTag("OutOfBounds").GetComponentInChildren<Canvas>().enabled = true;
 					Camera.main.transform.parent.LookAt(gameObject.transform);
-					Camera.main.GetComponentInParent<CameraController>().enabled = false;
+					//Camera.main.GetComponentInParent<CameraController>().enabled = false;
 					HideMouse();
 					playerDead = true;
 					break;

@@ -13,7 +13,7 @@ namespace CarterGames.LostMyMarbles
 		private bool IsRot;                 // Is the marble rotating?
 		private bool IsCoRunning;           // Is the courutine running? - just stops it been called a million times
 		private Canvas EndUIElements;       // The Canvas that holds the end of level UI
-		private CameraController CamCtrl;   // The Camera Controller Script
+		//private CameraController CamCtrl;   // The Camera Controller Script
 		private TimerUIScript UICtrl;   // The Level Timer Script
 
 		/* Gem Variables */
@@ -25,7 +25,7 @@ namespace CarterGames.LostMyMarbles
 		private void Start()
 		{
 			// Setting up references
-			CamCtrl = Camera.main.GetComponentInParent<CameraController>();
+			//CamCtrl = Camera.main.GetComponentInParent<CameraController>();
 			UICtrl = FindObjectOfType<TimerUIScript>();
 			EndUIElements = GetComponentInChildren<Canvas>();
 
@@ -68,7 +68,7 @@ namespace CarterGames.LostMyMarbles
 				UICtrl.StopTimer();
 
 				// Freezes the Camera
-				CamCtrl.camEnabled = false;
+				//CamCtrl.camEnabled = false;
 
 				// Freezes the Marbles Position
 				Marble.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezePosition;

@@ -12,6 +12,7 @@ namespace CarterGames.LostMyMarbles
     public class GravityFlip : MonoBehaviour
     {
         [SerializeField] private PlayerController player;
+        [SerializeField] private GameObject gravityOr;
         [SerializeField] private Vector3 newGravityDirection;
         [SerializeField] private bool canSwitchGravity;
 
@@ -39,6 +40,7 @@ namespace CarterGames.LostMyMarbles
             {
                 Physics.gravity = newGravityDirection;
                 GameObject.FindGameObjectWithTag("CameraPoint").transform.rotation = Quaternion.Euler(-90, 0, 0);
+                gravityOr.transform.rotation = Quaternion.Euler(0, -90, 0);
             }
         }
 
