@@ -16,73 +16,81 @@ namespace CarterGames.LostMyMarbles
 		/// <summary>
 		/// Controls the movespeed of the marble
 		/// </summary>
+		[Header("Marble Controls")]
+		[Tooltip("The speed that the marble will move at.")]
 		[SerializeField] private float moveSpeed = 175f;
-
 		[Range(0, 50)]
+		[Tooltip("The height the marble can jump.")]
 		[SerializeField] private float jumpHeight = 10f;
+		[Tooltip("")]
 		[SerializeField] private float fallSpeed = 3f;
 
-		[Range(0, 15)]
-		[SerializeField] private  float speedFalloff = 1f;
-		[SerializeField] private  float speedReductionRate = .5f;
-		[SerializeField] private float fallOffDelay = .1f;
-
-		[SerializeField] private bool useCameraPoint = true;
-		[SerializeField] private bool isGrounded;
-		[SerializeField] private bool hasPlayedParticles = false;
-
-		[SerializeField] private GameObject groundHitParticlesPrefab;
-		private List<GameObject> groundHitParticlesPool;
 
 		[SerializeField] private GameObject moveDirGO;
-		private Vector3 startPos;
 
 
+
+		private bool useCameraPoint = true;
+		private bool isGrounded;
+		private bool playerDead;
+	    private bool canUsePowerup = true;
 		private Controls userInput;
 		private Vector3 _movement;
-
-		/// <summary>
-		/// Controls whether or not the player need to respawn and is currently dead...
-		/// </summary>
-		private bool playerDead;
-
-		private EndPadScript epScript;
-		private AudioManager audioManager;
+		private Rigidbody rb;
+		private WaitForSeconds wait = new WaitForSeconds(1f);
+		private GroundImpactParticles groundHitParticles;
 
 
+		internal bool canUseControls;
+
+
+		public PowerupOptions currentPowerUp;
+		public PowerupOptions _currentPowerUp
+        {
+            get { return currentPowerUp; }
+            set { currentPowerUp = value; }
+        }
+
+
+        #region Untiy Startup Methods
+        /// <summary>
+        /// Unity Method | Activates when the object is enabled
+        /// </summary>
         private void OnEnable()
         {
 			userInput.Enable();
         }
 
-
-        private void OnDisable()
+		/// <summary>
+		/// Unity Method | Activates when the object is disabled
+		/// </summary>
+		private void OnDisable()
         {
 			userInput.Disable();
+			StopAllCoroutines();
         }
 
-
-        private void Awake()
+		/// <summary>
+		/// Unity Method | Activates when the object is first started, ahead of the start method
+		/// </summary>
+		private void Awake()
         {
 			userInput = new Controls();
         }
 
-
-        private void Start()
+		/// <summary>
+		/// Unity Method | Activates when the object is first started, after the awake method
+		/// </summary>
+		private void Start()
 		{
-
-			groundHitParticlesPool = new List<GameObject>();
-
-            for (int i = 0; i < 3; i++)
-            {
-				GameObject _go = Instantiate(groundHitParticlesPrefab);
-				groundHitParticlesPool.Add(_go);
-            }
+			groundHitParticles = GetComponent<GroundImpactParticles>();
 
 			//HideMouse();
-			epScript = FindObjectOfType<EndPadScript>();
-			audioManager = FindObjectOfType<AudioManager>();
+			rb = GetComponent<Rigidbody>();
+
+			canUseControls = true;
 		}
+        #endregion
 
 
         private void Update()
@@ -95,45 +103,47 @@ namespace CarterGames.LostMyMarbles
                 //Audio.PlayFromTime("Jump", .015f, .25f, .5f);
             }
 
+			if (userInput.MarbleMovementControls.UsePowerUp.phase == InputActionPhase.Performed && canUsePowerup)
+            {
+				CallUseAbility();
+            }
+
 
             if (playerDead)
 			{
 				ResetScene();
 			}
 
-			_movement = new Vector3(userInput.MarbleMovementControls.Hoz.ReadValue<float>(), 0, userInput.MarbleMovementControls.Ver.ReadValue<float>());
+			if (canUseControls)
+			{
+				_movement = new Vector3(userInput.MarbleMovementControls.Hoz.ReadValue<float>(), 0, userInput.MarbleMovementControls.Ver.ReadValue<float>());
+			}
 		}
 
 
         private void FixedUpdate()
 		{
-			if (useCameraPoint) 
-			{ 
-				_movement = moveDirGO.transform.TransformDirection(_movement); 
-			}
+			if (canUseControls)
+			{
+				if (useCameraPoint)
+				{
+					_movement = moveDirGO.transform.TransformDirection(_movement);
+				}
 
-			GetComponent<Rigidbody>().AddForce(_movement * moveSpeed);
+				GetComponent<Rigidbody>().AddForce(_movement * moveSpeed);
+			}
 
 			JumpSmoothing();
 
 			isGrounded = IsInAir();
 
-			if (isGrounded && !hasPlayedParticles)
+			if (isGrounded && !groundHitParticles.hasPlayedParticles)
             {
-                for (int i = 0; i < groundHitParticlesPool.Count; i++)
-                {
-					if (!groundHitParticlesPool[i].activeInHierarchy)
-                    {
-						groundHitParticlesPool[i].transform.position = transform.position;
-						groundHitParticlesPool[i].SetActive(true);
-						groundHitParticlesPool[i].GetComponent<ParticleSystem>().Play();
-						break;
-                    }
-                }
-
-				hasPlayedParticles = true;
+				groundHitParticles.SpawnImpactParticles();
+				groundHitParticles.hasPlayedParticles = true;
 			}
 		}
+
 
 		/// <summary>
 		/// Smooths the jumping of the marble so it doesn't float in the air too much.
@@ -162,6 +172,10 @@ namespace CarterGames.LostMyMarbles
 		}
 
 		
+		/// <summary>
+		/// Checks to see if the player is in the air or not
+		/// </summary>
+		/// <returns></returns>
 		private bool IsInAir()
         {
 			Debug.DrawLine(transform.position, new Vector3(transform.position.x, transform.position.y - .75f, transform.position.z), Color.green);
@@ -175,13 +189,13 @@ namespace CarterGames.LostMyMarbles
 				}
 				else
 				{
-					hasPlayedParticles = false;
+					groundHitParticles.hasPlayedParticles = false;
 					return false;
 				}
 			}
 			else
 			{
-				hasPlayedParticles = false;
+				groundHitParticles.hasPlayedParticles = false;
 				return false;
 			}
         }
@@ -223,7 +237,6 @@ namespace CarterGames.LostMyMarbles
 				case "Gem":
 					Debug.Log("Gem Collected");
 					other.gameObject.SetActive(false);
-					epScript.GemsCollected++;
 					break;
 				case "Zomball":
 					Debug.Log("Zomball Hit Player");
@@ -238,5 +251,61 @@ namespace CarterGames.LostMyMarbles
 					break;
 			}
 		}
+
+
+
+		private void CallUseAbility()
+        {
+            switch (currentPowerUp)
+            {
+                case PowerupOptions.None:
+                    break;
+                case PowerupOptions.MegaJump:
+
+                    if (isGrounded)
+                    {
+                        MegaJump jump = new MegaJump();
+                        jump.UseAbility(this.rb);
+
+                    }
+
+                    break;
+                case PowerupOptions.Tracktion:
+                    break;
+                case PowerupOptions.Bouncy:
+                    break;
+                case PowerupOptions.SpeedBoost:
+
+                    MegaSpeed speed = new MegaSpeed();
+                    speed.UseAbility(this.rb);
+
+                    break;
+                case PowerupOptions.Shockwave:
+
+                    MegaShockwave shock = new MegaShockwave();
+                    shock.UseAbility(this.rb);
+
+                    break;
+                case PowerupOptions.Shield:
+
+					MegaShield shield = new MegaShield();
+					shield.UseAbility(this.rb);
+
+					break;
+                default:
+                    break;
+            }
+
+			canUsePowerup = false;
+			currentPowerUp = PowerupOptions.None;
+			StartCoroutine(PowerUpCo());
+		}
+
+
+        private IEnumerator PowerUpCo()
+        {
+			yield return wait;
+			canUsePowerup = true;
+        }
     }
 }
