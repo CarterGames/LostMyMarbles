@@ -16,6 +16,7 @@ namespace CarterGames.LostMyMarbles
         [SerializeField] private Vector3 newGravityDirection;
         [SerializeField] private bool canSwitchGravity;
 
+        private GameObject marble;
         private Controls userInput;
 
         private void OnEnable()
@@ -38,7 +39,7 @@ namespace CarterGames.LostMyMarbles
         {
             if (canSwitchGravity && userInput.MarbleMovementControls.UsePowerUp.phase == InputActionPhase.Performed)
             {
-                Physics.gravity = newGravityDirection;
+                marble.GetComponent<ConstantForce>().force = newGravityDirection;
                 GameObject.FindGameObjectWithTag("CameraPoint").transform.rotation = Quaternion.Euler(-90, 0, 0);
                 gravityOr.transform.rotation = Quaternion.Euler(0, -90, 0);
             }
@@ -48,6 +49,11 @@ namespace CarterGames.LostMyMarbles
         private void OnTriggerEnter(Collider other)
         {
             canSwitchGravity = true;
+            
+            if (other.gameObject.CompareTag("Player"))
+            {
+                marble = other.gameObject;
+            }    
         }
 
 
